@@ -1,0 +1,20 @@
+.exhibition { background: var(--clay); color: #f4eee6; display: grid; grid-template-columns: 1.15fr .85fr; min-height: 90vh; overflow: hidden; }
+.exhibition__image { clip-path: inset(4% 0 4% 4% round 18rem 18rem 1.5rem 1.5rem); overflow: hidden; position: relative; }
+.exhibition__image span { bottom: 8%; font-size: .58rem; left: 8%; letter-spacing: .14em; position: absolute; text-transform: uppercase; }
+.exhibition__image img { filter: brightness(.76) saturate(.7); height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); width: 100%; }
+.exhibition:hover .exhibition__image img { transform: scale(1.02); }
+.exhibition__copy { align-self: center; padding: clamp(4rem, 7vw, 8rem); position: relative; }
+.exhibition__copy::before { border: 1px solid rgba(255,255,255,.14); border-radius: 50%; content: ''; height: 22rem; position: absolute; right: -8rem; top: -7rem; width: 22rem; }
+.exhibition .eyebrow { color: rgba(255,255,255,.65); }
+.exhibition__dates { font-size: .66rem; letter-spacing: .15em; margin-top: 3.5rem; text-transform: uppercase; }
+.exhibition h2 { font-family: var(--serif); font-size: clamp(4rem, 7vw, 8rem); font-weight: 400; letter-spacing: -.055em; line-height: .82; margin: 1rem 0 3.2rem; }
+.exhibition h2 em { color: #d4b492; font-weight: 400; }
+.exhibition__copy > p:not(.eyebrow, .exhibition__dates) { color: rgba(255,255,255,.72); font-family: var(--serif); line-height: 1.7; max-width: 430px; }
+.exhibition__details { border-bottom: 1px solid rgba(255,255,255,.3); border-top: 1px solid rgba(255,255,255,.3); display: flex; font-size: .64rem; justify-content: space-between; letter-spacing: .12em; margin: 2.5rem 0; padding: 1.2rem 0; text-transform: uppercase; }
+
+@media (max-width: 850px) {
+  .exhibition { grid-template-columns: 1fr; }
+  .exhibition__image { clip-path: inset(1.25rem round 10rem 10rem 1rem 1rem); height: 68vh; }
+  .exhibition__copy { padding: 4rem 1.25rem 5rem; }
+  .exhibition h2 { font-size: clamp(4rem, 20vw, 6.8rem); }
+}

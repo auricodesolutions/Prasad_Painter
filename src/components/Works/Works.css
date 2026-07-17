@@ -1,0 +1,49 @@
+.works { background: var(--paper); color: var(--ink); overflow: hidden; padding-left: 0; padding-right: 0; position: relative; }
+.works::before { color: transparent; content: 'PORTFOLIO'; font-size: clamp(4rem, 10vw, 9rem); font-weight: 500; line-height: 1; opacity: .035; pointer-events: none; position: absolute; right: clamp(1.25rem, 4vw, 4.5rem); top: 2rem; white-space: nowrap; z-index: 0; -webkit-text-stroke: 1px var(--ink); }
+.works .eyebrow { color: var(--rust); }
+.works__heading { align-items: flex-end; display: flex; justify-content: space-between; padding: 0 clamp(1.25rem, 4vw, 4.5rem); position: relative; z-index: 1; }
+.works__heading h2 { font-family: var(--serif); font-size: clamp(4rem, 8vw, 9rem); font-weight: 400; letter-spacing: -.06em; line-height: .8; margin: 1.2rem 0 0; }
+.works__heading h2 em { color: var(--rust); font-weight: 400; }
+.works__intro { color: var(--muted); font-family: var(--sans); font-size: 1rem; line-height: 1.75; max-width: 430px; padding-bottom: .35rem; }
+
+.works__viewport { margin-top: clamp(3rem, 6vw, 6rem); overflow: hidden; position: relative; width: 100%; z-index: 1; }
+.works__track { animation: worksMarquee 72s linear infinite; display: flex; width: max-content; will-change: transform; }
+.works__track:hover { animation-play-state: paused; }
+.works__group { display: flex; gap: clamp(1rem, 2vw, 1.8rem); padding-left: clamp(1.25rem, 4vw, 4.5rem); padding-right: clamp(1rem, 2vw, 1.8rem); }
+@keyframes worksMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.work-card { background: none; border: 0; color: inherit; cursor: zoom-in; flex: 0 0 clamp(260px, 28vw, 430px); padding: 0; text-align: left; }
+.work-card__image { background: #2a2925; display: block; overflow: hidden; position: relative; }
+.work-card__image::after { border: 1px solid rgba(27,27,24,.16); content: ''; inset: .65rem; pointer-events: none; position: absolute; z-index: 2; }
+.work-card__count { align-items: center; background: rgba(247,245,239,.82); border: 1px solid rgba(27,27,24,.16); border-radius: 50%; color: var(--ink); display: flex; font-size: .56rem; height: 2.7rem; justify-content: center; left: 1rem; letter-spacing: .1em; position: absolute; top: 1rem; width: 2.7rem; z-index: 3; backdrop-filter: blur(8px); }
+.work-card__image img { aspect-ratio: 4 / 5; display: block; filter: saturate(.78); object-fit: cover; transform: scale(var(--crop-scale, 1)); transition: filter .5s ease, transform 1s var(--ease); width: 100%; }
+.work-card:hover .work-card__image img { filter: saturate(1); transform: scale(calc(var(--crop-scale, 1) + .035)); }
+.work-card__meta { align-items: flex-start; display: flex; gap: 1rem; justify-content: space-between; padding-top: 1rem; }
+.work-card__meta strong { display: block; font-family: var(--serif); font-size: 1.18rem; font-weight: 400; }
+.work-card__meta small { color: var(--muted); display: block; font-size: .59rem; letter-spacing: .1em; line-height: 1.5; margin-top: .25rem; text-transform: uppercase; }
+
+.lightbox { align-items: center; background: rgba(13,13,12,.97); display: flex; flex-direction: column; inset: 0; justify-content: center; padding: 3rem; position: fixed; z-index: 50; }
+.lightbox img { max-height: 76vh; max-width: 85vw; object-fit: contain; }
+.lightbox p { font-family: var(--serif); font-size: 1.1rem; margin-top: 1rem; }
+.lightbox p span { color: #9a978f; font-family: var(--sans); font-size: .63rem; letter-spacing: .1em; margin-left: .75rem; text-transform: uppercase; }
+.lightbox__close { background: none; border: 0; color: white; cursor: pointer; font-size: .66rem; letter-spacing: .14em; position: absolute; right: 2rem; text-transform: uppercase; top: 2rem; }
+
+@media (max-width: 760px) {
+  .works::before { font-size: clamp(4rem, 23vw, 7rem); right: 1.25rem; top: 2.5rem; }
+  .works__heading { align-items: flex-start; flex-direction: column; gap: 2rem; }
+  .works__intro { max-width: 390px; }
+  .work-card { flex-basis: 76vw; }
+  .works__track { animation-duration: 58s; }
+  .lightbox { padding: 1.25rem; }
+  .lightbox img { max-width: 100%; }
+  .lightbox p span { display: block; margin: .4rem 0 0; }
+}
+
+@media (min-width: 761px) and (max-width: 1050px) {
+  .works__heading { align-items: flex-start; flex-direction: column; gap: 2rem; }
+  .works__intro { max-width: 600px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .works__track { animation-play-state: paused; }
+}
