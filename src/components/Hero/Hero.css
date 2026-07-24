@@ -102,7 +102,7 @@
   font-size: .7rem;
   font-weight: 500;
   gap: 1.5rem;
-  justify-content: space-between;
+  justify-content: flex-end;
   letter-spacing: .06em;
   min-height: 3.65rem;
   min-width: 220px;
@@ -150,9 +150,6 @@
   z-index: 3;
 }
 
-.hero__scroll { align-items: center; display: flex; font-size: .54rem; gap: .7rem; letter-spacing: .14em; text-transform: uppercase; }
-.hero__scroll i { align-items: center; border: 1px solid rgba(255,255,255,.42); border-radius: 50%; display: flex; font-style: normal; height: 2.1rem; justify-content: center; transition: .3s ease; width: 2.1rem; }
-.hero__scroll:hover i { background: white; color: var(--ink); transform: translateY(4px); }
 .hero__slider-status { align-items: center; display: flex; gap: .4rem; }
 .hero__slider-status button { background: transparent; border: 0; cursor: pointer; padding: .6rem .18rem; }
 .hero__slider-status button span { background: rgba(255,255,255,.35); display: block; height: 1px; overflow: hidden; position: relative; transition: width .5s var(--ease), background .3s ease; width: 1.6rem; }
@@ -190,7 +187,6 @@
   .hero__actions { align-items: flex-start; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
   .hero__primary { min-height: 3.45rem; }
   .hero__footer { bottom: 1.35rem; }
-  .hero__scroll { display: none; }
   .hero__slider-status { margin-left: auto; }
   .hero__slider-status button span { width: 1rem; }
   .hero__slider-status button.is-active span { width: 2.2rem; }

@@ -5,8 +5,8 @@ export default function Footer() {
     <footer className="footer" id="contact">
       <div className="footer__main">
         <div className="footer__identity">
-          <a className="footer__brand" href="/" aria-label="Prasad Artist home">
-            PRASAD<span>ARTIST</span>
+          <a className="footer__brand" href="/" aria-label="Prasad Weerasinghe home">
+            PRASAD<span>WEERASINGHE</span>
           </a>
           <p>Contemporary paintings shaped by memory, nature and the human experience.</p>
         </div>
@@ -15,26 +15,28 @@ export default function Footer() {
           <strong>Explore</strong>
           <a href="/#work">Selected works</a>
           <a href="/about/">About the artist</a>
-          <a href="/#exhibition-poster">Exhibitions</a>
+          <a href="/#exhibition-poster">Artist profile</a>
         </nav>
 
         <div className="footer__details">
           <strong>Studio</strong>
-          <p>Colombo, Sri Lanka<br />Visits by appointment</p>
+          <p>Sri Lanka<br />Painter · Art Director · Set Designer</p>
         </div>
 
         <div className="footer__details">
-          <strong>Enquiries</strong>
-          <a href="mailto:studio@prasadartist.com">studio@prasadartist.com</a>
-          <a href="tel:+94770000000">+94 77 000 0000</a>
+          <strong>Follow the artist</strong>
+          <a href="https://www.instagram.com/prasart78" target="_blank" rel="noreferrer">Instagram · @prasart78</a>
+          <a href="https://www.tiktok.com/@artprasad" target="_blank" rel="noreferrer">TikTok · @artprasad</a>
+          <a href="https://www.facebook.com/share/1CGuesswFt/" target="_blank" rel="noreferrer">Facebook</a>
         </div>
       </div>
 
       <div className="footer__bottom">
-        <p>© 2026 Prasad Artist. All rights reserved.</p>
+        <p>© 2026 Prasad Weerasinghe. All rights reserved.</p>
         <div>
-          <a href="#top">Instagram ↗</a>
-          <a href="#top">Facebook ↗</a>
+          <a href="https://www.instagram.com/prasart78?igsh=MTV2M2l2bzE1YnFmdQ==&utm_source=ig_contact_invite" target="_blank" rel="noreferrer" aria-label="Prasad on Instagram (opens in a new tab)">Instagram ↗</a>
+          <a href="https://www.tiktok.com/@artprasad?_r=1&_t=ZS-98BHGXEwf3v" target="_blank" rel="noreferrer" aria-label="Prasad on TikTok (opens in a new tab)">TikTok ↗</a>
+          <a href="https://www.facebook.com/share/1CGuesswFt/" target="_blank" rel="noreferrer" aria-label="Prasad on Facebook (opens in a new tab)">Facebook ↗</a>
           <a href="#top">Back to top ↑</a>
         </div>
       </div>

@@ -3,7 +3,7 @@ import './CollectionShowcase.css'
 
 const collection = [
   {
-    image: '/assets/img1%20(1).jpeg',
+    image: '/assets/img1.jpeg',
     title: 'The Inner Eye',
     medium: 'Mixed media on canvas',
     position: '50% 38%',
@@ -24,7 +24,7 @@ const collection = [
     scale: 1,
   },
   {
-    image: '/assets/img1%20(1).jpeg',
+    image: '/assets/img1.jpeg',
     title: 'A Language Within',
     medium: 'Detail from The Inner Eye',
     position: '28% 68%',
@@ -64,7 +64,7 @@ export default function CollectionShowcase() {
     <section className="collection-showcase" id="collection" aria-labelledby="collection-title">
       <div className="collection-showcase__intro">
         <div data-reveal>
-          <p className="eyebrow">Selected collection · 2025–2026</p>
+          <p className="eyebrow">Selected works · Portfolio</p>
           <h2 id="collection-title">Step into the worlds<br />held <em>within each canvas.</em></h2>
         </div>
         <div className="collection-showcase__copy" data-reveal>

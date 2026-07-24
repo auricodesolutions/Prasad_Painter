@@ -4,7 +4,7 @@ export default function ExhibitionPoster() {
   return (
     <section className="poster-feature" id="exhibition-poster">
       <div className="poster-feature__heading" data-reveal>
-        <p className="eyebrow">Upcoming exhibition · Poster preview</p>
+        <p className="eyebrow">Artist spotlight · Profile preview</p>
       </div>
 
       <div className="poster-feature__frame" data-reveal>
@@ -14,14 +14,14 @@ export default function ExhibitionPoster() {
         <span className="poster-feature__arrow poster-feature__arrow--left" aria-hidden="true">&larr;</span>
 
         <div className="poster-feature__card">
-          <p>PRASAD <span>ARTIST</span></p>
-          <small>Contemporary paintings</small>
-          <h3>New<br />Works</h3>
+          <p>PRASAD <span>WEERASINGHE</span></p>
+          <small>Research-led painting</small>
+          <h3>Visual<br />Literacy</h3>
           <div className="poster-feature__date">
-            <strong>2026</strong>
-            <span>Opening details<br />to be announced</span>
+            <strong>1978</strong>
+            <span>Born in<br />Sri Lanka</span>
           </div>
-          <a href="mailto:studio@prasadartist.com?subject=Exhibition%20preview">Colombo, Sri Lanka <i>&rarr;</i></a>
+          <a href="https://gibugallery.com.au/prasad-weerasinghe/" target="_blank" rel="noreferrer">View artist profile <i>&rarr;</i></a>
         </div>
 
         <span className="poster-feature__arrow poster-feature__arrow--right" aria-hidden="true">&rarr;</span>
@@ -32,9 +32,9 @@ export default function ExhibitionPoster() {
       </div>
 
       <div className="poster-feature__details" data-reveal>
-        <span>Exhibition poster preview</span>
-        <p>Final venue and opening dates will be announced when confirmed.</p>
-        <a href="mailto:studio@prasadartist.com?subject=Exhibition%20updates">Request exhibition updates &rarr;</a>
+        <span>Published artist profile</span>
+        <p>Discover the education, professional career and research behind Prasad's visual language.</p>
+        <a href="https://gibugallery.com.au/prasad-weerasinghe/" target="_blank" rel="noreferrer">Read on Gibu Gallery &#8599;</a>
       </div>
     </section>
   )

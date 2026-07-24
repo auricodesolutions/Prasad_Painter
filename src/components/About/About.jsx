@@ -7,33 +7,40 @@ export default function About() {
 
       <figure className="about__artwork" data-reveal>
         <div className="about__image-wrap">
-          <img src="/assets/img2.jpeg" alt="Painting featuring a blue figure surrounded by detailed organic forms" loading="lazy" />
-          <span className="about__image-index">Selected work · 02</span>
+          <img src="/assets/owner.jpeg" alt="Prasad Weerasinghe, Sri Lankan contemporary visual artist" loading="lazy" />
+          <span className="about__image-index">Prasad Weerasinghe · Visual artist</span>
         </div>
-        <figcaption>Many Selves · Acrylic on canvas · 2025</figcaption>
+        <figcaption>In the studio · Colombo, Sri Lanka</figcaption>
       </figure>
 
       <div className="about__copy" data-reveal>
         <p className="eyebrow"><span /> About the artist</p>
-        <h2>Prasad creates symbolic worlds where <em>people, nature and memory</em> move together.</h2>
+        <h2>Prasad builds a visual language from <em>research, tradition and composite form.</em></h2>
 
-        <p className="about__lead">Prasad is a Sri Lankan contemporary visual artist whose paintings combine figurative storytelling, organic pattern and carefully layered detail.</p>
+        <p className="about__lead">Born in Sri Lanka in 1978, Prasad Weerasinghe is a painter, art director and set designer with a Master of Art History from the University of Kelaniya.</p>
 
         <div className="about__body">
-          <p>His work explores identity, transformation and the inner experiences that connect people to one another and to the natural world.</p>
-          <p>Every composition grows slowly through repeated lines, forms and colours—inviting viewers to discover a new story each time they look.</p>
+          <p>His paintings bring together textured and paper-like surfaces, decorative elements and carefully constructed composite figures.</p>
+          <p>Drawing from extensive research and 18th-century Sri Lankan art, he reorganises familiar elements into a distinctive contemporary language.</p>
         </div>
 
         <dl className="about__facts">
-          <div><dt>Based in</dt><dd>Sri Lanka</dd></div>
-          <div><dt>Practice</dt><dd>Contemporary painting</dd></div>
-          <div><dt>Exploring</dt><dd>Memory · Nature · Identity</dd></div>
+          <div><dt>Born</dt><dd>Sri Lanka · 1978</dd></div>
+          <div><dt>Education</dt><dd>Master of Art History</dd></div>
+          <div><dt>Practice</dt><dd>Painting · Art direction · Set design</dd></div>
         </dl>
 
         <div className="about__actions">
           <a className="about__primary" href="#work">View selected works <span>&#8599;</span></a>
           <a className="about__secondary" href="#contact">Contact the studio <span>&rarr;</span></a>
         </div>
+
+        <nav className="about__socials" aria-label="Follow Prasad Weerasinghe on social media">
+          <span>Follow Prasad</span>
+          <a href="https://www.instagram.com/prasart78?igsh=MTV2M2l2bzE1YnFmdQ==&utm_source=ig_contact_invite" target="_blank" rel="noreferrer">Instagram &#8599;</a>
+          <a href="https://www.tiktok.com/@artprasad?_r=1&_t=ZS-98BHGXEwf3v" target="_blank" rel="noreferrer">TikTok &#8599;</a>
+          <a href="https://www.facebook.com/share/1CGuesswFt/" target="_blank" rel="noreferrer">Facebook &#8599;</a>
+        </nav>
       </div>
     </section>
   )

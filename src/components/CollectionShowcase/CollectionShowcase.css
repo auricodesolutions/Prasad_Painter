@@ -91,7 +91,7 @@
 .collection-showcase__card {
   background: #ded8cc;
   border: 0;
-  border-radius: 18% / 7%;
+  border-radius: 0;
   box-shadow: 0 22px 55px rgba(45, 34, 27, .13);
   cursor: pointer;
   height: 65%;
@@ -173,7 +173,7 @@
   .collection-showcase__intro { align-items: start; grid-template-columns: 1fr; margin-bottom: 2.5rem; }
   .collection-showcase h2 br { display: none; }
   .collection-showcase__stage { height: 480px; margin-left: -1.25rem; margin-right: -1.25rem; }
-  .collection-showcase__card { border-radius: 15% / 6%; height: 62%; width: 43vw; }
+  .collection-showcase__card { border-radius: 0; height: 62%; width: 43vw; }
   .collection-showcase__card.position-0 { height: 74%; }
   .collection-showcase__card.position--1 { left: 18%; }
   .collection-showcase__card.position-1 { left: 82%; }

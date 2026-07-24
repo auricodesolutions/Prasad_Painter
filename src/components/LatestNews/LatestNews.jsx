@@ -3,40 +3,46 @@ import './LatestNews.css'
 
 const updates = [
   {
-    type: 'Exhibition',
-    date: 'Details coming soon',
-    title: 'A new exhibition of recent paintings is taking shape',
-    image: '/assets/img3.jpeg',
+    type: 'Biography',
+    date: 'Sri Lanka · 1978',
+    title: 'The Sri Lankan roots behind Prasad Weerasinghe’s visual language',
+    image: '/assets/owner.jpeg',
+    alt: 'Portrait of Prasad Weerasinghe',
   },
   {
-    type: 'From the studio',
-    date: '2026',
-    title: 'New works exploring memory, place and transformation',
-    image: '/assets/img1%20(1).jpeg',
-  },
-  {
-    type: 'Studio viewing',
-    date: 'By appointment',
-    title: 'Private viewings for collectors and curators in Colombo',
+    type: 'Education',
+    date: 'Art history',
+    title: 'Academic research at the University of Kelaniya',
     image: '/assets/hero-gallery-painter.png',
+    alt: 'Artist studying paintings in a gallery',
   },
   {
-    type: 'Artist journal',
-    date: 'July 2026',
-    title: 'Inside the layered details and symbols of a new painting',
+    type: 'Professional practice',
+    date: 'Since 2006',
+    title: 'Art direction and set design at Sri Lanka Rupavahini',
+    image: '/assets/img%20(4).jpeg',
+    alt: 'Broadcast studio with a rainbow and cloud set',
+  },
+  {
+    type: 'Artistic method',
+    date: 'Visual literacy',
+    title: 'Why extensive research begins every creation',
     image: '/assets/img2.jpeg',
+    alt: 'Detailed painting with layered figures and decorative forms',
   },
   {
-    type: 'In conversation',
-    date: 'Coming soon',
-    title: 'A conversation about colour, memory and the creative process',
-    image: '/assets/img1%20(1).jpeg',
+    type: 'Visual language',
+    date: 'Composite form',
+    title: 'Texture, decoration and figures assembled in layers',
+    image: '/assets/img1.jpeg',
+    alt: 'Symbolic painting with figures and organic patterns',
   },
   {
-    type: 'Studio notes',
-    date: '2026',
-    title: 'Sketches and studies from the artist’s working archive',
-    image: '/assets/exhibition-gallery-poster.png',
+    type: 'Tradition',
+    date: 'Sri Lankan art',
+    title: 'Rebuilding historical elements into contemporary work',
+    image: '/assets/img3.jpeg',
+    alt: 'Ornamental painting with a tree and layered traditional motifs',
   },
 ]
 
@@ -62,10 +68,10 @@ export default function LatestNews() {
     <section className="latest-news section" id="news">
       <div className="latest-news__heading" data-reveal>
         <div>
-          <p className="eyebrow">From the artist's studio</p>
-          <h2>Latest <em>news.</em></h2>
+          <p className="eyebrow">From the artist</p>
+          <h2>News &amp; <em>stories.</em></h2>
         </div>
-        <p>Exhibitions, works in progress and opportunities to experience Prasad's paintings.</p>
+        <p>Biography, research and ideas that shape Prasad Weerasinghe's paintings.</p>
       </div>
 
       <div className="latest-news__navigation" aria-label="News pages">
@@ -85,17 +91,19 @@ export default function LatestNews() {
                 return (
                   <article key={update.title}>
                     <a
-                      href="mailto:studio@prasadartist.com?subject=Studio%20news%20enquiry"
-                      aria-label={`Enquire about ${update.title}`}
+                      href="https://gibugallery.com.au/prasad-weerasinghe/"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Read more about ${update.title}`}
                       tabIndex={activePage === pageIndex ? 0 : -1}
                     >
                       <div className="latest-news__image">
-                        <img src={update.image} alt="" loading="lazy" />
+                        <img src={update.image} alt={update.alt} loading="lazy" />
                         <span>0{number}</span>
                       </div>
                       <div className="latest-news__meta"><span>{update.type}</span><time>{update.date}</time></div>
                       <h3>{update.title}</h3>
-                      <span className="latest-news__link">Read update <i>&rarr;</i></span>
+                      <span className="latest-news__link">Read profile <i>&rarr;</i></span>
                     </a>
                   </article>
                 )

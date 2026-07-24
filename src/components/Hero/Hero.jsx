@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react'
 import './Hero.css'
 
 const heroImages = [
-  { src: '/assets/hero-gallery-painter.png', alt: 'An artist studying expressive paintings in a dark gallery' },
-  { src: '/assets/img1%20(1).jpeg', alt: 'A symbolic painting filled with flowing figures and organic forms' },
+  { src: '/assets/img1.jpeg', alt: 'A symbolic painting filled with flowing figures and organic forms' },
   { src: '/assets/img2.jpeg', alt: 'An intricate contemporary painting from Prasad’s collection' },
   { src: '/assets/img3.jpeg', alt: 'A detailed ornamental painting with layered botanical forms' },
-  { src: '/assets/exhibition-gallery-poster.png', alt: 'Prasad’s paintings presented in a contemporary exhibition space' },
 ]
 
 export default function Hero() {
@@ -37,7 +35,7 @@ export default function Hero() {
 
       <div className="hero__content">
         <div className="hero__copy">
-          <p className="hero__eyebrow reveal"><span /> Prasad &middot; Sri Lankan visual artist</p>
+          <p className="hero__eyebrow reveal"><span /> Prasad Weerasinghe &middot; Sri Lankan visual artist</p>
           <h1 className="reveal reveal--delay">
             <span>Art begins with</span>
             <em>looking deeper.</em>
@@ -55,7 +53,6 @@ export default function Hero() {
       </div>
 
       <div className="hero__footer reveal reveal--delay-2">
-        <a className="hero__scroll" href="#work"><i>&darr;</i><span>Scroll to discover</span></a>
         <div className="hero__slider-status" aria-label={`Hero image ${activeImage + 1} of ${heroImages.length}`}>
           {heroImages.map((image, index) => (
             <button

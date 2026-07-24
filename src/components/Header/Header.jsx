@@ -5,7 +5,7 @@ const links = [
   ['Home', '/', null, 'home'],
   ['Work', '/', 'work', 'home'],
   ['About', '/about/', null, 'about'],
-  ['Exhibitions', '/', 'exhibition-poster', 'home'],
+  ['Practice', '/', 'exhibition-poster', 'home'],
   ['News', '/', 'news', 'home'],
 ]
 
@@ -37,8 +37,8 @@ export default function Header({ page = 'home', onNavigate }) {
 
   return (
     <header className={`header ${scrolled ? 'header--scrolled' : ''} ${open ? 'header--open' : ''}`}>
-      <a className="header__brand" href="/" aria-label="Prasad home" onClick={(event) => { event.preventDefault(); navigateFromHeader('home') }}>
-        PRASAD<span>ARTIST</span>
+      <a className="header__brand" href="/" aria-label="Prasad Weerasinghe home" onClick={(event) => { event.preventDefault(); navigateFromHeader('home') }}>
+        PRASAD<span>WEERASINGHE</span>
       </a>
 
       <button

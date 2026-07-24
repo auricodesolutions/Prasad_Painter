@@ -1,5 +1,5 @@
 const localArt = [
-  '/assets/img1%20(1).jpeg',
+  '/assets/img1.jpeg',
   '/assets/img2.jpeg',
   '/assets/img3.jpeg',
 ]

@@ -13,7 +13,7 @@
 .about__artwork::before { background: var(--blue); content: ''; inset: 2.2rem -1rem -1rem 2.2rem; opacity: .12; position: absolute; }
 .about__image-wrap { max-height: 720px; overflow: hidden; position: relative; }
 .about__image-wrap::after { border: 1px solid rgba(255,255,255,.45); content: ''; inset: .75rem; pointer-events: none; position: absolute; }
-.about__artwork img { display: block; filter: saturate(.78) contrast(1.02); height: 100%; max-height: 720px; object-fit: cover; position: relative; transition: filter .5s ease, transform 1s var(--ease); width: 100%; }
+.about__artwork img { display: block; filter: saturate(.78) contrast(1.02); height: 100%; max-height: 720px; object-fit: cover; object-position: center 30%; position: relative; transition: filter .5s ease, transform 1s var(--ease); width: 100%; }
 .about__artwork:hover img { filter: saturate(1); transform: scale(1.018); }
 .about__image-index { background: rgba(247,245,239,.9); bottom: 1.5rem; color: var(--ink); font-size: .56rem; left: 1.5rem; letter-spacing: .13em; padding: .7rem .9rem; position: absolute; text-transform: uppercase; z-index: 2; backdrop-filter: blur(8px); }
 .about__artwork figcaption { color: var(--muted); font-size: .58rem; letter-spacing: .11em; padding-top: .85rem; position: relative; text-transform: uppercase; }
@@ -43,6 +43,11 @@
 .about__primary:hover { background: var(--rust); border-color: var(--rust); transform: translateY(-3px); }
 .about__secondary:hover { background: var(--ink); color: var(--paper); transform: translateY(-3px); }
 
+.about__socials { align-items: center; display: flex; flex-wrap: wrap; gap: .65rem 1.25rem; margin-top: 1.6rem; }
+.about__socials > span { color: var(--muted); font-size: .55rem; letter-spacing: .14em; margin-right: .25rem; text-transform: uppercase; }
+.about__socials a { border-bottom: 1px solid var(--line); font-size: .62rem; letter-spacing: .08em; padding-bottom: .3rem; transition: border-color .25s ease, color .25s ease; }
+.about__socials a:hover { border-color: var(--rust); color: var(--rust); }
+
 @media (min-width: 851px) and (max-height: 900px) {
   .about { padding-bottom: 6rem; padding-top: 6rem; }
   .about__image-wrap, .about__artwork img { max-height: 610px; }
@@ -64,4 +69,5 @@
   .about__facts div:last-child { border-bottom: 0; }
   .about__actions { align-items: stretch; flex-direction: column; }
   .about__primary, .about__secondary { width: 100%; }
+  .about__socials { margin-top: 1.75rem; }
 }
