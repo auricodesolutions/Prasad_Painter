@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react'
 import './Hero.css'
 
 const heroImages = [
-  { src: '/assets/img1.jpeg', alt: 'A symbolic painting filled with flowing figures and organic forms' },
-  { src: '/assets/img2.jpeg', alt: 'An intricate contemporary painting from Prasad’s collection' },
-  { src: '/assets/img3.jpeg', alt: 'A detailed ornamental painting with layered botanical forms' },
+  { src: '/assets/img%20(27).jpeg', alt: 'Prasad Weerasinghe standing in his studio surrounded by artworks' },
+  { src: '/assets/prasad-research-practice.png', alt: 'Prasad Weerasinghe standing in his studio surrounded by artworks' },
+  { src: '/assets/hero-gallery-painter.png', alt: 'Prasad Weerasinghe standing in his studio surrounded by artworks' },
+  { src: '/assets/img%20(5).jpeg', alt: 'A monochrome architectural drawing with intricate symbolic forms' },
+
+
 ]
 
 export default function Hero() {

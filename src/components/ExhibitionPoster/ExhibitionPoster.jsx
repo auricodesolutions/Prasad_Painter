@@ -14,14 +14,11 @@ export default function ExhibitionPoster() {
         <span className="poster-feature__arrow poster-feature__arrow--left" aria-hidden="true">&larr;</span>
 
         <div className="poster-feature__card">
-          <p>PRASAD <span>WEERASINGHE</span></p>
-          <small>Research-led painting</small>
-          <h3>Visual<br />Literacy</h3>
-          <div className="poster-feature__date">
-            <strong>1978</strong>
-            <span>Born in<br />Sri Lanka</span>
-          </div>
-          <a href="https://gibugallery.com.au/prasad-weerasinghe/" target="_blank" rel="noreferrer">View artist profile <i>&rarr;</i></a>
+          <img
+            src="/assets/visual-literacy-exhibition-poster.png"
+            alt="Visual Literacy solo exhibition poster for Prasad Weerasinghe"
+            loading="lazy"
+          />
         </div>
 
         <span className="poster-feature__arrow poster-feature__arrow--right" aria-hidden="true">&rarr;</span>

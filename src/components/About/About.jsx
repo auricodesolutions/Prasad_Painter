@@ -3,11 +3,9 @@ import './About.css'
 export default function About() {
   return (
     <section className="about section" id="about">
-      <span className="about__number" aria-hidden="true">02</span>
-
       <figure className="about__artwork" data-reveal>
         <div className="about__image-wrap">
-          <img src="/assets/owner.jpeg" alt="Prasad Weerasinghe, Sri Lankan contemporary visual artist" loading="lazy" />
+          <img src="/assets/prasad-painting-process.png" alt="Prasad Weerasinghe, Sri Lankan contemporary visual artist" loading="lazy" />
           <span className="about__image-index">Prasad Weerasinghe · Visual artist</span>
         </div>
         <figcaption>In the studio · Colombo, Sri Lanka</figcaption>

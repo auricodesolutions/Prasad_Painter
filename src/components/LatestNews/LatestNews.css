@@ -3,9 +3,7 @@
 .latest-news__heading h2 { font-family: var(--serif); font-size: clamp(4rem, 8vw, 9rem); font-weight: 400; letter-spacing: -.06em; line-height: .8; margin: 1.2rem 0 0; }
 .latest-news__heading h2 em { color: var(--rust); font-weight: 400; }
 .latest-news__heading > p { color: var(--muted); line-height: 1.7; max-width: 410px; }
-.latest-news__navigation { align-items: center; border-top: 1px solid #ccc4b7; display: flex; justify-content: space-between; margin-top: clamp(3rem, 6vw, 6rem); padding-top: 1rem; }
-.latest-news__navigation > span { color: var(--muted); font-size: .58rem; letter-spacing: .14em; }
-.latest-news__navigation > span strong { color: var(--ink); font-weight: 500; }
+.latest-news__navigation { align-items: center; border-top: 1px solid #ccc4b7; display: flex; justify-content: flex-end; margin-top: clamp(3rem, 6vw, 6rem); padding-top: 1rem; }
 .latest-news__navigation > div { display: flex; gap: .45rem; }
 .latest-news__navigation button { align-items: center; background: transparent; border: 1px solid #bbb3a6; border-radius: 50%; color: var(--ink); cursor: pointer; display: flex; font-size: 1rem; height: 2.8rem; justify-content: center; transition: background .3s ease, border-color .3s ease, color .3s ease, opacity .3s ease; width: 2.8rem; }
 .latest-news__navigation button:hover:not(:disabled) { background: var(--ink); border-color: var(--ink); color: #fff; }
@@ -17,7 +15,6 @@
 .latest-news article { min-width: 0; }
 .latest-news__image { aspect-ratio: 4 / 3; overflow: hidden; position: relative; }
 .latest-news__image img { filter: saturate(.72); height: 100%; object-fit: cover; transition: filter .6s ease, transform 1s var(--ease); width: 100%; }
-.latest-news__image > span { align-items: center; background: rgba(18,18,16,.72); border-radius: 50%; color: white; display: flex; font-size: .53rem; height: 2.6rem; justify-content: center; left: 1rem; position: absolute; top: 1rem; width: 2.6rem; }
 .latest-news article:hover img { filter: saturate(1); transform: scale(1.035); }
 .latest-news__meta { color: var(--muted); display: flex; font-size: .54rem; justify-content: space-between; letter-spacing: .12em; margin-top: 1rem; text-transform: uppercase; }
 .latest-news h3 { font-family: var(--serif); font-size: clamp(1.65rem, 2.5vw, 2.6rem); font-weight: 400; line-height: 1.08; margin: 1.2rem 0 1.5rem; }

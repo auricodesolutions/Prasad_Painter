@@ -6,14 +6,14 @@ const updates = [
     type: 'Biography',
     date: 'Sri Lanka · 1978',
     title: 'The Sri Lankan roots behind Prasad Weerasinghe’s visual language',
-    image: '/assets/owner.jpeg',
+    image: '/assets/prasad-research-practice.png',
     alt: 'Portrait of Prasad Weerasinghe',
   },
   {
     type: 'Education',
     date: 'Art history',
     title: 'Academic research at the University of Kelaniya',
-    image: '/assets/hero-gallery-painter.png',
+    image: '/assets/img%20(31).jpeg',
     alt: 'Artist studying paintings in a gallery',
   },
   {
@@ -27,14 +27,14 @@ const updates = [
     type: 'Artistic method',
     date: 'Visual literacy',
     title: 'Why extensive research begins every creation',
-    image: '/assets/img2.jpeg',
+    image: '/assets/img%20(8).jpeg',
     alt: 'Detailed painting with layered figures and decorative forms',
   },
   {
     type: 'Visual language',
     date: 'Composite form',
     title: 'Texture, decoration and figures assembled in layers',
-    image: '/assets/img1.jpeg',
+    image: '/assets/img%20(26).jpeg',
     alt: 'Symbolic painting with figures and organic patterns',
   },
   {
@@ -75,7 +75,6 @@ export default function LatestNews() {
       </div>
 
       <div className="latest-news__navigation" aria-label="News pages">
-        <span><strong>0{activePage + 1}</strong> / 02</span>
         <div>
           <button type="button" onClick={() => showPage((activePage + pages.length - 1) % pages.length)} aria-label="Show previous three news items">&larr;</button>
           <button type="button" onClick={() => showPage((activePage + 1) % pages.length)} aria-label="Show next three news items">&rarr;</button>
@@ -86,8 +85,7 @@ export default function LatestNews() {
         <div className="latest-news__track" style={{ transform: `translateX(-${activePage * 50}%)` }}>
           {pages.map((page, pageIndex) => (
             <div className="latest-news__grid" aria-hidden={activePage !== pageIndex} key={pageIndex}>
-              {page.map((update, itemIndex) => {
-                const number = (pageIndex * 3) + itemIndex + 1
+              {page.map((update) => {
                 return (
                   <article key={update.title}>
                     <a
@@ -99,7 +97,6 @@ export default function LatestNews() {
                     >
                       <div className="latest-news__image">
                         <img src={update.image} alt={update.alt} loading="lazy" />
-                        <span>0{number}</span>
                       </div>
                       <div className="latest-news__meta"><span>{update.type}</span><time>{update.date}</time></div>
                       <h3>{update.title}</h3>

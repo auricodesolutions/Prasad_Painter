@@ -7,7 +7,6 @@
   position: relative;
 }
 .about::after { border: 1px solid rgba(74,100,119,.18); border-radius: 50%; content: ''; height: 38vw; pointer-events: none; position: absolute; right: -20vw; top: -14vw; width: 38vw; }
-.about__number { color: var(--rust); font-size: .62rem; left: clamp(1.25rem, 4vw, 4.5rem); letter-spacing: .15em; position: absolute; top: clamp(2rem, 4vw, 4rem); }
 
 .about__artwork { margin: 0; position: relative; }
 .about__artwork::before { background: var(--blue); content: ''; inset: 2.2rem -1rem -1rem 2.2rem; opacity: .12; position: absolute; }
@@ -58,7 +57,6 @@
 
 @media (max-width: 850px) {
   .about { grid-template-columns: 1fr; }
-  .about__number { display: none; }
   .about__artwork { margin-left: 10%; width: 90%; }
   .about__image-wrap, .about__artwork img { max-height: none; }
   .about__artwork img { aspect-ratio: 4 / 5; }

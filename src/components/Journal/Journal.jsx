@@ -14,9 +14,8 @@ export default function Journal() {
         <h2>Journal</h2>
       </div>
       <div className="journal__list">
-        {notes.map((note, index) => (
+        {notes.map((note) => (
           <a href="#contact" className="journal__item" key={note.title} data-reveal>
-            <span className="journal__index">0{index + 1}</span>
             <span className="journal__type">{note.type}</span>
             <strong>{note.title}</strong>
             <span className="journal__date">{note.date}</span>

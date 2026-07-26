@@ -1,125 +1,115 @@
 import { useEffect } from 'react'
 
-const clamp = (value, minimum, maximum) => Math.min(Math.max(value, minimum), maximum)
-
 export default function SmoothScroll() {
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const hasFinePointer = window.matchMedia('(pointer: fine)')
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const finePointer = window.matchMedia('(pointer: fine)')
 
-    if (prefersReducedMotion.matches || !hasFinePointer.matches) return undefined
+    if (reducedMotion.matches || !finePointer.matches) return undefined
 
-    const root = document.documentElement
     let current = window.scrollY
-    let target = current
-    let animationFrame = 0
-    let isAnimating = false
+    let target = window.scrollY
+    let frame = null
 
-    root.classList.add('has-smooth-wheel')
-
-    const maximumScroll = () => Math.max(0, root.scrollHeight - window.innerHeight)
+    const maximumScroll = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
 
     const animate = () => {
-      current += (target - current) * 0.115
+      const distance = target - current
+      current += distance * 0.11
 
-      if (Math.abs(target - current) < 0.45) {
+      if (Math.abs(distance) < 0.5) {
         current = target
-        isAnimating = false
+        window.scrollTo(0, target)
+        frame = null
+        return
       }
 
       window.scrollTo(0, current)
-      if (isAnimating) animationFrame = window.requestAnimationFrame(animate)
-    }
-
-    const scrollToTarget = (nextTarget) => {
-      current = window.scrollY
-      target = clamp(nextTarget, 0, maximumScroll())
-      window.cancelAnimationFrame(animationFrame)
-      isAnimating = true
-      animationFrame = window.requestAnimationFrame(animate)
-    }
-
-    const canScrollInside = (element, delta) => {
-      let node = element instanceof Element ? element : null
-
-      while (node && node !== document.body) {
-        const style = window.getComputedStyle(node)
-        const scrollable = /(auto|scroll)/.test(style.overflowY) && node.scrollHeight > node.clientHeight
-        if (scrollable) {
-          const canMoveDown = delta > 0 && node.scrollTop + node.clientHeight < node.scrollHeight - 1
-          const canMoveUp = delta < 0 && node.scrollTop > 1
-          if (canMoveDown || canMoveUp) return true
-        }
-        node = node.parentElement
-      }
-
-      return false
+      frame = window.requestAnimationFrame(animate)
     }
 
     const onWheel = (event) => {
-      if (event.ctrlKey || event.metaKey || document.body.style.overflow === 'hidden') return
+      if (
+        event.defaultPrevented
+        || event.ctrlKey
+        || document.body.style.overflow === 'hidden'
+        || Math.abs(event.deltaX) > Math.abs(event.deltaY)
+      ) return
 
-      const multiplier = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1
-      const delta = clamp(event.deltaY * multiplier, -180, 180)
-      if (!delta || canScrollInside(event.target, delta)) return
+      const interactive = event.target instanceof Element
+        ? event.target.closest('input, textarea, select, [contenteditable="true"]')
+        : null
+      if (interactive) return
+
+      let scrollable = event.target instanceof Element ? event.target : null
+      while (scrollable && scrollable !== document.body) {
+        const style = window.getComputedStyle(scrollable)
+        const canScroll = /(auto|scroll)/.test(style.overflowY)
+          && scrollable.scrollHeight > scrollable.clientHeight
+        const movingDown = event.deltaY > 0
+        const hasRoom = movingDown
+          ? scrollable.scrollTop + scrollable.clientHeight < scrollable.scrollHeight - 1
+          : scrollable.scrollTop > 1
+
+        if (canScroll && hasRoom) return
+        scrollable = scrollable.parentElement
+      }
 
       event.preventDefault()
-      if (!isAnimating) {
+
+      const multiplier = event.deltaMode === 1
+        ? 28
+        : event.deltaMode === 2
+          ? window.innerHeight
+          : 1
+
+      target = Math.min(maximumScroll(), Math.max(0, target + event.deltaY * multiplier))
+
+      if (frame === null) {
         current = window.scrollY
-        target = current
+        frame = window.requestAnimationFrame(animate)
       }
-
-      target = clamp(target + delta, 0, maximumScroll())
-
-      if (!isAnimating) {
-        isAnimating = true
-        animationFrame = window.requestAnimationFrame(animate)
-      }
-    }
-
-    const onScroll = () => {
-      if (!isAnimating) current = target = window.scrollY
     }
 
     const onAnchorClick = (event) => {
-      if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return
+      if (!(event.target instanceof Element)) return
 
-      const anchor = event.target instanceof Element ? event.target.closest('a[href^="#"]') : null
-      if (!anchor) return
+      const anchor = event.target.closest('a[href^="#"]')
+      const href = anchor?.getAttribute('href')
+      if (!href || href === '#') return
 
-      const hash = anchor.getAttribute('href')
-      if (!hash || hash === '#') return
-      const destination = hash === '#top' ? document.getElementById('top') : document.querySelector(hash)
+      const destination = document.querySelector(href)
       if (!destination) return
 
       event.preventDefault()
-      const scrollMargin = Number.parseFloat(window.getComputedStyle(destination).scrollMarginTop) || 0
-      const nextTarget = hash === '#top' ? 0 : destination.getBoundingClientRect().top + window.scrollY - scrollMargin
-      window.history.pushState({}, '', hash)
-      scrollToTarget(nextTarget)
+      const destinationTop = destination.getBoundingClientRect().top + window.scrollY - 72
+      target = Math.min(maximumScroll(), Math.max(0, destinationTop))
+      window.history.pushState({}, '', href)
+
+      if (frame === null) {
+        current = window.scrollY
+        frame = window.requestAnimationFrame(animate)
+      }
     }
 
-    const stopAnimation = () => {
-      if (!isAnimating) return
-      window.cancelAnimationFrame(animationFrame)
-      isAnimating = false
-      current = target = window.scrollY
+    const syncPosition = () => {
+      if (frame === null) {
+        current = window.scrollY
+        target = window.scrollY
+      }
     }
 
+    document.documentElement.classList.add('has-smooth-wheel')
     window.addEventListener('wheel', onWheel, { passive: false })
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('keydown', stopAnimation)
-    window.addEventListener('pointerdown', stopAnimation)
+    window.addEventListener('scroll', syncPosition, { passive: true })
     document.addEventListener('click', onAnchorClick)
 
     return () => {
-      root.classList.remove('has-smooth-wheel')
-      window.cancelAnimationFrame(animationFrame)
+      document.documentElement.classList.remove('has-smooth-wheel')
       window.removeEventListener('wheel', onWheel)
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('keydown', stopAnimation)
-      window.removeEventListener('pointerdown', stopAnimation)
+      window.removeEventListener('scroll', syncPosition)
       document.removeEventListener('click', onAnchorClick)
+      if (frame !== null) window.cancelAnimationFrame(frame)
     }
   }, [])
 

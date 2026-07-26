@@ -3,9 +3,9 @@ import './Header.css'
 
 const links = [
   ['Home', '/', null, 'home'],
-  ['Work', '/', 'work', 'home'],
   ['About', '/about/', null, 'about'],
-  ['Practice', '/', 'exhibition-poster', 'home'],
+  ['Work', '/', 'work', 'home'],
+  ['Exhibition', '/', 'exhibition-poster', 'home'],
   ['News', '/', 'news', 'home'],
 ]
 
