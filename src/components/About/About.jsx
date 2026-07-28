@@ -30,7 +30,7 @@ export default function About() {
 
         <div className="about__actions">
           <a className="about__primary" href="#work">View selected works <span>&#8599;</span></a>
-          <a className="about__secondary" href="#contact">Contact the studio <span>&rarr;</span></a>
+          <a className="about__secondary" href="/contact/">Contact the studio <span>&rarr;</span></a>
         </div>
 
         <nav className="about__socials" aria-label="Follow Prasad Weerasinghe on social media">

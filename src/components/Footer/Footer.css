@@ -1,5 +1,5 @@
 .footer {
-  background: #10100f;
+  background: var(--ink);
   color: var(--paper);
   padding: 3.5rem clamp(1.25rem, 4vw, 4.5rem) 1.5rem;
 }
@@ -13,20 +13,11 @@
 }
 
 .footer__brand {
-  display: inline-block;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: .12em;
-  line-height: .85;
-}
-
-.footer__brand span {
   display: block;
-  font-size: .42em;
-  font-weight: 400;
-  letter-spacing: .34em;
-  margin-top: .7em;
+  height: 80px;
+  width: min(230px, 100%);
 }
+.footer__brand img { filter: invert(1); height: 100%; object-fit: contain; object-position: left center; width: 100%; }
 
 .footer__identity > p {
   color: #8f8c84;

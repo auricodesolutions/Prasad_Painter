@@ -1,11 +1,11 @@
-.latest-news { background: #ece7dd; }
+.latest-news { background: var(--line); }
 .latest-news__heading { align-items: end; display: flex; gap: 3rem; justify-content: space-between; }
 .latest-news__heading h2 { font-family: var(--serif); font-size: clamp(4rem, 8vw, 9rem); font-weight: 400; letter-spacing: -.06em; line-height: .8; margin: 1.2rem 0 0; }
 .latest-news__heading h2 em { color: var(--rust); font-weight: 400; }
 .latest-news__heading > p { color: var(--muted); line-height: 1.7; max-width: 410px; }
-.latest-news__navigation { align-items: center; border-top: 1px solid #ccc4b7; display: flex; justify-content: flex-end; margin-top: clamp(3rem, 6vw, 6rem); padding-top: 1rem; }
+.latest-news__navigation { align-items: center; border-top: 1px solid rgba(107,98,88,.3); display: flex; justify-content: flex-end; margin-top: clamp(2.5rem, 4.5vw, 4.5rem); padding-top: 1rem; }
 .latest-news__navigation > div { display: flex; gap: .45rem; }
-.latest-news__navigation button { align-items: center; background: transparent; border: 1px solid #bbb3a6; border-radius: 50%; color: var(--ink); cursor: pointer; display: flex; font-size: 1rem; height: 2.8rem; justify-content: center; transition: background .3s ease, border-color .3s ease, color .3s ease, opacity .3s ease; width: 2.8rem; }
+.latest-news__navigation button { align-items: center; background: transparent; border: 1px solid var(--muted); border-radius: 50%; color: var(--ink); cursor: pointer; display: flex; font-size: 1rem; height: 2.8rem; justify-content: center; transition: background .3s ease, border-color .3s ease, color .3s ease, opacity .3s ease; width: 2.8rem; }
 .latest-news__navigation button:hover:not(:disabled) { background: var(--ink); border-color: var(--ink); color: #fff; }
 .latest-news__navigation button:disabled { cursor: default; opacity: .3; }
 .latest-news__viewport { overflow: hidden; padding-top: 1rem; }
@@ -18,7 +18,7 @@
 .latest-news article:hover img { filter: saturate(1); transform: scale(1.035); }
 .latest-news__meta { color: var(--muted); display: flex; font-size: .54rem; justify-content: space-between; letter-spacing: .12em; margin-top: 1rem; text-transform: uppercase; }
 .latest-news h3 { font-family: var(--serif); font-size: clamp(1.65rem, 2.5vw, 2.6rem); font-weight: 400; line-height: 1.08; margin: 1.2rem 0 1.5rem; }
-.latest-news__link { border-bottom: 1px solid #bbb3a6; display: flex; font-size: .57rem; justify-content: space-between; letter-spacing: .12em; padding-bottom: .65rem; text-transform: uppercase; }
+.latest-news__link { border-bottom: 1px solid rgba(107,98,88,.45); display: flex; font-size: .57rem; justify-content: space-between; letter-spacing: .12em; padding-bottom: .65rem; text-transform: uppercase; }
 .latest-news__link i { color: var(--rust); font-style: normal; transition: transform .3s ease; }
 .latest-news article:hover .latest-news__link i { transform: translateX(.3rem); }
 

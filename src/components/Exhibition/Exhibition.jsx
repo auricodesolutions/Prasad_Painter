@@ -11,7 +11,7 @@ export default function Exhibition() {
         <h2>The Weight<br />of <em>Light</em></h2>
         <p>A new body of paintings considering the emotional geography of home and the memories carried through changing landscapes.</p>
         <div className="exhibition__details"><span>Barefoot Gallery</span><span>Colombo, Sri Lanka</span></div>
-        <a className="text-link" href="#contact">Exhibition details <span>↗</span></a>
+        <a className="text-link" href="/contact/">Exhibition details <span>↗</span></a>
       </div>
     </section>
   )

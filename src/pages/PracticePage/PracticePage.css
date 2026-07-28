@@ -1,0 +1,50 @@
+.practice-page { background: var(--paper); color: var(--ink); }
+.practice-hero { color: var(--paper); min-height: 100svh; overflow: hidden; position: relative; }
+.practice-hero > img { filter: brightness(.76) saturate(.8); height: 100%; inset: 0; object-fit: cover; position: absolute; transform: scale(1.035); width: 100%; animation: practiceHeroIn 1.8s var(--ease) both; }
+.practice-hero__shade { background: linear-gradient(90deg, rgba(13,12,11,.94), rgba(13,12,11,.42) 56%, rgba(13,12,11,.08)), linear-gradient(0deg, rgba(13,12,11,.7), transparent 52%); inset: 0; position: absolute; }
+.practice-hero__copy { left: clamp(1.25rem, 6vw, 7rem); max-width: 850px; position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; }
+.practice-hero .eyebrow { color: #c9a47f; }
+.practice-hero h1 { font-family: var(--serif); font-size: clamp(6rem, 13vw, 14rem); font-weight: 400; letter-spacing: -.075em; line-height: .7; margin: 1.3rem 0 2.5rem; }
+.practice-hero__copy > p:last-child { color: rgba(247,243,236,.72); font-family: var(--serif); font-size: clamp(.95rem, 1.25vw, 1.18rem); line-height: 1.7; max-width: 600px; }
+.practice-hero__services { bottom: 2rem; display: flex; flex-wrap: wrap; gap: .6rem; left: clamp(1.25rem, 4vw, 4.5rem); position: absolute; z-index: 2; }
+.practice-hero__services span { border: 1px solid rgba(247,243,236,.32); border-radius: 99px; font-size: .5rem; letter-spacing: .11em; padding: .65rem .85rem; text-transform: uppercase; }
+
+.practice-projects { padding: clamp(4rem, 7vw, 7rem) clamp(1rem, 3.5vw, 4rem); }
+.practice-projects > header { align-items: end; border-top: 1px solid var(--line); display: grid; gap: 2rem 4rem; grid-template-columns: 1.1fr .9fr; margin: 0 auto clamp(3rem, 5vw, 5rem); max-width: 1700px; padding-top: 1.5rem; }
+.practice-projects > header .eyebrow { color: var(--rust); grid-column: 1 / -1; }
+.practice-projects > header h2 { font-family: var(--serif); font-size: clamp(3.8rem, 7vw, 8rem); font-weight: 400; letter-spacing: -.055em; line-height: .84; margin: 0; }
+.practice-projects > header h2 em { color: var(--rust); font-weight: 400; }
+.practice-projects > header > p:last-child { color: var(--muted); line-height: 1.7; max-width: 460px; }
+.practice-projects__grid { display: grid; gap: clamp(2rem, 4vw, 5rem) clamp(1rem, 2vw, 2rem); grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 auto; max-width: 1700px; }
+.practice-projects__grid button { background: transparent; border: 0; color: inherit; cursor: zoom-in; display: grid; grid-template-columns: 1fr auto; padding: 0; text-align: left; }
+.practice-projects__grid button > span { grid-column: 1 / -1; overflow: hidden; }
+.practice-projects__grid img { aspect-ratio: 16 / 10; display: block; filter: saturate(.72); object-fit: cover; transition: filter .7s ease, transform 1.2s var(--ease); width: 100%; }
+.practice-projects__grid button:hover img { filter: saturate(.96); transform: scale(1.025); }
+.practice-projects__grid button > strong { font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 400; padding-top: .75rem; }
+.practice-projects__grid button > small { color: var(--muted); font-size: .5rem; letter-spacing: .1em; padding-top: 1rem; text-transform: uppercase; }
+
+.practice-process { background: var(--line); display: grid; gap: clamp(3rem, 8vw, 9rem); grid-template-columns: .8fr 1.2fr; padding: clamp(4rem, 7vw, 7rem) clamp(1.25rem, 4vw, 4.5rem); }
+.practice-process .eyebrow { color: var(--rust); margin-bottom: 1rem; }
+.practice-process h2 { font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 6rem); font-weight: 400; letter-spacing: -.05em; line-height: .9; margin: 0; }
+.practice-process ol { list-style: none; margin: 0; padding: 0; }
+.practice-process li { border-top: 1px solid rgba(107,98,88,.25); display: grid; gap: 2rem; grid-template-columns: 130px 1fr; padding: 1.25rem 0; }
+.practice-process li span { color: var(--rust); font-size: .55rem; letter-spacing: .12em; text-transform: uppercase; }
+.practice-process li p { color: var(--muted); line-height: 1.7; max-width: 560px; }
+.practice-page__next { align-items: center; background: var(--ink); color: var(--paper); display: grid; gap: 1rem; grid-template-columns: 1fr auto auto; padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 4vw, 4.5rem); }
+.practice-page__next span { color: #c9a47f; font-size: .54rem; letter-spacing: .12em; text-transform: uppercase; }
+.practice-page__next strong { font-family: var(--serif); font-size: clamp(3rem, 6vw, 7rem); font-weight: 400; letter-spacing: -.05em; }
+.practice-page__next i { color: #c9a47f; font-size: 1.5rem; font-style: normal; }
+@keyframes practiceHeroIn { from { opacity: 0; transform: scale(1.1); } to { opacity: 1; transform: scale(1.035); } }
+@media (max-width: 800px) {
+  .practice-projects > header, .practice-process { grid-template-columns: 1fr; }
+  .practice-projects__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .practice-hero h1 { font-size: clamp(5rem, 23vw, 8rem); }
+  .practice-projects__grid button { grid-template-columns: 1fr; }
+  .practice-projects__grid button > small { padding-top: .3rem; }
+  .practice-process li { gap: .7rem; grid-template-columns: 1fr; }
+  .practice-page__next { grid-template-columns: 1fr auto; }
+  .practice-page__next span { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) { .practice-hero > img { animation: none; } }

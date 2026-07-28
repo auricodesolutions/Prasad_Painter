@@ -4,6 +4,7 @@ import './Header.css'
 const links = [
   ['Home', '/', null, 'home'],
   ['About', '/about/', null, 'about'],
+  ['Online Store', '/store/', null, 'store'],
   ['Work', '/', 'work', 'home'],
   ['Exhibition', '/', 'exhibition-poster', 'home'],
   ['News', '/', 'news', 'home'],
@@ -13,6 +14,7 @@ export default function Header({ page = 'home', onNavigate }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [progress, setProgress] = useState(0)
+  const useSurfaceHeader = page.startsWith('category:') || page.startsWith('store-item:')
 
   useEffect(() => {
     const onScroll = () => {
@@ -36,7 +38,7 @@ export default function Header({ page = 'home', onNavigate }) {
   }
 
   return (
-    <header className={`header ${scrolled ? 'header--scrolled' : ''} ${open ? 'header--open' : ''}`}>
+    <header className={`header ${useSurfaceHeader ? 'header--surface' : ''} ${scrolled ? 'header--scrolled' : ''} ${open ? 'header--open' : ''}`}>
       <a className="header__brand" href="/" aria-label="Prasad Weerasinghe home" onClick={(event) => { event.preventDefault(); navigateFromHeader('home') }}>
         PRASAD<span>WEERASINGHE</span>
       </a>
@@ -55,7 +57,7 @@ export default function Header({ page = 'home', onNavigate }) {
         {links.map(([label, href, section, targetPage]) => (
           <a
             href={section ? `${href}#${section}` : href}
-            className={label === 'About' && page === 'about' ? 'is-active' : ''}
+            className={targetPage === page || (targetPage === 'store' && page.startsWith('store-item:')) ? 'is-active' : ''}
             key={label}
             onClick={(event) => {
               event.preventDefault()
@@ -63,7 +65,7 @@ export default function Header({ page = 'home', onNavigate }) {
             }}
           >{label}</a>
         ))}
-        <a className="header__contact" href="/#contact" onClick={(event) => { event.preventDefault(); navigateFromHeader('home', 'contact') }}>Enquire</a>
+        <a className={`header__contact ${page === 'contact' ? 'is-active' : ''}`} href="/contact/" onClick={(event) => { event.preventDefault(); navigateFromHeader('contact') }}>Enquire</a>
       </nav>
       <span className="header__progress" style={{ transform: `scaleX(${progress / 100})` }} />
     </header>

@@ -7,6 +7,13 @@ export default function Works() {
   const [selected, setSelected] = useState(null)
   const sliderRef = useRef(null)
   const isPaused = useRef(false)
+  const loopedArtworks = [...artworks, ...artworks]
+
+  const getLoopDistance = (slider) => {
+    const first = slider.querySelector('.work-card[data-loop="0"]')
+    const duplicate = slider.querySelector('.work-card[data-loop="1"]')
+    return first && duplicate ? duplicate.offsetLeft - first.offsetLeft : slider.scrollWidth / 2
+  }
 
   const slideWorks = (direction = 1) => {
     const slider = sliderRef.current
@@ -15,24 +22,36 @@ export default function Works() {
     const card = slider.querySelector('.work-card')
     const gap = Number.parseFloat(getComputedStyle(slider).columnGap) || 0
     const distance = (card?.getBoundingClientRect().width || slider.clientWidth * 0.75) + gap
-    const isAtEnd = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 12
-    const isAtStart = slider.scrollLeft <= 12
+    const loopDistance = getLoopDistance(slider)
 
-    if (direction > 0 && isAtEnd) {
-      slider.scrollTo({ left: 0, behavior: 'smooth' })
-    } else if (direction < 0 && isAtStart) {
-      slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' })
-    } else {
-      slider.scrollBy({ left: distance * direction, behavior: 'smooth' })
-    }
+    if (direction < 0 && slider.scrollLeft < distance) slider.scrollLeft += loopDistance
+    slider.scrollBy({ left: distance * direction, behavior: 'smooth' })
   }
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      if (!isPaused.current && !selected) slideWorks(1)
-    }, 4200)
+    const slider = sliderRef.current
+    if (!slider || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
 
-    return () => window.clearInterval(timer)
+    let frame = null
+    let previousTime = performance.now()
+
+    const moveContinuously = (time) => {
+      const elapsed = Math.min(time - previousTime, 40)
+      previousTime = time
+
+      if (!isPaused.current && !selected) {
+        slider.scrollLeft += elapsed * 0.035
+        const loopDistance = getLoopDistance(slider)
+        if (loopDistance > 0 && slider.scrollLeft >= loopDistance) {
+          slider.scrollLeft -= loopDistance
+        }
+      }
+
+      frame = window.requestAnimationFrame(moveContinuously)
+    }
+
+    frame = window.requestAnimationFrame(moveContinuously)
+    return () => window.cancelAnimationFrame(frame)
   }, [selected])
 
   useEffect(() => {
@@ -66,14 +85,22 @@ export default function Works() {
         onMouseLeave={() => { isPaused.current = false }}
         onFocus={() => { isPaused.current = true }}
         onBlur={() => { isPaused.current = false }}
+        onPointerDown={() => { isPaused.current = true }}
+        onPointerUp={() => { isPaused.current = false }}
+        onPointerCancel={() => { isPaused.current = false }}
       >
-        {artworks.map((work, index) => (
+        {loopedArtworks.map((work, index) => {
+          const loop = index >= artworks.length ? 1 : 0
+          return (
           <button
             className="work-card"
-            key={work.id}
+            key={`${loop}-${work.id}`}
+            data-loop={loop}
             onClick={() => setSelected(work)}
             data-reveal
-            style={{ transitionDelay: `${index * 70}ms` }}
+            style={{ transitionDelay: `${(index % artworks.length) * 70}ms` }}
+            tabIndex={loop ? -1 : 0}
+            aria-hidden={loop ? 'true' : undefined}
           >
             <span className="work-card__image">
               <img
@@ -88,13 +115,10 @@ export default function Works() {
               <small>{work.year}</small>
             </span>
           </button>
-        ))}
+          )
+        })}
       </div>
-        <div className="works__controls" aria-label="Selected works slider controls">
-          <button type="button" onClick={() => slideWorks(-1)} aria-label="Previous artwork">←</button>
-          <span>Drag to explore</span>
-          <button type="button" onClick={() => slideWorks(1)} aria-label="Next artwork">→</button>
-        </div>
+        
       </div>
 
       {selected && createPortal(

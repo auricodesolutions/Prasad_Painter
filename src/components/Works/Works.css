@@ -6,8 +6,8 @@
 .works__heading h2 em { color: var(--rust); font-weight: 400; }
 .works__intro { color: var(--muted); font-family: var(--sans); font-size: 1rem; line-height: 1.75; max-width: 430px; padding-bottom: .35rem; }
 
-.works__slider-shell { margin-top: clamp(3rem, 6vw, 6rem); position: relative; z-index: 1; }
-.works__grid { column-gap: clamp(1.5rem, 2.5vw, 3rem); display: flex; overflow-x: auto; padding: 1rem clamp(1.25rem, 4vw, 4.5rem) 2.5rem; scroll-behavior: smooth; scroll-padding-inline: clamp(1.25rem, 4vw, 4.5rem); scroll-snap-type: x mandatory; scrollbar-width: none; }
+.works__slider-shell { margin-top: clamp(2.5rem, 4.5vw, 4.5rem); position: relative; z-index: 1; }
+.works__grid { column-gap: clamp(1.5rem, 2.5vw, 3rem); display: flex; overflow-x: auto; padding: 1rem clamp(1.25rem, 4vw, 4.5rem) 2.5rem; scroll-behavior: auto; scroll-padding-inline: clamp(1.25rem, 4vw, 4.5rem); scroll-snap-type: none; scrollbar-width: none; }
 .works__grid::-webkit-scrollbar { display: none; }
 
 .work-card { animation: workSlideIn .85s var(--ease) both; background: none; border: 0; color: inherit; cursor: zoom-in; flex: 0 0 clamp(310px, 27vw, 440px); min-width: 0; padding: 0; scroll-snap-align: start; text-align: left; }

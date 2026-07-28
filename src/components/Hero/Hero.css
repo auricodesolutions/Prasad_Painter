@@ -59,9 +59,9 @@
 }
 
 .hero__eyebrow span {
-  background: #d49b75;
+  background: var(--rust);
   border-radius: 50%;
-  box-shadow: 0 0 0 6px rgba(212, 155, 117, .13);
+  box-shadow: 0 0 0 6px rgba(166, 124, 82, .16);
   height: .42rem;
   width: .42rem;
 }
@@ -80,7 +80,7 @@
 .hero h1 span,
 .hero h1 em { display: block; }
 .hero h1 span { white-space: nowrap; }
-.hero h1 em { color: #f0bd96; font-weight: 400; }
+.hero h1 em { color: #d4b08b; font-weight: 400; }
 
 .hero__summary {
   color: rgba(255, 255, 255, .92);
@@ -124,7 +124,7 @@
   width: 2.5rem;
 }
 
-.hero__primary:hover { background: #e1b28f; border-color: #e1b28f; transform: translateY(-3px); }
+.hero__primary:hover { background: var(--rust); border-color: var(--rust); transform: translateY(-3px); }
 .hero__primary:hover i { transform: translateX(.18rem); }
 
 .hero__secondary {
@@ -137,7 +137,7 @@
   text-shadow: 0 2px 12px rgba(0, 0, 0, .5);
 }
 
-.hero__secondary:hover { border-color: #e1b28f; color: #e1b28f; }
+.hero__secondary:hover { border-color: var(--rust); color: #d4b08b; }
 
 .hero__footer {
   align-items: flex-end;
@@ -154,7 +154,7 @@
 .hero__slider-status button { background: transparent; border: 0; cursor: pointer; padding: .6rem .18rem; }
 .hero__slider-status button span { background: rgba(255,255,255,.35); display: block; height: 1px; overflow: hidden; position: relative; transition: width .5s var(--ease), background .3s ease; width: 1.6rem; }
 .hero__slider-status button.is-active span { background: rgba(255,255,255,.95); width: 3.4rem; }
-.hero__slider-status button.is-active span::after { animation: hero-progress 5.2s linear both; background: #e1b28f; content: ''; inset: 0; position: absolute; transform-origin: left; }
+.hero__slider-status button.is-active span::after { animation: hero-progress 5.2s linear both; background: var(--rust); content: ''; inset: 0; position: absolute; transform-origin: left; }
 @keyframes hero-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 @media (max-width: 900px) {
