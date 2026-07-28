@@ -1,10 +1,12 @@
 .preloader {
-  background: var(--paper);
+  background:
+    radial-gradient(circle at 50% 43%, rgba(166,124,82,.11), transparent 28%),
+    var(--paper);
   color: var(--ink);
   inset: 0;
   overflow: hidden;
   position: fixed;
-  transition: opacity .65s var(--ease), visibility .65s;
+  transition: opacity .25s ease, visibility .75s;
   z-index: 1000;
 }
 
@@ -16,7 +18,7 @@
   position: absolute;
   top: 0;
   transform: scaleY(0);
-  transition: transform .72s var(--ease);
+  transition: transform .55s var(--ease);
   width: 50%;
   z-index: 5;
 }
@@ -25,54 +27,79 @@
 .preloader::after { right: 0; transform-origin: bottom; }
 .preloader--leaving::before,
 .preloader--leaving::after { transform: scaleY(1); }
-.preloader--leaving { opacity: 0; pointer-events: none; visibility: hidden; }
+.preloader--leaving { opacity: 0; pointer-events: none; transition-delay: .45s; visibility: hidden; }
 
 .preloader__grain {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
   inset: 0;
-  opacity: .22;
+  opacity: .18;
   pointer-events: none;
   position: absolute;
 }
 
+.preloader__grain::before,
+.preloader__grain::after {
+  border-color: rgba(31,31,31,.13);
+  border-style: solid;
+  content: '';
+  height: 20px;
+  position: absolute;
+  top: clamp(1.25rem, 3vw, 2.25rem);
+  width: 20px;
+}
+.preloader__grain::before { border-width: 1px 0 0 1px; left: clamp(1.25rem, 4vw, 4.5rem); }
+.preloader__grain::after { border-width: 1px 1px 0 0; right: clamp(1.25rem, 4vw, 4.5rem); }
+
 .preloader__topline {
+  animation: preloaderMetaIn .55s .08s var(--ease) both;
   display: flex;
-  font-size: .5rem;
+  font-size: .48rem;
   justify-content: space-between;
   left: clamp(1.25rem, 4vw, 4.5rem);
   letter-spacing: .18em;
   position: absolute;
   right: clamp(1.25rem, 4vw, 4.5rem);
   text-transform: uppercase;
-  top: 2rem;
+  top: clamp(1.7rem, 4vh, 2.5rem);
 }
 
 .preloader__identity {
   left: 50%;
   position: absolute;
   text-align: center;
-  top: 48%;
+  top: 47%;
   transform: translate(-50%, -50%);
-  width: min(88vw, 1120px);
+  width: min(92vw, 980px);
 }
 
-.preloader__eyebrow {
-  animation: preloaderRise .7s .1s var(--ease) both;
+.preloader__edition {
+  animation: preloaderEditionIn .65s .12s var(--ease) both;
   color: var(--rust);
-  display: block;
-  font-size: .58rem;
-  letter-spacing: .24em;
-  margin-bottom: clamp(1.3rem, 3vh, 2rem);
+  font-size: .53rem;
+  letter-spacing: .25em;
+  margin-bottom: -1.5rem;
   text-transform: uppercase;
 }
 
 .preloader__logo {
-  animation: preloaderLogoIn .95s .08s var(--ease) both;
-  height: clamp(240px, 34vw, 400px);
+  animation: preloaderLogoReveal 1s .12s var(--ease) both;
+  height: clamp(250px, 35vw, 410px);
   margin: 0 auto;
   overflow: visible;
+  position: relative;
   width: min(90vw, 900px);
 }
+
+.preloader__logo::after {
+  animation: preloaderSweep .9s .18s var(--ease) both;
+  background: linear-gradient(90deg, transparent, rgba(247,243,236,.82), transparent);
+  content: '';
+  inset: 24% -10%;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-110%) skewX(-12deg);
+}
+
 .preloader__logo img {
   display: block;
   height: 100%;
@@ -81,61 +108,62 @@
   width: 100%;
 }
 
-.preloader__stroke {
-  height: 10px;
-  margin: clamp(1.7rem, 4vh, 3rem) auto 0;
-  overflow: hidden;
-  transform: rotate(-1deg);
-  width: min(280px, 45vw);
+.preloader__disciplines {
+  align-items: center;
+  animation: preloaderDisciplinesIn .7s .62s var(--ease) both;
+  display: flex;
+  font-size: .5rem;
+  gap: clamp(.7rem, 1.5vw, 1.4rem);
+  justify-content: center;
+  letter-spacing: .17em;
+  margin-top: -1.5rem;
+  text-transform: uppercase;
 }
-
-.preloader__stroke i {
-  animation: preloaderStroke 1s .25s var(--ease) both;
-  background: var(--ink);
-  display: block;
-  height: 2px;
-  margin-top: 4px;
-  transform-origin: left;
-  width: 100%;
-}
+.preloader__disciplines i { background: var(--rust); border-radius: 50%; display: block; height: 4px; width: 4px; }
 
 .preloader__progress {
   align-items: center;
-  bottom: 2rem;
+  bottom: clamp(1.5rem, 4vh, 2.5rem);
   display: grid;
-  font-size: .48rem;
-  gap: 1rem;
-  grid-template-columns: auto minmax(80px, 220px) auto;
+  font-size: .46rem;
+  gap: clamp(.75rem, 1.5vw, 1.25rem);
+  grid-template-columns: auto minmax(90px, 260px) auto;
   left: 50%;
-  letter-spacing: .15em;
+  letter-spacing: .14em;
   position: absolute;
   text-transform: uppercase;
   transform: translateX(-50%);
   white-space: nowrap;
 }
 
-.preloader__progress > div { background: rgba(27,27,24,.18); height: 1px; overflow: hidden; }
+.preloader__progress > div { background: rgba(31,31,31,.16); height: 1px; overflow: hidden; }
 .preloader__progress > div i { animation: preloaderProgress 1.15s .08s var(--ease) both; background: var(--rust); display: block; height: 100%; transform-origin: left; }
-.preloader__progress b { font-weight: 400; }
+.preloader__progress b { color: var(--muted); font-weight: 400; }
 
-@keyframes preloaderRise {
-  from { opacity: 0; transform: translateY(12px); }
+@keyframes preloaderMetaIn {
+  from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: none; }
 }
 
-@keyframes preloaderNameIn {
-  from { opacity: 0; transform: translateY(45px); }
+@keyframes preloaderEditionIn {
+  from { letter-spacing: .5em; opacity: 0; transform: translateY(10px); }
+  to { letter-spacing: .25em; opacity: 1; transform: none; }
+}
+
+@keyframes preloaderLogoReveal {
+  from { clip-path: inset(0 100% 0 0); filter: blur(5px); opacity: 0; transform: scale(.98); }
+  to { clip-path: inset(0); filter: none; opacity: 1; transform: none; }
+}
+
+@keyframes preloaderSweep {
+  from { opacity: 0; transform: translateX(-110%) skewX(-12deg); }
+  35% { opacity: .7; }
+  to { opacity: 0; transform: translateX(110%) skewX(-12deg); }
+}
+
+@keyframes preloaderDisciplinesIn {
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: none; }
-}
-
-@keyframes preloaderLogoIn {
-  from { filter: blur(8px); opacity: 0; transform: translateY(28px) scale(.96); }
-  to { filter: none; opacity: 1; transform: none; }
-}
-
-@keyframes preloaderStroke {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
 }
 
 @keyframes preloaderProgress {
@@ -144,18 +172,28 @@
 }
 
 @media (max-width: 600px) {
-  .preloader__identity { top: 46%; }
-  .preloader__logo { height: clamp(220px, 62vw, 320px); width: min(96vw, 520px); }
-  .preloader__progress { bottom: 1.5rem; gap: .65rem; grid-template-columns: auto minmax(45px, 1fr) auto; width: calc(100% - 2.5rem); }
+  .preloader__identity { top: 45%; width: 100%; }
+  .preloader__edition { margin-bottom: -2rem; }
+  .preloader__logo { height: clamp(230px, 70vw, 330px); width: min(98vw, 560px); }
+  .preloader__disciplines { font-size: .43rem; gap: .6rem; letter-spacing: .11em; margin-top: -2rem; }
+  .preloader__progress { bottom: 1.5rem; gap: .65rem; grid-template-columns: auto minmax(45px, 1fr); width: calc(100% - 2.5rem); }
+  .preloader__progress b { display: none; }
   .preloader__topline { top: 1.5rem; }
+}
+
+@media (max-width: 390px) {
+  .preloader__disciplines span:nth-of-type(2) { display: none; }
+  .preloader__disciplines i:nth-of-type(2) { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .preloader,
   .preloader::before,
   .preloader::after { transition-duration: .01ms; }
-  .preloader__eyebrow,
+  .preloader__topline,
+  .preloader__edition,
   .preloader__logo,
-  .preloader__stroke i,
+  .preloader__logo::after,
+  .preloader__disciplines,
   .preloader__progress > div i { animation-duration: .01ms; animation-delay: 0s; }
 }

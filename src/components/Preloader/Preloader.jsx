@@ -14,7 +14,7 @@ export default function Preloader() {
     document.body.style.overflow = 'hidden'
 
     const finish = () => {
-      const minimumDisplay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 150 : 1250
+      const minimumDisplay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 150 : 1450
       const delay = Math.max(0, minimumDisplay - (performance.now() - startedAt))
 
       leaveTimer = window.setTimeout(() => {
@@ -41,20 +41,24 @@ export default function Preloader() {
     <div className={`preloader ${isLeaving ? 'preloader--leaving' : ''}`} role="status" aria-live="polite" aria-label="Loading Prasad Weerasinghe's portfolio">
       <div className="preloader__grain" aria-hidden="true" />
       <div className="preloader__topline" aria-hidden="true">
-        <span>Colombo</span>
-        <span>Sri Lanka</span>
+        <span>Official artist portfolio</span>
+        <span>Colombo · Sri Lanka</span>
       </div>
 
       <div className="preloader__identity">
+        <p className="preloader__edition">Entering the studio</p>
         <div className="preloader__logo">
           <img src="/assets/prasad-signature-transparent.png" alt="Prasad Weerasinghe" />
         </div>
-        <div className="preloader__stroke" aria-hidden="true"><i /></div>
+        <div className="preloader__disciplines" aria-hidden="true">
+          <span>Painter</span><i /><span>Art Director</span><i /><span>Set Designer</span>
+        </div>
       </div>
 
       <div className="preloader__progress" aria-hidden="true">
-        <span>Entering the studio</span>
+        <span>Loading selected practice</span>
         <div><i /></div>
+        <b>PW · 2026</b>
       </div>
     </div>
   )
