@@ -14,10 +14,12 @@
 
 .footer__brand {
   display: block;
-  height: 80px;
+  height: 92px;
+  overflow: visible;
+  position: relative;
   width: min(230px, 100%);
 }
-.footer__brand img { filter: invert(1); height: 100%; object-fit: contain; object-position: left center; width: 100%; }
+.footer__brand img { filter: invert(1); height: auto; left: 50%; max-width: none; position: absolute; top: 65%; transform: translate(-50%, -50%); width: 125%; }
 
 .footer__identity > p {
   color: #8f8c84;

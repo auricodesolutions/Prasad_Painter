@@ -40,7 +40,7 @@ export default function Header({ page = 'home', onNavigate }) {
   return (
     <header className={`header ${useSurfaceHeader ? 'header--surface' : ''} ${scrolled ? 'header--scrolled' : ''} ${open ? 'header--open' : ''}`}>
       <a className="header__brand" href="/" aria-label="Prasad Weerasinghe home" onClick={(event) => { event.preventDefault(); navigateFromHeader('home') }}>
-        PRASAD<span>WEERASINGHE</span>
+        <img src="/assets/prasad-signature-transparent.png" alt="Prasad Weerasinghe" />
       </a>
 
       <button

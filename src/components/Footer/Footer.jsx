@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="footer__main">
         <div className="footer__identity">
           <a className="footer__brand" href="/" aria-label="Prasad Weerasinghe home">
-            <img src="/assets/prasad-signature-mark.png" alt="Prasad Weerasinghe" loading="lazy" />
+            <img src="/assets/prasad-signature-transparent.png" alt="Prasad Weerasinghe" loading="lazy" />
           </a>
           <p>Contemporary paintings shaped by memory, nature and the human experience.</p>
         </div>

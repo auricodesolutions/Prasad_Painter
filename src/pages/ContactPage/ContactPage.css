@@ -28,7 +28,7 @@
   top: 4%;
   width: min(72vw, 1000px);
 }
-.contact-hero__mark img { filter: invert(1); margin: -15% 0 0 -4%; max-width: none; mix-blend-mode: screen; width: 108%; }
+.contact-hero__mark img { filter: invert(1); left: 50%; max-width: none; mix-blend-mode: screen; position: absolute; top: 50%; transform: translate(-50%, -43%); width: 150%; }
 .contact-hero__heading, .contact-hero__intro, .contact-hero__scroll { position: relative; z-index: 2; }
 .contact-hero .eyebrow { color: #c9a47f; margin-bottom: 1rem; }
 .contact-hero h1 {

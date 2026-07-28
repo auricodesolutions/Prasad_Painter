@@ -17,7 +17,6 @@ export default function ContactPage() {
     <main className="contact-page">
       <section className="contact-hero">
         <div className="contact-hero__mark" aria-hidden="true">
-          <img src="/assets/prasad-signature-mark.png" alt="" />
         </div>
         <div className="contact-hero__heading" data-reveal>
           <p className="eyebrow">Contact the studio</p>

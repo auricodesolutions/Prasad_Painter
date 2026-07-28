@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import './ArtistArchive.css'
 
 const pieces = [
-  ['identity', '/assets/logo.png', 'Temporary Prasad Weerasinghe artist mark', 'Artist identity', 0.45],
+  ['identity', '/assets/prasad-signature-transparent.png', 'Prasad Weerasinghe signature mark', 'Artist identity', 0.45],
   ['language', '/assets/img%20(9).jpeg', 'Ornamental symbolic painting by Prasad Weerasinghe', 'Visual language', -0.35],
   ['figure', '/assets/img%20(11).jpeg', 'Colourful figurative painting detail', 'Figure and ornament', 0.65],
   ['study', '/assets/img%20(28).jpeg', 'Symbolic figure study in ochre and blue', 'Transformation study', -0.5],

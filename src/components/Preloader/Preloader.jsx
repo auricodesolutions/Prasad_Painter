@@ -47,7 +47,7 @@ export default function Preloader() {
 
       <div className="preloader__identity">
         <div className="preloader__logo">
-          <img src="/assets/prasad-signature-mark.png" alt="Prasad Weerasinghe" />
+          <img src="/assets/prasad-signature-transparent.png" alt="Prasad Weerasinghe" />
         </div>
         <div className="preloader__stroke" aria-hidden="true"><i /></div>
       </div>

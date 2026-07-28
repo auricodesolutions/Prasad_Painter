@@ -68,9 +68,10 @@
 
 .preloader__logo {
   animation: preloaderLogoIn .95s .08s var(--ease) both;
-  height: clamp(150px, 24vw, 270px);
+  height: clamp(240px, 34vw, 400px);
   margin: 0 auto;
-  width: min(78vw, 680px);
+  overflow: visible;
+  width: min(90vw, 900px);
 }
 .preloader__logo img {
   display: block;
@@ -144,7 +145,7 @@
 
 @media (max-width: 600px) {
   .preloader__identity { top: 46%; }
-  .preloader__logo { height: clamp(125px, 38vw, 190px); width: min(90vw, 480px); }
+  .preloader__logo { height: clamp(220px, 62vw, 320px); width: min(96vw, 520px); }
   .preloader__progress { bottom: 1.5rem; gap: .65rem; grid-template-columns: auto minmax(45px, 1fr) auto; width: calc(100% - 2.5rem); }
   .preloader__topline { top: 1.5rem; }
 }
