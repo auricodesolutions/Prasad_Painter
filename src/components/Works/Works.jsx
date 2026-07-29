@@ -32,6 +32,25 @@ export default function Works() {
     const slider = sliderRef.current
     if (!slider || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
 
+    const mobile = window.matchMedia('(max-width: 760px)').matches
+    if (mobile) {
+      const timer = window.setInterval(() => {
+        if (!isPaused.current && !selected) {
+          const distance = getLoopDistance(slider)
+          const card = slider.querySelector('.work-card')
+          const gap = Number.parseFloat(getComputedStyle(slider).columnGap) || 0
+          const step = (card?.getBoundingClientRect().width || slider.clientWidth * .84) + gap
+
+          if (distance > 0 && slider.scrollLeft >= distance - step * .5) {
+            slider.scrollLeft -= distance
+          }
+          slider.scrollBy({ left: step, behavior: 'smooth' })
+        }
+      }, 2800)
+
+      return () => window.clearInterval(timer)
+    }
+
     let frame = null
     let previousTime = performance.now()
 

@@ -1,6 +1,12 @@
 import './About.css'
 
-export default function About() {
+export default function About({ onNavigate }) {
+  const navigate = (event, page) => {
+    if (!onNavigate) return
+    event.preventDefault()
+    onNavigate(page)
+  }
+
   return (
     <section className="about section" id="about">
       <figure className="about__artwork" data-reveal>
@@ -29,8 +35,8 @@ export default function About() {
         </dl>
 
         <div className="about__actions">
-          <a className="about__primary" href="/about">Learn more <span>&#8599;</span></a>
-          <a className="about__secondary" href="/contact/">Contact the studio <span>&rarr;</span></a>
+          <a className="about__primary" href="/about/" onClick={(event) => navigate(event, 'about')}>Learn more <span>&#8599;</span></a>
+          <a className="about__secondary" href="/contact/" onClick={(event) => navigate(event, 'contact')}>Contact the studio <span>&rarr;</span></a>
         </div>
 
         <nav className="about__socials" aria-label="Follow Prasad Weerasinghe on social media">

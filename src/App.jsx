@@ -160,7 +160,7 @@ export default function App() {
             <OnlineStore onNavigate={navigate} />
             <ExhibitionPoster />
             <SetDesign onNavigate={navigate} />
-            <About />
+            <About onNavigate={navigate} />
           </main>
         )}
         <Footer />
