@@ -37,6 +37,10 @@
 
 .artwork-detail__information { padding-top: clamp(.5rem, 2vw, 2rem); position: sticky; top: 90px; }
 .artwork-detail__information .eyebrow { color: var(--rust); }
+.artwork-detail__availability { align-items: center; display: inline-flex; gap: .55rem; }
+.artwork-detail__availability::before { background: var(--rust); border-radius: 50%; content: ''; height: .45rem; width: .45rem; }
+.artwork-detail__availability.is-sold { color: var(--muted); }
+.artwork-detail__availability.is-sold::before { background: var(--ink); }
 .artwork-detail__information h1 { font-family: var(--serif); font-size: clamp(3rem, 5vw, 6rem); font-weight: 400; letter-spacing: -.05em; line-height: .9; margin: 1rem 0 .8rem; }
 .artwork-detail__artist { color: var(--muted); font-family: var(--serif); font-size: 1.1rem; }
 .artwork-detail__information dl { border-top: 1px solid var(--line); margin: 2rem 0 0; }

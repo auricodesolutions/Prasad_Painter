@@ -7,11 +7,11 @@ const viewOptions = [
   { id: 'room', label: 'In a room' },
   { id: 'framed', label: 'Framed view' },
   { id: 'artwork', label: 'Artwork only' },
-
 ]
 
 export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
   const artwork = storeArtworks.find((item) => item.slug === artworkSlug) || storeArtworks[0]
+  const isSold = artwork.status === 'sold'
   const [view, setView] = useState('artwork')
   const [fullscreen, setFullscreen] = useState(false)
   const related = useMemo(() => storeArtworks.filter((item) => item.slug !== artwork.slug).slice(0, 3), [artwork.slug])
@@ -28,10 +28,7 @@ export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
     <main className="artwork-detail">
       <nav className="artwork-detail__breadcrumb" aria-label="Breadcrumb">
         <a href="/store/" onClick={(event) => { event.preventDefault(); navigate('store') }}>Online Store</a>
-        <span>/</span>
-        <span>{artwork.category}</span>
-        <span>/</span>
-        <strong>{artwork.title}</strong>
+        <span>/</span><span>{artwork.category}</span><span>/</span><strong>{artwork.title}</strong>
       </nav>
 
       <section className="artwork-detail__product" aria-labelledby="artwork-title">
@@ -78,7 +75,9 @@ export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
         </div>
 
         <aside className="artwork-detail__information">
-          <p className="eyebrow">Original work · Available</p>
+          <p className={`eyebrow artwork-detail__availability ${isSold ? 'is-sold' : ''}`}>
+            {isSold ? 'Sold · Artist archive' : 'Original work · Available'}
+          </p>
           <h1 id="artwork-title">{artwork.title}</h1>
           <p className="artwork-detail__artist">Prasad Weerasinghe</p>
 
@@ -87,15 +86,18 @@ export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
             <div><dt>Medium</dt><dd>{artwork.medium}</dd></div>
             <div><dt>Presentation</dt><dd>{artwork.size}</dd></div>
             <div><dt>Format</dt><dd>{artwork.format}</dd></div>
+            <div><dt>Collection</dt><dd>{artwork.year}</dd></div>
           </dl>
 
           <p className="artwork-detail__description">{artwork.description}</p>
 
           <div className="artwork-detail__actions">
             <a href="/contact/" onClick={(event) => { if (!onNavigate) return; event.preventDefault(); navigate('contact') }}>
-              Ask for price <span>↗</span>
+              {isSold ? 'Reaquest a similar work' : 'Ask for price'} <span>↗</span>
             </a>
-            <p>Request dimensions, detailed photographs, framing options and delivery information directly from the studio.</p>
+            <p>{isSold
+              ? 'This original has been placed in a private collection. Contact the studio about related available works or a new commission.'
+              : 'Request dimensions, detailed photographs, framing options and delivery information directly from the studio.'}</p>
           </div>
 
           <ul>
@@ -113,14 +115,10 @@ export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
         </header>
         <div>
           {related.map((item) => (
-            <a
-              href={`/store/${item.slug}/`}
-              onClick={(event) => { event.preventDefault(); navigate(`store-item:${item.slug}`) }}
-              key={item.slug}
-            >
+            <a href={`/store/${item.slug}/`} onClick={(event) => { event.preventDefault(); navigate(`store-item:${item.slug}`) }} key={item.slug}>
               <span><img src={item.image} alt={item.alt || item.title} loading="lazy" /></span>
               <strong>{item.title}</strong>
-              <small>{item.medium}</small>
+              <small>{item.status === 'sold' ? 'Sold · Artist archive' : item.medium}</small>
             </a>
           ))}
         </div>

@@ -1,13 +1,39 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './WhatsAppButton.css'
 
 const whatsappUrl = 'https://wa.me/94714562736?text=Hello%20Prasad%2C%20I%27d%20like%20to%20enquire%20about%20your%20artwork.'
 
 export default function WhatsAppButton() {
   const [open, setOpen] = useState(false)
+  const [footerVisible, setFooterVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      setFooterVisible(entry.isIntersecting)
+      if (entry.isIntersecting) setOpen(false)
+    }, { threshold: 0.08 })
+
+    let observedFooter
+    const observeCurrentFooter = () => {
+      const footer = document.querySelector('.footer')
+      if (!footer || footer === observedFooter) return
+      if (observedFooter) observer.unobserve(observedFooter)
+      observedFooter = footer
+      observer.observe(footer)
+    }
+
+    observeCurrentFooter()
+    const mutationObserver = new MutationObserver(observeCurrentFooter)
+    mutationObserver.observe(document.body, { childList: true, subtree: true })
+
+    return () => {
+      mutationObserver.disconnect()
+      observer.disconnect()
+    }
+  }, [])
 
   return (
-    <div className={`whatsapp ${open ? 'is-open' : ''}`}>
+    <div className={`whatsapp ${open ? 'is-open' : ''} ${footerVisible ? 'is-hidden' : ''}`}>
       <aside className="whatsapp__enquiry" id="whatsapp-enquiry" aria-hidden={!open}>
         <button className="whatsapp__close" type="button" onClick={() => setOpen(false)} aria-label="Close enquiry message" tabIndex={open ? 0 : -1}>&times;</button>
         <span className="whatsapp__online"><i /> Artist studio</span>

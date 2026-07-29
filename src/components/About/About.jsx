@@ -29,7 +29,7 @@ export default function About() {
         </dl>
 
         <div className="about__actions">
-          <a className="about__primary" href="#work">View selected works <span>&#8599;</span></a>
+          <a className="about__primary" href="/about">Learn more <span>&#8599;</span></a>
           <a className="about__secondary" href="/contact/">Contact the studio <span>&rarr;</span></a>
         </div>
 

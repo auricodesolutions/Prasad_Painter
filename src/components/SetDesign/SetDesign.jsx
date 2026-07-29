@@ -5,7 +5,7 @@ const scenes = [
   {
     eyebrow: 'Spatial practice',
     title: 'Set Design',
-    image: '/assets/img%20(65).jpeg',
+    image: '/assets/img%20(46).jpeg',
     alt: 'Illuminated television stage designed for a live broadcast production',
     text: 'Building camera-ready environments where scale, movement and light work together to support the story.',
     tags: ['Scenic concepts', 'Spatial composition', 'Broadcast environments'],
@@ -71,8 +71,6 @@ export default function SetDesign({ onNavigate }) {
     >
       <div className="set-design__sticky">
         <div className="set-design__topline">
-          <p>Broadcast &amp; spatial practice</p>
-          <p>Sri Lanka Rupavahini · Since 2006</p>
         </div>
 
         {scenes.map((scene, index) => (

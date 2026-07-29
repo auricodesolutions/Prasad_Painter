@@ -12,10 +12,10 @@ export default function OnlineStore({ onNavigate }) {
       <header className="online-store__heading" data-reveal>
         <div>
           <p className="eyebrow">Online store preview</p>
-          <h2 id="online-store-title">Available <em>works.</em></h2>
+          <h2 id="online-store-title">Studio <em>collection.</em></h2>
         </div>
         <div className="online-store__intro">
-          <p>Six original works available directly from the studio. Select a painting to view its unframed, framed and interior presentations.</p>
+          <p>Available original works sit beside selected sold pieces from the artist archive. Open a work to view its full presentation and details.</p>
           <a
             className="online-store__button"
             href="/store/"
@@ -32,13 +32,11 @@ export default function OnlineStore({ onNavigate }) {
 
       <div className="online-store__grid">
         {storeArtworks.map((work) => (
-          <article className="store-card" data-reveal key={work.slug}>
-            <button
-              className="store-card__wall"
-              type="button"
-              aria-label={`View details for ${work.title}`}
-              onClick={() => openArtwork(work.slug)}
-            >
+          <article className={`store-card ${work.status === 'sold' ? 'is-sold' : ''}`} data-reveal key={work.slug}>
+            <button className="store-card__wall" type="button" aria-label={`View details for ${work.title}`} onClick={() => openArtwork(work.slug)}>
+              <span className={`store-card__status store-card__status--${work.status}`}>
+                {work.status === 'sold' ? 'Sold · Archive' : 'Available'}
+              </span>
               <span className="store-card__frame">
                 <img src={work.image} alt={work.alt || work.title} loading="lazy" />
               </span>
@@ -50,15 +48,13 @@ export default function OnlineStore({ onNavigate }) {
               <p className="store-card__artist">Prasad Weerasinghe</p>
 
               <div className="store-card__more">
-                <p>{work.size} · Framing available</p>
+                <p>{work.status === 'sold' ? 'Placed in a private collection' : `${work.size} · Framing available`}</p>
                 <div>
-                  <a href="/contact/" aria-label={`Ask for the price of ${work.title}`}>Ask for price</a>
-                  <a
-                    href={`/store/${work.slug}/`}
-                    aria-label={`View details for ${work.title}`}
-                    onClick={(event) => { event.preventDefault(); openArtwork(work.slug) }}
-                  >
-                    Details ↗
+                  <a href="/contact/" aria-label={`${work.status === 'sold' ? 'Ask about similar work to' : 'Ask for the price of'} ${work.title}`}>
+                    {work.status === 'sold' ? 'Similar work' : 'Ask for price'}
+                  </a>
+                  <a href={`/store/${work.slug}/`} aria-label={`View details for ${work.title}`} onClick={(event) => { event.preventDefault(); openArtwork(work.slug) }}>
+                    {work.status === 'sold' ? 'View archive' : 'Details'} ↗
                   </a>
                 </div>
               </div>

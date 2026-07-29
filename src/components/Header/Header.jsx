@@ -5,8 +5,8 @@ const links = [
   ['Home', '/', null, 'home'],
   ['About', '/about/', null, 'about'],
   ['Online Store', '/store/', null, 'store'],
-  ['Work', '/', 'work', 'home'],
-  ['Exhibition', '/', 'exhibition-poster', 'home'],
+  ['Collection', '/', 'collection', 'home'],
+  ['Exhibitions', '/', 'exhibition-poster', 'home'],
   ['News', '/', 'news', 'home'],
 ]
 

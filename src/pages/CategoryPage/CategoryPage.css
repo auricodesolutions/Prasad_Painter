@@ -42,6 +42,21 @@
 .category-work__meta { border-bottom: 1px solid var(--line); display: flex; gap: 1rem; justify-content: space-between; padding: 1rem 0; }
 .category-work__meta strong { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; }
 .category-work__meta small { color: var(--muted); font-size: .5rem; letter-spacing: .1em; padding-top: .25rem; text-align: right; text-transform: uppercase; }
+
+.category-page--sculptures .category-work__image {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+.category-page--sculptures .category-work__image::before,
+.category-page--sculptures .category-work__image::after { display: none; }
+.category-page--sculptures .category-work__image img {
+  background: #ebe7e0;
+  box-shadow: none;
+  object-fit: cover;
+}
+.category-page--sculptures .category-work:hover .category-work__image { box-shadow: none; }
 .category-page__navigation { background: var(--ink); color: var(--paper); padding: clamp(3.5rem, 6vw, 6rem) clamp(1.25rem, 4vw, 4.5rem); }
 .category-page__navigation .eyebrow { color: #c9a47f; margin-bottom: 2rem; }
 .category-page__navigation > div { border-top: 1px solid rgba(229,222,211,.16); }

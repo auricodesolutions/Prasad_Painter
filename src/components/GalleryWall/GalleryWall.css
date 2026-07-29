@@ -16,9 +16,13 @@
 .store-card:hover, .store-card:focus-within { box-shadow: 0 24px 60px rgba(31,29,25,.14); transform: translateY(-8px); z-index: 2; }
 
 .store-card__wall { background: #eee; border: 0; cursor: zoom-in; display: block; height: clamp(440px, 36vw, 650px); overflow: hidden; padding: 0; position: relative; width: 100%; }
+.store-card__status { backdrop-filter: blur(10px); border: 1px solid rgba(31,31,31,.16); border-radius: 99px; font-size: .48rem; left: .9rem; letter-spacing: .11em; padding: .55rem .72rem; position: absolute; text-transform: uppercase; top: .9rem; z-index: 4; }
+.store-card__status--available { background: rgba(247,243,236,.92); color: var(--ink); }
+.store-card__status--sold { background: rgba(31,31,31,.9); border-color: rgba(247,243,236,.18); color: var(--paper); }
 .store-card__wall::before { background: url('/assets/gallery-wall-room.png') center bottom / cover no-repeat; content: ''; inset: 0; position: absolute; transition: opacity .6s ease, transform 1s var(--ease); }
 .store-card__frame { background: #171613; box-shadow: 0 16px 28px rgba(33,30,25,.22), inset 0 0 0 2px rgba(255,255,255,.14); height: 48%; left: 50%; padding: clamp(.4rem, .65vw, .7rem); position: absolute; top: 6%; transform: translateX(-50%); transition: background .6s ease, box-shadow .6s ease, height .85s var(--ease), left .85s var(--ease), padding .75s var(--ease), top .85s var(--ease), transform .85s var(--ease), width .85s var(--ease); width: 66%; z-index: 2; }
 .store-card__frame img { background: var(--line); display: block; height: 100%; object-fit: cover; transition: filter .6s ease, transform 1s var(--ease); width: 100%; }
+.store-card.is-sold .store-card__frame img { filter: saturate(.62); }
 .store-card__view { align-items: center; background: rgba(247,243,236,.95); bottom: 1rem; display: flex; font-size: .56rem; justify-content: center; left: 50%; letter-spacing: .12em; opacity: 0; padding: .85rem 1rem; position: absolute; text-transform: uppercase; transform: translate(-50%, 1rem); transition: opacity .4s .2s ease, transform .5s .2s var(--ease); white-space: nowrap; z-index: 4; }
 
 .store-card:hover .store-card__wall::before,
@@ -27,6 +31,8 @@
 .store-card:focus-within .store-card__frame { background: transparent; box-shadow: none; height: 100%; left: 0; padding: clamp(.8rem, 1.2vw, 1.25rem); top: 0; transform: none; width: 100%; }
 .store-card:hover .store-card__frame img,
 .store-card:focus-within .store-card__frame img { filter: saturate(1.03); object-fit: contain; transform: scale(1.002); }
+.store-card.is-sold:hover .store-card__frame img,
+.store-card.is-sold:focus-within .store-card__frame img { filter: saturate(.8); }
 .store-card:hover .store-card__view,
 .store-card:focus-within .store-card__view { opacity: 1; transform: translate(-50%, 0); }
 

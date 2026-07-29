@@ -38,7 +38,6 @@ export default function Hero() {
 
       <div className="hero__content">
         <div className="hero__copy">
-          <p className="hero__eyebrow reveal"><span /> Prasad Weerasinghe &middot; Sri Lankan visual artist</p>
           <h1 className="reveal reveal--delay">
             <span>Art begins with</span>
             <em>looking deeper.</em>
@@ -47,7 +46,7 @@ export default function Hero() {
             Step into a world of symbolic paintings where memory, nature and imagination meet on canvas.
           </p>
           <div className="hero__actions reveal reveal--delay-2">
-            <a className="hero__primary" href="#work">
+            <a className="hero__primary" href="collection">
               <span>Explore the collection</span><i>&rarr;</i>
             </a>
             <a className="hero__secondary" href="#about">Meet the artist</a>

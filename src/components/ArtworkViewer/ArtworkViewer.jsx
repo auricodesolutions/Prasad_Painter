@@ -28,8 +28,8 @@ export default function ArtworkViewer({ artwork, onClose }) {
       <figure onClick={(event) => event.stopPropagation()}>
         <div><img src={artwork.image} alt={artwork.alt || artwork.title} /></div>
         <figcaption>
-          <span><strong>{artwork.title}</strong><small>{artwork.medium || artwork.detail}</small></span>
-          <a href="/contact/">Enquire about this work ↗</a>
+          <span><strong>{artwork.title}</strong><small>{artwork.status === 'sold' ? 'Sold · Artist archive' : artwork.medium || artwork.detail}</small></span>
+          <a href="/contact/">{artwork.status === 'sold' ? 'Enquire about similar work' : 'Enquire about this work'} ↗</a>
         </figcaption>
       </figure>
     </div>,

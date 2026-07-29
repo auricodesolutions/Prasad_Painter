@@ -143,7 +143,7 @@ export default function App() {
     <>
       <Preloader />
       <SmoothScroll />
-      <WhatsAppButton />
+      <WhatsAppButton/>
       <div className={`site-transition ${isPageTransitioning ? 'is-active' : ''}`} aria-hidden="true"><span /></div>
       <Header page={page} onNavigate={navigate} />
       <div className={`site-page ${isPageTransitioning ? 'is-transitioning' : ''}`} key={page}>

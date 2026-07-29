@@ -1,6 +1,12 @@
 import './ContactPage.css'
 
-const whatsappUrl = 'https://wa.me/94714562736?text=Hello%20Prasad%2C%20I%27d%20like%20to%20enquire%20about%20your%20artwork.'
+const whatsappUrl = 'https://wa.me/94714562736?text=Hello%20Prasad%2C%20I%27d%20like%20to%20enquire%20about%20your%20work.'
+
+const enquiryTypes = [
+  ['Original artwork', 'Availability, details and collector support'],
+  ['Creative projects', 'Commissions, exhibitions and collaborations'],
+  ['Production', 'Set design and art direction'],
+]
 
 export default function ContactPage() {
   const sendEmail = (event) => {
@@ -16,28 +22,24 @@ export default function ContactPage() {
   return (
     <main className="contact-page">
       <section className="contact-hero">
-        <div className="contact-hero__mark" aria-hidden="true">
+        <div className="contact-hero__heading">
+          <p className="eyebrow reveal">Prasad Weerasinghe Studio</p>
+          <h1 className="reveal reveal--delay">A conversation<br />can begin <em>here.</em></h1>
+          <p className="reveal reveal--delay-2">For original artwork, exhibitions, commissions, set design and art direction.</p>
         </div>
-        <div className="contact-hero__heading" data-reveal>
-          <p className="eyebrow">Contact the studio</p>
-          <h1>Begin a creative<br /><em>conversation.</em></h1>
-        </div>
-        <p className="contact-hero__intro" data-reveal>
-          For original artwork, commissions, exhibitions, set design and art direction.
-        </p>
-        <span className="contact-hero__scroll" aria-hidden="true">Enquiries ↓</span>
+
       </section>
 
       <section className="contact-details" aria-labelledby="contact-form-title">
         <aside className="contact-details__studio" data-reveal>
-          <p className="eyebrow">Prasad Weerasinghe Studio</p>
-          <h2>Let’s make something with meaning.</h2>
-          <p>Share a few details about the artwork, exhibition or production you have in mind. The studio will respond directly.</p>
+          <p className="eyebrow">Contact the artist</p>
+          <h2>Share the idea,<br /><em>context or work.</em></h2>
+          <p>A short outline is enough to begin. Include the title of an artwork when enquiring about a piece, or a project date and location for creative production work.</p>
 
           <dl>
-            <div><dt>Email</dt><dd><a href="mailto:prasart.adro@gmail.com">prasart.adro@gmail.com</a></dd></div>
-            <div><dt>WhatsApp</dt><dd><a href={whatsappUrl} target="_blank" rel="noreferrer">+94 71 456 2736 ↗</a></dd></div>
-            <div><dt>Studio</dt><dd>Panadura, Sri Lanka</dd></div>
+            <div><dt>Response</dt><dd>Directly from the studio</dd></div>
+            <div><dt>Location</dt><dd>Panadura, Sri Lanka</dd></div>
+            <div><dt>Enquiries</dt><dd>Local and international</dd></div>
           </dl>
 
           <nav aria-label="Artist social profiles">
@@ -49,19 +51,23 @@ export default function ContactPage() {
 
         <form className="contact-form" onSubmit={sendEmail} data-reveal>
           <div className="contact-form__top">
-            <p className="eyebrow">Send an enquiry</p>
+            <div>
+              <p className="eyebrow" id="contact-form-title">Send an enquiry</p>
+              <h2>Tell us what you have in mind.</h2>
+            </div>
             <span>All fields required</span>
           </div>
 
-          <label>
-            <span>Your name</span>
-            <input type="text" name="name" autoComplete="name" placeholder="Name" required />
-          </label>
-
-          <label>
-            <span>Email address</span>
-            <input type="email" name="email" autoComplete="email" placeholder="you@example.com" required />
-          </label>
+          <div className="contact-form__row">
+            <label>
+              <span>Your name</span>
+              <input type="text" name="name" autoComplete="name" placeholder="Name" required />
+            </label>
+            <label>
+              <span>Email address</span>
+              <input type="email" name="email" autoComplete="email" placeholder="you@example.com" required />
+            </label>
+          </div>
 
           <label>
             <span>Type of enquiry</span>
@@ -80,7 +86,7 @@ export default function ContactPage() {
           </label>
 
           <button type="submit">Prepare email <span aria-hidden="true">↗</span></button>
-          <p className="contact-form__note">Submitting opens your preferred email application with the enquiry prepared.</p>
+          <p className="contact-form__note">This prepares the enquiry in your preferred email application. Your message is not stored on the website.</p>
         </form>
       </section>
     </main>
