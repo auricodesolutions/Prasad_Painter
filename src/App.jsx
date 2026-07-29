@@ -161,7 +161,6 @@ export default function App() {
             <ExhibitionPoster />
             <SetDesign onNavigate={navigate} />
             <About />
-            <LatestNews />
           </main>
         )}
         <Footer />

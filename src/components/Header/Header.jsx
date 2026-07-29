@@ -7,7 +7,7 @@ const links = [
   ['Online Store', '/store/', null, 'store'],
   ['Collection', '/', 'collection', 'home'],
   ['Exhibitions', '/', 'exhibition-poster', 'home'],
-  ['News', '/', 'news', 'home'],
+  // ['News', '/', 'news', 'home'],
 ]
 
 export default function Header({ page = 'home', onNavigate }) {
@@ -57,7 +57,7 @@ export default function Header({ page = 'home', onNavigate }) {
         {links.map(([label, href, section, targetPage]) => (
           <a
             href={section ? `${href}#${section}` : href}
-            className={targetPage === page || (targetPage === 'store' && page.startsWith('store-item:')) ? 'is-active' : ''}
+            className={!section && (targetPage === page || (targetPage === 'store' && page.startsWith('store-item:'))) ? 'is-active' : ''}
             key={label}
             onClick={(event) => {
               event.preventDefault()

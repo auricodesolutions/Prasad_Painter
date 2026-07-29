@@ -46,8 +46,8 @@ export default function Hero() {
             Step into a world of symbolic paintings where memory, nature and imagination meet on canvas.
           </p>
           <div className="hero__actions reveal reveal--delay-2">
-            <a className="hero__primary" href="collection">
-              <span>Explore the collection</span><i>&rarr;</i>
+            <a className="hero__secondary" href="collection">
+              <span>Explore the collection</span>
             </a>
             <a className="hero__secondary" href="#about">Meet the artist</a>
           </div>

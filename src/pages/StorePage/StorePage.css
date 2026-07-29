@@ -9,7 +9,7 @@
 .store-page__hero-copy { align-items: center; animation: storeHeroBarIn .9s .55s var(--ease) both; backdrop-filter: blur(16px); background: rgba(247,243,236,.94); bottom: clamp(1rem, 3vw, 2.5rem); color: var(--ink); display: flex; justify-content: space-between; left: clamp(1rem, 4vw, 4.5rem); padding: 1rem clamp(1rem, 2vw, 2rem); position: absolute; right: clamp(1rem, 4vw, 4.5rem); z-index: 3; }
 .store-page__hero-copy strong { display: block; font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.8rem); font-weight: 400; }
 .store-page__hero-copy p { color: var(--muted); font-size: .62rem; letter-spacing: .05em; margin-top: .3rem; }
-.store-page__hero-copy a { align-items: center; border: 1px solid var(--ink); border-radius: 99px; display: flex; font-size: .55rem; gap: 2rem; letter-spacing: .11em; padding: .85rem 1rem; text-transform: uppercase; transition: background .3s ease, color .3s ease, transform .35s var(--ease); }
+.store-page__hero-copy a { align-items: center; border: 1px solid var(--ink); border-radius: 0; display: flex; font-size: .55rem; gap: 2rem; letter-spacing: .11em; padding: .85rem 1rem; text-transform: uppercase; transition: background .3s ease, color .3s ease, transform .35s var(--ease); }
 .store-page__hero-copy a:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
 .store-page__hero-copy a span { font-size: 1rem; }
 
@@ -88,7 +88,7 @@
   .store-filter-toggle { display: flex; }
   .store-catalogue__layout { display: block; }
   .store-filters { background: #f1ece4; border: 1px solid var(--line); max-height: 0; opacity: 0; overflow: hidden; padding: 0 1rem; position: static; transform: translateY(-8px); transition: max-height .65s var(--ease), opacity .35s ease, padding .5s var(--ease), transform .5s var(--ease); }
-  .store-filters.is-open { max-height: 780px; opacity: 1; padding-bottom: 1.5rem; transform: none; }
+  .store-filters.is-open { max-height: 1050px; opacity: 1; padding-bottom: 1.5rem; transform: none; }
   .store-catalogue__results { margin-top: 2rem; }
 }
 

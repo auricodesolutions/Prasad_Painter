@@ -21,6 +21,11 @@ export default function ArtworkViewer({ artwork, onClose }) {
   }, [artwork, onClose])
 
   if (!artwork) return null
+  const whatsappUrl = `https://wa.me/94714562736?text=${encodeURIComponent(
+    artwork.status === 'sold'
+      ? `Hello Prasad, I would like to ask about a similar work to “${artwork.title}”.`
+      : `Hello Prasad, I would like to ask for the price and details of “${artwork.title}”.`,
+  )}`
 
   return createPortal(
     <div className="artwork-viewer" role="dialog" aria-modal="true" aria-label={`${artwork.title} artwork viewer`} onClick={onClose}>
@@ -28,8 +33,8 @@ export default function ArtworkViewer({ artwork, onClose }) {
       <figure onClick={(event) => event.stopPropagation()}>
         <div><img src={artwork.image} alt={artwork.alt || artwork.title} /></div>
         <figcaption>
-          <span><strong>{artwork.title}</strong><small>{artwork.status === 'sold' ? 'Sold · Artist archive' : artwork.medium || artwork.detail}</small></span>
-          <a href="/contact/">{artwork.status === 'sold' ? 'Enquire about similar work' : 'Enquire about this work'} ↗</a>
+          <span><strong>{artwork.title}</strong><small>{artwork.status === 'sold' ? 'Sold out' : artwork.medium || artwork.detail}</small></span>
+          <a href={whatsappUrl} target="_blank" rel="noreferrer">{artwork.status === 'sold' ? 'Request a similar work' : 'Ask for price'} ↗</a>
         </figcaption>
       </figure>
     </div>,

@@ -12,6 +12,11 @@ const viewOptions = [
 export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
   const artwork = storeArtworks.find((item) => item.slug === artworkSlug) || storeArtworks[0]
   const isSold = artwork.status === 'sold'
+  const whatsappUrl = `https://wa.me/94714562736?text=${encodeURIComponent(
+    isSold
+      ? `Hello Prasad, I would like to ask about a similar work to “${artwork.title}”.`
+      : `Hello Prasad, I would like to ask for the price and details of “${artwork.title}”.`,
+  )}`
   const [view, setView] = useState('artwork')
   const [fullscreen, setFullscreen] = useState(false)
   const related = useMemo(() => storeArtworks.filter((item) => item.slug !== artwork.slug).slice(0, 3), [artwork.slug])
@@ -76,10 +81,9 @@ export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
 
         <aside className="artwork-detail__information">
           <p className={`eyebrow artwork-detail__availability ${isSold ? 'is-sold' : ''}`}>
-            {isSold ? 'Sold · Artist archive' : 'Original work · Available'}
+            {isSold ? 'Sold out' : 'Original work · Available'}
           </p>
           <h1 id="artwork-title">{artwork.title}</h1>
-          <p className="artwork-detail__artist">Prasad Weerasinghe</p>
 
           <dl>
             <div><dt>Category</dt><dd>{artwork.category}</dd></div>
@@ -92,8 +96,8 @@ export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
           <p className="artwork-detail__description">{artwork.description}</p>
 
           <div className="artwork-detail__actions">
-            <a href="/contact/" onClick={(event) => { if (!onNavigate) return; event.preventDefault(); navigate('contact') }}>
-              {isSold ? 'Reaquest a similar work' : 'Ask for price'} <span>↗</span>
+            <a href={whatsappUrl} target="_blank" rel="noreferrer">
+              {isSold ? 'Request a similar work' : 'Ask for price'} <span>↗</span>
             </a>
             <p>{isSold
               ? 'This original has been placed in a private collection. Contact the studio about related available works or a new commission.'
@@ -118,7 +122,7 @@ export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
             <a href={`/store/${item.slug}/`} onClick={(event) => { event.preventDefault(); navigate(`store-item:${item.slug}`) }} key={item.slug}>
               <span><img src={item.image} alt={item.alt || item.title} loading="lazy" /></span>
               <strong>{item.title}</strong>
-              <small>{item.status === 'sold' ? 'Sold · Artist archive' : item.medium}</small>
+              <small>{item.status === 'sold' ? 'Sold out' : item.medium}</small>
             </a>
           ))}
         </div>

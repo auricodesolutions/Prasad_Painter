@@ -2,9 +2,9 @@ import { useMemo, useState } from 'react'
 import { storeArtworks } from '../../data/portfolioContent'
 import './StorePage.css'
 
-const categories = ['All', 'Paintings', 'Works on Paper', 'Mixed Media']
+const categories = ['All', 'Paintings', 'Drawings', 'Commercial']
 const mediumGroups = ['Acrylic', 'Ink', 'Mixed media']
-const availabilityOptions = ['All', 'Available', 'Sold Out']
+const availabilityOptions = ['All', 'Available', 'Sold']
 
 export default function StorePage({ onNavigate }) {
   const [category, setCategory] = useState('All')
@@ -100,7 +100,7 @@ export default function StorePage({ onNavigate }) {
               {availabilityOptions.map((item) => (
                 <label key={item}>
                   <input type="radio" name="store-availability" checked={availability === item} onChange={() => setAvailability(item)} />
-                  <span>{item === 'Sold' ? 'Sold Out' : item}</span>
+                  <span>{item === 'Sold' ? 'Sold out' : item}</span>
                 </label>
               ))}
             </fieldset>
@@ -122,7 +122,7 @@ export default function StorePage({ onNavigate }) {
                   <article className={`store-artwork ${work.status === 'sold' ? 'is-sold' : ''}`} style={{ '--store-index': index }} key={work.slug}>
                     <button type="button" onClick={() => openArtwork(work.slug)} aria-label={`View details for ${work.title}`}>
                       <span className={`store-artwork__status store-artwork__status--${work.status}`}>
-                        {work.status === 'sold' ? 'Sold Out' : 'Available'}
+                        {work.status === 'sold' ? 'Sold out' : 'Available'}
                       </span>
                       <span className="store-artwork__image">
                         <img src={work.image} alt={work.alt || work.title} loading="lazy" />
@@ -136,7 +136,7 @@ export default function StorePage({ onNavigate }) {
                       <div>
                         <span>{work.category}</span>
                         <a href={`/store/${work.slug}/`} onClick={(event) => { event.preventDefault(); openArtwork(work.slug) }}>
-                          {work.status === 'sold out' ? 'View archive' : 'View details'} ↗
+                          {work.status === 'sold' ? 'View sold work' : 'View details'} ↗
                         </a>
                       </div>
                     </div>

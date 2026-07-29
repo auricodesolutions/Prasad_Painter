@@ -33,10 +33,10 @@
 .about__facts dd { font-family: var(--serif); font-size: 1rem; margin: 0; }
 
 .about__actions { align-items: center; display: flex; gap: .8rem; }
-.about__primary, .about__secondary { align-items: center; border: 1px solid var(--ink); border-radius: 99px; display: inline-flex; font-size: .64rem; gap: 1.4rem; justify-content: space-between; letter-spacing: .08em; min-height: 3.2rem; padding: .45rem .55rem .45rem 1.15rem; transition: .35s var(--ease); }
+.about__primary, .about__secondary { align-items: center; border: 1px solid var(--ink); border-radius: 0; display: inline-flex; font-size: .64rem; gap: 1.4rem; justify-content: space-between; letter-spacing: .08em; min-height: 3.2rem; padding: .45rem .55rem .45rem 1.15rem; transition: .35s var(--ease); }
 .about__primary { background: var(--ink); color: var(--paper); }
 .about__secondary { background: transparent; }
-.about__primary span, .about__secondary span { align-items: center; border-radius: 50%; display: flex; font-size: .9rem; height: 2.2rem; justify-content: center; width: 2.2rem; }
+.about__primary span, .about__secondary span { align-items: center; border-radius: 0; display: flex; font-size: .9rem; height: 2.2rem; justify-content: center; width: 2.2rem; }
 .about__primary span { background: rgba(255,255,255,.12); }
 .about__secondary span { background: var(--ink); color: var(--paper); }
 .about__primary:hover { background: var(--rust); border-color: var(--rust); transform: translateY(-3px); }

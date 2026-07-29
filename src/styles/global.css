@@ -31,6 +31,7 @@ body::before { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180
 body, button { font-family: var(--sans); }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
+input, select, textarea { font: inherit; }
 img { max-width: 100%; }
 p, h1, h2, figure { margin: 0; }
 ::selection { background: var(--rust); color: white; }
@@ -115,6 +116,30 @@ html.section-motion-ready .section-motion.is-section-visible {
     transition-duration: .4s;
     transition-timing-function: var(--ease);
   }
+}
+
+/* Text actions share one square, editorial button language.
+   Icon-only controls stay circular for recognisability. */
+:where(
+  .header__contact,
+  .hero__primary,
+  .about__primary,
+  .about__secondary,
+  .online-store__button,
+  .store-page__hero-copy a,
+  .store-page__assistance a,
+  .about-contact__button,
+  .contact-form button,
+  .footer__cta-link
+) { border-radius: 0; }
+
+@media (max-width: 760px) {
+  section[id] { scroll-margin-top: 4.5rem; }
+  .section { padding-left: 1rem; padding-right: 1rem; }
+  .eyebrow { line-height: 1.5; }
+  h1, h2, h3, p, a, dd { overflow-wrap: break-word; }
+  input, select, textarea { font-size: 16px; }
+  [data-reveal] { transform: translateY(24px) scale(.996); }
 }
 .work-card[data-reveal]:nth-child(2) { transition-delay: .12s; }
 .work-card[data-reveal]:nth-child(3) { transition-delay: .06s; }
