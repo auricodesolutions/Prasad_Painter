@@ -18,7 +18,7 @@ const posters = [
   },
 ]
 
-export default function ExhibitionPoster() {
+export default function ExhibitionPoster({ onNavigate }) {
   const [active, setActive] = useState(0)
   const [outgoing, setOutgoing] = useState(null)
   const [direction, setDirection] = useState('next')
@@ -116,7 +116,16 @@ export default function ExhibitionPoster() {
       <div className="poster-feature__details" data-reveal>
         <span>Exhibition archive</span>
         <p>{currentPoster.description}</p>
-        <a href="/about" target="_blank" rel="noreferrer">View artist profile &#8599;</a>
+        <a
+          href="/about/"
+          onClick={(event) => {
+            if (!onNavigate) return
+            event.preventDefault()
+            onNavigate('about')
+          }}
+        >
+          View artist profile &#8599;
+        </a>
       </div>
     </section>
   )

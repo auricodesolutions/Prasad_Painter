@@ -101,7 +101,6 @@ export const practicePages = {
       { image: image(3), title: 'Organic Architecture', detail: 'Interior environment' },
       { image: image(5), title: 'Illuminated Performance Set', detail: 'Studio production' },
       { image: image(6), title: 'Night Stage Environment', detail: 'Lighting and scenic design' },
-      { image: image(65), title: 'Ceremonial Broadcast Stage', detail: 'Television production' },
     ],
   },
   'art-direction': {
@@ -112,11 +111,9 @@ export const practicePages = {
     services: ['Visual development', 'Colour & atmosphere', 'Production detail', 'Creative leadership'],
     works: [
       { image: image(4), title: 'Rainbow Broadcast', detail: 'Visual direction' },
-      { image: image(44), title: 'Production Development', detail: 'Screen and stage studies' },
       { image: image(46), title: 'Blue Stage Composition', detail: 'Broadcast art direction' },
       { image: image(49), title: 'Contemporary Studio Interior', detail: 'Television environment' },
       { image: image(66), title: 'Conversation Set', detail: 'Studio art direction' },
-      { image: '/assets/exhibition-view-banner.png', title: 'Exhibition Environment', detail: 'Spatial visual direction' },
     ],
   },
 }

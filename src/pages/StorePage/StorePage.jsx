@@ -157,7 +157,16 @@ export default function StorePage({ onNavigate }) {
         <p className="eyebrow">Collector assistance</p>
         <h2>Need a closer view?</h2>
         <p>Request dimensions, detail photographs, framing information or a private studio appointment.</p>
-        <a href="/contact/">Contact the studio <span>↗</span></a>
+        <a
+          href="/contact/"
+          onClick={(event) => {
+            if (!onNavigate) return
+            event.preventDefault()
+            onNavigate('contact')
+          }}
+        >
+          Contact the studio <span>↗</span>
+        </a>
       </section>
     </main>
   )

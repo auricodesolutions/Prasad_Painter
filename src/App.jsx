@@ -19,8 +19,28 @@ import Preloader from './components/Preloader/Preloader'
 import SmoothScroll from './components/SmoothScroll/SmoothScroll'
 import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton'
 
-const getPageFromPath = () => {
-  const path = window.location.pathname
+const routeRoots = new Set(['store', 'category', 'set-design', 'art-direction', 'contact', 'about'])
+
+const appBase = (() => {
+  const configuredBase = import.meta.env.BASE_URL || '/'
+  if (configuredBase !== '/') return configuredBase.endsWith('/') ? configuredBase : `${configuredBase}/`
+
+  if (window.location.hostname.endsWith('.github.io')) {
+    const firstSegment = window.location.pathname.split('/').filter(Boolean)[0]
+    if (firstSegment && !routeRoots.has(firstSegment)) return `/${firstSegment}/`
+  }
+
+  return '/'
+})()
+
+const withAppBase = (path) => (
+  appBase === '/' ? path : `${appBase.replace(/\/$/, '')}${path}`
+)
+
+const getPageFromPath = (pathname = window.location.pathname) => {
+  const segments = pathname.replace(/\/+/g, '/').split('/').filter(Boolean)
+  const routeIndex = segments.findIndex((segment) => routeRoots.has(segment))
+  const path = routeIndex >= 0 ? `/${segments.slice(routeIndex).join('/')}` : '/'
   if (path.startsWith('/store/')) {
     const artworkSlug = path.split('/')[2]
     if (artworkSlug) return `store-item:${artworkSlug}`
@@ -35,14 +55,14 @@ const getPageFromPath = () => {
 }
 
 const getPathFromPage = (targetPage) => {
-  if (targetPage === 'about') return '/about/'
-  if (targetPage === 'contact') return '/contact/'
-  if (targetPage === 'store') return '/store/'
-  if (targetPage.startsWith('store-item:')) return `/store/${targetPage.split(':')[1]}/`
-  if (targetPage === 'set-design') return '/set-design/'
-  if (targetPage === 'art-direction') return '/art-direction/'
-  if (targetPage.startsWith('category:')) return `/category/${targetPage.split(':')[1]}/`
-  return '/'
+  if (targetPage === 'about') return withAppBase('/about/')
+  if (targetPage === 'contact') return withAppBase('/contact/')
+  if (targetPage === 'store') return withAppBase('/store/')
+  if (targetPage.startsWith('store-item:')) return withAppBase(`/store/${targetPage.split(':')[1]}/`)
+  if (targetPage === 'set-design') return withAppBase('/set-design/')
+  if (targetPage === 'art-direction') return withAppBase('/art-direction/')
+  if (targetPage.startsWith('category:')) return withAppBase(`/category/${targetPage.split(':')[1]}/`)
+  return appBase
 }
 
 export default function App() {
@@ -52,7 +72,8 @@ export default function App() {
 
   const scrollToDestination = (sectionId, smooth = true) => {
     window.requestAnimationFrame(() => {
-      if (sectionId) document.getElementById(sectionId)?.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' })
+      const destination = sectionId ? document.getElementById(sectionId) : null
+      if (destination) destination.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' })
       else window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' })
     })
   }
@@ -86,15 +107,49 @@ export default function App() {
   }
 
   useEffect(() => {
+    const handleInternalLink = (event) => {
+      if (
+        event.defaultPrevented
+        || event.button !== 0
+        || event.metaKey
+        || event.ctrlKey
+        || event.shiftKey
+        || event.altKey
+      ) return
+
+      const link = event.target.closest?.('a[href]')
+      if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return
+
+      const destination = new URL(link.href, window.location.href)
+      if (destination.origin !== window.location.origin) return
+
+      event.preventDefault()
+      navigate(
+        getPageFromPath(destination.pathname),
+        destination.hash ? decodeURIComponent(destination.hash.slice(1)) : undefined,
+      )
+    }
+
+    document.addEventListener('click', handleInternalLink)
+    return () => document.removeEventListener('click', handleInternalLink)
+  })
+
+  useEffect(() => {
     const onPopState = () => {
       const targetPage = getPageFromPath()
+      const sectionId = window.location.hash ? decodeURIComponent(window.location.hash.slice(1)) : undefined
       const transitionDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 430
       setIsPageTransitioning(true)
       window.clearTimeout(transitionTimer.current)
       transitionTimer.current = window.setTimeout(() => {
         setPage(targetPage)
         window.scrollTo(0, 0)
-        window.requestAnimationFrame(() => setIsPageTransitioning(false))
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
+            setIsPageTransitioning(false)
+            if (sectionId) scrollToDestination(sectionId, false)
+          })
+        })
       }, transitionDelay)
     }
     window.addEventListener('popstate', onPopState)
@@ -147,23 +202,23 @@ export default function App() {
       <div className={`site-transition ${isPageTransitioning ? 'is-active' : ''}`} aria-hidden="true"><span /></div>
       <Header page={page} onNavigate={navigate} />
       <div className={`site-page ${isPageTransitioning ? 'is-transitioning' : ''}`} key={page}>
-        {page === 'about' ? <AboutPage /> :
+        {page === 'about' ? <AboutPage onNavigate={navigate} /> :
           page === 'contact' ? <ContactPage /> :
           page === 'store' ? <StorePage onNavigate={navigate} /> :
           page.startsWith('store-item:') ? <ArtworkDetailPage artworkSlug={page.split(':')[1]} onNavigate={navigate} /> :
-          page.startsWith('category:') ? <CategoryPage categoryKey={page.split(':')[1]} /> :
-          page === 'set-design' || page === 'art-direction' ? <PracticePage practiceKey={page} /> : (
+          page.startsWith('category:') ? <CategoryPage categoryKey={page.split(':')[1]} onNavigate={navigate} /> :
+          page === 'set-design' || page === 'art-direction' ? <PracticePage practiceKey={page} onNavigate={navigate} /> : (
           <main>
-            <Hero />
+            <Hero onNavigate={navigate} />
             <Works />
             <FeaturedCategories onNavigate={navigate} />
             <OnlineStore onNavigate={navigate} />
-            <ExhibitionPoster />
+            <ExhibitionPoster onNavigate={navigate} />
             <SetDesign onNavigate={navigate} />
             <About onNavigate={navigate} />
           </main>
         )}
-        <Footer />
+        <Footer onNavigate={navigate} />
       </div>
     </>
   )

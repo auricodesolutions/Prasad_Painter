@@ -67,7 +67,7 @@ export default function ArtistArchive() {
       <header className="artist-archive__header">
         <div><strong>Prasad Weerasinghe</strong><span>Selected practice · Sri Lanka</span></div>
         <nav aria-label="Artist archive links">
-          <div><span>Practice</span><a href="#work">Paintings</a><a href="/about/#art-direction">Art direction</a></div>
+          <div><span>Practice</span><a href="/#work">Paintings</a><a href="/art-direction/">Art direction</a></div>
           <div><span>Connect</span><a href="https://www.instagram.com/prasart78" target="_blank" rel="noreferrer">Instagram</a><a href="/contact/">Enquiries</a></div>
         </nav>
       </header>

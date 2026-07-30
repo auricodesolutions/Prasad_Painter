@@ -5,7 +5,7 @@ import './CategoryPage.css'
 
 const categoryOrder = ['paintings', 'drawings', 'commercial', 'sculptures']
 
-export default function CategoryPage({ categoryKey }) {
+export default function CategoryPage({ categoryKey, onNavigate }) {
   const [selected, setSelected] = useState(null)
   const category = categoryPages[categoryKey] || categoryPages.paintings
 
@@ -51,7 +51,17 @@ export default function CategoryPage({ categoryKey }) {
         <p className="eyebrow">Continue exploring</p>
         <div>
           {categoryOrder.filter((key) => key !== categoryKey).map((key) => (
-            <a href={`/category/${key}/`} key={key}>{categoryPages[key].title}<span>↗</span></a>
+            <a
+              href={`/category/${key}/`}
+              key={key}
+              onClick={(event) => {
+                if (!onNavigate) return
+                event.preventDefault()
+                onNavigate(`category:${key}`)
+              }}
+            >
+              {categoryPages[key].title}<span>↗</span>
+            </a>
           ))}
         </div>
       </nav>

@@ -12,9 +12,7 @@ export default function About({ onNavigate }) {
       <figure className="about__artwork" data-reveal>
         <div className="about__image-wrap">
           <img src="/assets/prasad-painting-process.png" alt="Prasad Weerasinghe, Sri Lankan contemporary visual artist" loading="lazy" />
-          <span className="about__image-index">Prasad Weerasinghe · Visual artist</span>
         </div>
-        <figcaption>In the studio · Colombo, Sri Lanka</figcaption>
       </figure>
 
       <div className="about__copy" data-reveal>

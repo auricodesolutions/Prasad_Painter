@@ -35,7 +35,7 @@ const awards = [
 
 const skills = ['Painting', 'Drawing', 'Sculpture', 'Set design', 'TV art direction', 'Creative management']
 
-export default function AboutPage() {
+export default function AboutPage({ onNavigate }) {
   return (
     <main className="about-page" id="top">
       <section className="about-page__hero">
@@ -58,7 +58,6 @@ export default function AboutPage() {
         <div className="about-story__layout">
           <figure data-reveal>
             <img src="/assets/prasad-painting-process.png" alt="Prasad Weerasinghe painting in the studio" loading="lazy" />
-            <figcaption><span>In the studio</span><span>Prasad Weerasinghe</span></figcaption>
           </figure>
 
           <div className="about-story__copy" data-reveal>
@@ -134,7 +133,17 @@ export default function AboutPage() {
           <h2>Start a thoughtful<br /><em>collaboration.</em></h2>
         </div>
         <p>For original works, exhibitions, commissions, set design and art direction, contact the studio directly.</p>
-        <a className="about-contact__button" href="/contact/">Contact the studio <span>↗</span></a>
+        <a
+          className="about-contact__button"
+          href="/contact/"
+          onClick={(event) => {
+            if (!onNavigate) return
+            event.preventDefault()
+            onNavigate('contact')
+          }}
+        >
+          Contact the studio <span>↗</span>
+        </a>
       </section>
     </main>
   )

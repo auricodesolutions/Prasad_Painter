@@ -20,10 +20,16 @@ export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
   const [view, setView] = useState('artwork')
   const [fullscreen, setFullscreen] = useState(false)
   const related = useMemo(() => storeArtworks.filter((item) => item.slug !== artwork.slug).slice(0, 3), [artwork.slug])
+  const activeViewIndex = viewOptions.findIndex((option) => option.id === view)
 
   useEffect(() => {
     setView('artwork')
   }, [artwork.slug])
+
+  const changeView = (step) => {
+    const nextIndex = (activeViewIndex + step + viewOptions.length) % viewOptions.length
+    setView(viewOptions[nextIndex].id)
+  }
 
   const navigate = (target) => {
     if (onNavigate) onNavigate(target)
@@ -57,26 +63,57 @@ export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
             ))}
           </div>
 
-          <button
-            className={`artwork-detail__stage artwork-detail__stage--${view}`}
-            type="button"
-            aria-label={`Open ${artwork.title} in full screen`}
-            onClick={() => setFullscreen(true)}
-            key={view}
-          >
-            {view === 'artwork' && <img src={artwork.image} alt={artwork.alt || artwork.title} />}
-            {view === 'framed' && (
-              <div className="artwork-detail__frame">
-                <div><img src={artwork.image} alt={`${artwork.title} in a timber frame`} /></div>
-              </div>
-            )}
-            {view === 'room' && (
-              <div className="artwork-detail__room">
-                <span><img src={artwork.image} alt={`${artwork.title} displayed in an interior`} /></span>
-              </div>
-            )}
-            <span className="artwork-detail__expand">Full screen <b aria-hidden="true">⛶</b></span>
-          </button>
+          <div className="artwork-detail__stage-wrap">
+            <button
+              className="artwork-detail__arrow artwork-detail__arrow--previous"
+              type="button"
+              aria-label={`Show previous view: ${viewOptions[(activeViewIndex - 1 + viewOptions.length) % viewOptions.length].label}`}
+              onClick={() => changeView(-1)}
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+
+            <button
+              className={`artwork-detail__stage artwork-detail__stage--${view}`}
+              type="button"
+              aria-label={`Open ${artwork.title}, ${viewOptions[activeViewIndex].label}, in full screen`}
+              onClick={() => setFullscreen(true)}
+              onKeyDown={(event) => {
+                if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                  event.preventDefault()
+                  changeView(event.key === 'ArrowLeft' ? -1 : 1)
+                }
+              }}
+              key={view}
+            >
+              {view === 'artwork' && <img src={artwork.image} alt={artwork.alt || artwork.title} />}
+              {view === 'framed' && (
+                <div className="artwork-detail__frame">
+                  <div><img src={artwork.image} alt={`${artwork.title} in a timber frame`} /></div>
+                </div>
+              )}
+              {view === 'room' && (
+                <div className="artwork-detail__room">
+                  <span><img src={artwork.image} alt={`${artwork.title} displayed in an interior`} /></span>
+                </div>
+              )}
+              <span className="artwork-detail__expand">Full screen <b aria-hidden="true">⛶</b></span>
+            </button>
+
+            <button
+              className="artwork-detail__arrow artwork-detail__arrow--next"
+              type="button"
+              aria-label={`Show next view: ${viewOptions[(activeViewIndex + 1) % viewOptions.length].label}`}
+              onClick={() => changeView(1)}
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+
+            <span className="artwork-detail__view-status" aria-live="polite">
+              {viewOptions[activeViewIndex].label}
+              <b>{String(activeViewIndex + 1).padStart(2, '0')} / {String(viewOptions.length).padStart(2, '0')}</b>
+            </span>
+          </div>
         </div>
 
         <aside className="artwork-detail__information">

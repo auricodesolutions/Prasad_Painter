@@ -10,7 +10,7 @@ const heroImages = [
 
 ]
 
-export default function Hero() {
+export default function Hero({ onNavigate }) {
   const [activeImage, setActiveImage] = useState(0)
 
   useEffect(() => {
@@ -46,10 +46,28 @@ export default function Hero() {
             Step into a world of symbolic paintings where memory, nature and imagination meet on canvas.
           </p>
           <div className="hero__actions reveal reveal--delay-2">
-            <a className="hero__secondary" href="collection">
+            <a
+              className="hero__secondary"
+              href="/#collection"
+              onClick={(event) => {
+                if (!onNavigate) return
+                event.preventDefault()
+                onNavigate('home', 'collection')
+              }}
+            >
               <span>Explore the collection</span>
             </a>
-            <a className="hero__secondary" href="#about">Meet the artist</a>
+            <a
+              className="hero__secondary"
+              href="/about/"
+              onClick={(event) => {
+                if (!onNavigate) return
+                event.preventDefault()
+                onNavigate('about')
+              }}
+            >
+              Meet the artist
+            </a>
           </div>
         </div>
       </div>

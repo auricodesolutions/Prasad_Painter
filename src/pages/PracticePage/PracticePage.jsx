@@ -3,7 +3,7 @@ import ArtworkViewer from '../../components/ArtworkViewer/ArtworkViewer'
 import { practicePages } from '../../data/portfolioContent'
 import './PracticePage.css'
 
-export default function PracticePage({ practiceKey }) {
+export default function PracticePage({ practiceKey, onNavigate }) {
   const [selected, setSelected] = useState(null)
   const practice = practicePages[practiceKey] || practicePages['set-design']
   const otherKey = practiceKey === 'set-design' ? 'art-direction' : 'set-design'
@@ -53,7 +53,15 @@ export default function PracticePage({ practiceKey }) {
         </ol>
       </section>
 
-      <a className="practice-page__next" href={`/${otherKey}/`}>
+      <a
+        className="practice-page__next"
+        href={`/${otherKey}/`}
+        onClick={(event) => {
+          if (!onNavigate) return
+          event.preventDefault()
+          onNavigate(otherKey)
+        }}
+      >
         <span>Continue to</span>
         <strong>{practicePages[otherKey].title}</strong>
         <i>↗</i>

@@ -152,6 +152,7 @@
   font-size: .51rem;
   letter-spacing: .12em;
   text-transform: uppercase;
+  
 }
 .set-design__explore { align-items: center; border-bottom: 1px solid rgba(247,243,236,.45); display: inline-flex; font-size: .54rem; gap: 2rem; letter-spacing: .12em; margin-top: 1.25rem; padding-bottom: .4rem; text-transform: uppercase; }
 .set-design__explore span { color: #c9a47f; font-size: .9rem; transition: transform .3s var(--ease); }
