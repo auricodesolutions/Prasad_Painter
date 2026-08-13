@@ -25,6 +25,12 @@
 .about__lead { color: var(--ink); font-family: var(--serif); font-size: clamp(1.12rem, 1.5vw, 1.35rem); line-height: 1.55; max-width: 660px; }
 .about__body { color: var(--muted); display: grid; font-size: .92rem; gap: 1.6rem; grid-template-columns: 1fr 1fr; line-height: 1.75; margin-top: 1.7rem; max-width: 720px; }
 
+.about__signature { align-items: center; border-top: 1px solid rgba(166,124,82,.32); color: var(--ink); display: inline-flex; flex-direction: column; margin-top: 1.7rem; padding-top: .8rem; width: min(250px, 42%); }
+.about__signature-mark { background: currentColor; display: block; height: 75px; -webkit-mask: url('/assets/logo-signonly.png') center / 100% auto no-repeat; mask: url('/assets/logo-signonly.png') center / 100% auto no-repeat; transition: background-color .35s ease, transform .55s var(--ease); width: 100%; }
+.about__signature-name { color: var(--muted); font-size: .46rem; letter-spacing: .24em; margin-right: .2rem; margin-top: -.1rem; text-transform: uppercase; }
+.about__signature:hover { color: var(--rust); }
+.about__signature:hover .about__signature-mark { transform: translateY(-1px); }
+
 .about__facts { border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); display: grid; grid-template-columns: .8fr 1.2fr 1.5fr; margin: 2rem 0; padding: 1.15rem 0; }
 .about__facts div { border-right: 1px solid var(--line); padding: 0 1rem; }
 .about__facts div:first-child { padding-left: 0; }
@@ -62,6 +68,9 @@
   .about__artwork img { aspect-ratio: 4 / 5; }
   .about__copy h2 { font-size: clamp(2.9rem, 12vw, 4.8rem); }
   .about__body { grid-template-columns: 1fr; }
+  .about__signature { align-items: center; width: min(220px, 72%); }
+  .about__signature-mark { height: 72px; -webkit-mask-size: 100% auto; mask-size: 100% auto; }
+  .about__signature-name { margin-left: 0; margin-right: 0; }
   .about__facts { gap: 1rem; grid-template-columns: 1fr; }
   .about__facts div, .about__facts div:first-child, .about__facts div:last-child { border-bottom: 1px solid var(--line); border-right: 0; padding: .8rem 0; }
   .about__facts div:last-child { border-bottom: 0; }

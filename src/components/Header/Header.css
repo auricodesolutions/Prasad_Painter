@@ -32,19 +32,55 @@
 .header--open { color: var(--ink); }
 
 .header__brand {
-  display: block;
+  align-items: center;
+  display: flex;
   flex: 0 0 auto;
-  height: 64px;
-  overflow: visible;
+  height: 58px;
+  color: inherit;
   position: relative;
-  width: clamp(145px, 13vw, 180px);
+  transition: color .3s ease, transform .4s var(--ease);
   z-index: 2;
 }
 
-.header__brand img { filter: invert(1); height: auto; left: 50%; max-width: none; position: absolute; top: 67%; transform: translate(-50%, -50%); transition: filter .35s ease, opacity .3s ease; width: 120%; }
-.header--surface .header__brand img,
-.header--scrolled .header__brand img,
-.header--open .header__brand img { filter: none; }
+.header__brand-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  position: relative;
+}
+.header__brand-name::after {
+  background: var(--rust);
+  bottom: -.5rem;
+  content: '';
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(.22);
+  transform-origin: left;
+  transition: transform .45s var(--ease);
+  width: 100%;
+}
+.header__brand-name strong {
+  font-family: var(--sans);
+  font-size: clamp(1.05rem, 1.35vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.header__brand-name span {
+  font-family: var(--sans);
+  font-size: .43rem;
+  letter-spacing: .38em;
+  margin-top: .42rem;
+  text-transform: uppercase;
+  transition: letter-spacing .4s var(--ease);
+}
+.header__brand:hover,
+.header__brand:focus-visible { color: var(--rust); transform: translateY(-2px); }
+.header__brand:hover .header__brand-name::after,
+.header__brand:focus-visible .header__brand-name::after { transform: scaleX(1); }
+.header__brand:hover .header__brand-name span,
+.header__brand:focus-visible .header__brand-name span { letter-spacing: .43em; }
 
 .header__nav { align-items: center; display: flex; gap: clamp(1rem, 1.8vw, 2.2rem); }
 .header__nav a { font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; }
@@ -78,7 +114,9 @@
 
 @media (max-width: 760px) {
   .header { height: 72px; padding: 0 1.15rem; }
-  .header__brand { height: 54px; width: 132px; z-index: 3; }
+  .header__brand { height: 52px; z-index: 3; }
+  .header__brand-name strong { font-size: .98rem; letter-spacing: .12em; }
+  .header__brand-name span { font-size: .39rem; letter-spacing: .3em; }
   .header__toggle { background: none; border: 0; color: inherit; cursor: pointer; display: grid; gap: 6px; padding: 12px 0 12px 12px; position: relative; touch-action: manipulation; z-index: 3; }
   .header__toggle i { background: currentColor; display: block; height: 1px; transition: .3s ease; width: 26px; }
   .header__toggle.is-open i:first-child { transform: translateY(3.5px) rotate(45deg); }

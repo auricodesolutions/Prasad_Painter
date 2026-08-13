@@ -67,6 +67,10 @@ export default function AboutPage({ onNavigate }) {
               <p>His work moves across painting, drawing and sculpture while extending into television set design and art direction. Each discipline informs the others: the paintings think spatially, and the environments carry a painter’s attention to rhythm, colour and detail.</p>
             </div>
             <blockquote>“I view art as visual literacy. Research helps me understand what art means to me and allows each painting to become a newly composed creation.”</blockquote>
+            <div className="about-story__signature" aria-label="Prasad Weerasinghe artist signature">
+              <span className="about-story__signature-mark" aria-hidden="true" />
+              <span>Prasad Weerasinghe</span>
+            </div>
             <div className="about-story__skills" aria-label="Areas of practice">
               {skills.map((skill) => <span key={skill}>{skill}</span>)}
             </div>

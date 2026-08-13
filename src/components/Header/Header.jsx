@@ -40,7 +40,10 @@ export default function Header({ page = 'home', onNavigate }) {
   return (
     <header className={`header ${useSurfaceHeader ? 'header--surface' : ''} ${scrolled ? 'header--scrolled' : ''} ${open ? 'header--open' : ''}`}>
       <a className="header__brand" href="/" aria-label="Prasad Weerasinghe home" onClick={(event) => { event.preventDefault(); navigateFromHeader('home') }}>
-        <img src="/assets/prasad-signature-transparent.png" alt="Prasad Weerasinghe" />
+        <span className="header__brand-name" aria-hidden="true">
+          <strong>Prasad</strong>
+          <span>Weerasinghe</span>
+        </span>
       </a>
 
       <button
@@ -65,7 +68,14 @@ export default function Header({ page = 'home', onNavigate }) {
             }}
           >{label}</a>
         ))}
-        <a className={`header__contact ${page === 'contact' ? 'is-active' : ''}`} href="/contact/" onClick={(event) => { event.preventDefault(); navigateFromHeader('contact') }}>Enquire</a>
+        <a
+          className={`header__contact ${page === 'contact' ? 'is-active' : ''}`}
+          href="/contact/"
+          onClick={(event) => {
+            event.preventDefault()
+            navigateFromHeader('contact')
+          }}
+        >Enquire</a>
       </nav>
       <span className="header__progress" style={{ transform: `scaleX(${progress / 100})` }} />
     </header>

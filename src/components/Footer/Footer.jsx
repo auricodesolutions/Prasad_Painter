@@ -10,7 +10,8 @@ export default function Footer() {
       <div className="footer__main" data-reveal>
         <div className="footer__identity">
           <a className="footer__brand" href="/" aria-label="Prasad Weerasinghe home">
-            <img src="/assets/prasad-signature-transparent.png" alt="Prasad Weerasinghe" loading="lazy" />
+            <strong>Prasad</strong>
+            <span>Weerasinghe</span>
           </a>
           <p>Contemporary paintings shaped by memory, nature and the human experience.</p>
           <span>Painter · Art Director · Set Designer</span>
@@ -38,7 +39,6 @@ export default function Footer() {
           <a href="https://www.instagram.com/prasart78" target="_blank" rel="noreferrer">Instagram · @prasart78</a>
           <a href="https://www.tiktok.com/@artprasad" target="_blank" rel="noreferrer">TikTok · @artprasad</a>
           <a href="https://www.facebook.com/share/1CGuesswFt/" target="_blank" rel="noreferrer">Facebook</a>
-          <p>Panadura, Sri Lanka</p>
         </div>
       </div>
 

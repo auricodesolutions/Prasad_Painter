@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Opening Prasad Weerasinghe</title>
+  </head>
+  <body>
+    <script>
+      (() => {
+        const route = `${window.location.pathname}${window.location.search}${window.location.hash}`
+        const segments = window.location.pathname.split('/').filter(Boolean)
+        const routeRoots = ['store', 'category', 'set-design', 'art-direction', 'contact', 'about']
+        const isProjectSite = (
+          window.location.hostname.endsWith('.github.io')
+          && segments.length > 0
+          && !routeRoots.includes(segments[0])
+        )
+        const base = isProjectSite ? `/${segments[0]}/` : '/'
+
+        window.sessionStorage.setItem('prasad-spa-redirect', route)
+        window.location.replace(`${window.location.origin}${base}`)
+      })()
+    </script>
+  </body>
+</html>

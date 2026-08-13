@@ -93,7 +93,7 @@ export const practicePages = {
     title: 'Set Design',
     eyebrow: 'Space built for the camera',
     intro: 'Prasad develops scenic environments that connect narrative, movement, material and light. His set-design practice has formed part of his professional work at Sri Lanka Rupavahini Corporation since 2006.',
-    hero: image(65),
+    hero: image(6),
     services: ['Scenic concepts', 'Spatial composition', 'Material direction', 'Broadcast environments'],
     works: [
       { image: image(1), title: 'Monumental Landscape', detail: 'Concept environment' },
@@ -107,7 +107,7 @@ export const practicePages = {
     title: 'Art Direction',
     eyebrow: 'A complete visual language',
     intro: 'Art direction brings every visible decision into one coherent world—from palette and objects to lighting, costume relationships and the final composition within the frame.',
-    hero: image(66),
+    hero: image(4),
     services: ['Visual development', 'Colour & atmosphere', 'Production detail', 'Creative leadership'],
     works: [
       { image: image(4), title: 'Rainbow Broadcast', detail: 'Visual direction' },

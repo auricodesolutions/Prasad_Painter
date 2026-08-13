@@ -1,22 +1,13 @@
 import './ContactPage.css'
 
-const whatsappUrl = 'https://wa.me/94714562736?text=Hello%20Prasad%2C%20I%27d%20like%20to%20enquire%20about%20your%20work.'
-
-const enquiryTypes = [
-  ['Original artwork', 'Availability, details and collector support'],
-  ['Creative projects', 'Commissions, exhibitions and collaborations'],
-  ['Production', 'Set design and art direction'],
-]
-
 export default function ContactPage() {
-  const sendEmail = (event) => {
+  const sendWhatsApp = (event) => {
     event.preventDefault()
     const form = new FormData(event.currentTarget)
-    const subject = encodeURIComponent(`${form.get('enquiry')} enquiry from ${form.get('name')}`)
-    const body = encodeURIComponent(
-      `Name: ${form.get('name')}\nEmail: ${form.get('email')}\nEnquiry: ${form.get('enquiry')}\n\n${form.get('message')}`,
+    const message = encodeURIComponent(
+      `Hello Prasad, I would like to make an enquiry.\n\nName: ${form.get('name')}\nEmail: ${form.get('email')}\nEnquiry: ${form.get('enquiry')}\n\n${form.get('message')}`,
     )
-    window.location.href = `mailto:prasart.adro@gmail.com?subject=${subject}&body=${body}`
+    window.open(`https://wa.me/94714562736?text=${message}`, '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -27,7 +18,6 @@ export default function ContactPage() {
           <h1 className="reveal reveal--delay">A conversation<br />can begin <em>here.</em></h1>
           <p className="reveal reveal--delay-2">For original artwork, exhibitions, commissions, set design and art direction.</p>
         </div>
-
       </section>
 
       <section className="contact-details" aria-labelledby="contact-form-title">
@@ -49,7 +39,7 @@ export default function ContactPage() {
           </nav>
         </aside>
 
-        <form className="contact-form" onSubmit={sendEmail} data-reveal>
+        <form className="contact-form" onSubmit={sendWhatsApp} data-reveal>
           <div className="contact-form__top">
             <div>
               <p className="eyebrow" id="contact-form-title">Send an enquiry</p>
@@ -85,8 +75,8 @@ export default function ContactPage() {
             <textarea name="message" rows="5" placeholder="Tell the studio about your enquiry…" required />
           </label>
 
-          <button type="submit">Prepare email <span aria-hidden="true">↗</span></button>
-          <p className="contact-form__note">This prepares the enquiry in your preferred email application. Your message is not stored on the website.</p>
+          <button type="submit">Send via WhatsApp <span aria-hidden="true">↗</span></button>
+          <p className="contact-form__note">Your enquiry opens securely in WhatsApp. The message is not stored on this website.</p>
         </form>
       </section>
     </main>

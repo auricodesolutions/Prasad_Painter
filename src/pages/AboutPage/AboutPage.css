@@ -29,6 +29,11 @@
 .about-story__body { border-top: 1px solid var(--line); display: grid; gap: 2rem; grid-template-columns: 1fr 1fr; margin-top: 2.5rem; padding-top: 1.5rem; }
 .about-story__body p { color: var(--muted); font-size: .86rem; line-height: 1.8; }
 .about-story blockquote { border-left: 2px solid var(--rust); color: var(--muted); font-family: var(--serif); font-size: clamp(1.05rem, 1.55vw, 1.35rem); line-height: 1.65; margin: 2.5rem 0 0; padding-left: 1.5rem; }
+.about-story__signature { align-items: center; border-top: 1px solid var(--line); color: var(--ink); display: inline-flex; flex-direction: column; margin-top: 2.25rem; padding-top: .85rem; width: min(270px, 48%); }
+.about-story__signature-mark { background: currentColor; display: block; height: 82px; -webkit-mask: url('/assets/logo-signonly.png') center / 100% auto no-repeat; mask: url('/assets/logo-signonly.png') center / 100% auto no-repeat; transition: background-color .35s ease, transform .65s var(--ease); width: 100%; }
+.about-story__signature > span:last-child { color: var(--muted); font-size: .47rem; letter-spacing: .25em; margin-right: .2rem; margin-top: -.1rem; text-transform: uppercase; }
+.about-story__signature:hover { color: var(--rust); }
+.about-story__signature:hover .about-story__signature-mark { transform: translateY(-1px); }
 .about-story__skills { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 2.25rem; }
 .about-story__skills span { border: 1px solid rgba(31,31,31,.2); border-radius: 99px; color: var(--muted); font-size: .5rem; letter-spacing: .1em; padding: .72rem .9rem; text-transform: uppercase; transition: background .3s ease, color .3s ease, transform .35s var(--ease); }
 .about-story__skills span:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
@@ -97,14 +102,22 @@
   .about-page__hero-facts div { align-items: center; border-bottom: 1px solid rgba(247,243,236,.14); border-right: 0; grid-template-columns: 105px 1fr; padding: 0 0 .7rem; }
   .about-page__hero-facts div:last-child { padding-bottom: 0; }
   .about-page__hero-facts dd { font-size: .86rem; }
-  .about-story__heading h2, .about-cv > header h2, .about-awards h2 { font-size: clamp(3.25rem, 16vw, 5.5rem); }
+  .about-story__heading h2, .about-cv > header h2 { font-size: clamp(3.25rem, 16vw, 5.5rem); }
   .about-story__layout { grid-template-columns: 1fr; }
   .about-story figure { position: relative; top: auto; }
   .about-story figure img { max-height: 590px; }
   .about-story__lead { font-size: clamp(1.8rem, 9vw, 2.7rem); }
+  .about-story__signature { align-items: center; width: min(230px, 74%); }
+  .about-story__signature-mark { height: 76px; -webkit-mask-size: 100% auto; mask-size: 100% auto; }
+  .about-story__signature > span:last-child { margin-left: 0; margin-right: 0; }
   .about-cv__title { align-items: flex-start; flex-direction: column; gap: .4rem; }
   .about-cv__list > div { gap: .4rem; grid-template-columns: 1fr; }
   .about-awards article { align-items: start; gap: .55rem; grid-template-columns: 1fr auto; padding: 1.2rem 0; }
+  .about-awards { overflow: hidden; padding-left: 1rem; padding-right: 1rem; }
+  .about-awards > header { align-items: flex-start; display: flex; flex-direction: column; margin-bottom: 2rem; }
+  .about-awards .eyebrow { margin-bottom: .85rem; }
+  .about-awards h2 { font-size: clamp(2.65rem, 13vw, 4rem); letter-spacing: -.045em; line-height: .9; max-width: 100%; }
+  .about-awards h2 em { display: block; }
   .about-awards article h3, .about-awards article p { grid-column: 1 / -1; }
   .about-awards article > span { grid-column: 2; grid-row: 1; }
   .about-contact { grid-template-columns: 1fr; }

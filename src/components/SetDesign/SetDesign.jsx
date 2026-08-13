@@ -5,7 +5,7 @@ const scenes = [
   {
     eyebrow: 'Spatial practice',
     title: 'Set Design',
-    image: '/assets/img%20(46).jpeg',
+    image: '/assets/img%20(65).png',
     alt: 'Illuminated television stage designed for a live broadcast production',
     text: 'Building camera-ready environments where scale, movement and light work together to support the story.',
     tags: ['Scenic concepts', 'Spatial composition', 'Broadcast environments'],
@@ -13,7 +13,7 @@ const scenes = [
   {
     eyebrow: 'Visual leadership',
     title: 'Art Direction',
-    image: '/assets/img%20(66).jpeg',
+    image: '/assets/img%20(66).png',
     alt: 'Contemporary television studio environment guided through art direction',
     text: 'Guiding the complete visual language of a production, from its first idea to the final image on screen.',
     tags: ['Creative direction', 'Colour & atmosphere', 'Production detail'],

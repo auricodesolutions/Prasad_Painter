@@ -26,6 +26,11 @@ export default function About({ onNavigate }) {
           <p>Drawing from extensive research and 18th-century Sri Lankan art, he reorganises familiar elements into a distinctive contemporary language.</p>
         </div>
 
+        <div className="about__signature" aria-label="Prasad Weerasinghe artist signature">
+          <span className="about__signature-mark" aria-hidden="true" />
+          <span className="about__signature-name">Prasad Weerasinghe</span>
+        </div>
+
         <dl className="about__facts">
           <div><dt>Born</dt><dd>Sri Lanka · 1978</dd></div>
           <div><dt>Education</dt><dd>Master of Art History</dd></div>
