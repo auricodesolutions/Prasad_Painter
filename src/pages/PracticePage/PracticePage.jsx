@@ -11,7 +11,7 @@ export default function PracticePage({ practiceKey, onNavigate }) {
   return (
     <main className="practice-page">
       <section className="practice-hero">
-        <img src={practice.hero} alt={`${practice.title} project by Prasad Weerasinghe`} />
+        <img src={practice.hero} alt={practice.heroAlt || `${practice.title} project by Prasad Weerasinghe`} />
         <span className="practice-hero__shade" />
         <div className="practice-hero__copy" data-reveal>
           <p className="eyebrow">{practice.eyebrow}</p>
@@ -33,7 +33,7 @@ export default function PracticePage({ practiceKey, onNavigate }) {
         <div className="practice-projects__grid">
           {practice.works.map((work) => (
             <button type="button" onClick={() => setSelected(work)} data-reveal key={work.title}>
-              <span><img src={work.image} alt={work.title} loading="lazy" /></span>
+              <span><img src={work.image} alt={work.alt || work.title} loading="lazy" /></span>
               <strong>{work.title}</strong>
               <small>{work.detail}</small>
             </button>

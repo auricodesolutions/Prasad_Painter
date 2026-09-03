@@ -5,8 +5,8 @@ const scenes = [
   {
     eyebrow: 'Spatial practice',
     title: 'Set Design',
-    image: '/assets/img%20(65).png',
-    alt: 'Illuminated television stage designed for a live broadcast production',
+    image: '/assets/SD23.jpg',
+    alt: 'Contemporary turquoise and white living room set with patterned walls, sectional seating and sculptural lighting',
     text: 'Building camera-ready environments where scale, movement and light work together to support the story.',
     tags: ['Scenic concepts', 'Spatial composition', 'Broadcast environments'],
   },
