@@ -13,10 +13,11 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
   const switchTimer = useRef(null)
   const category = categoryPages[categoryKey] || categoryPages.paintings
   const hasAlbums = Array.isArray(category.albums)
+  const categoryLabel = category.title.replace(/s$/, '')
   const heroImages = hasAlbums
     ? category.albums.slice(0, 5).map((album) => ({
         src: album.works[0].image,
-        alt: `${album.title} painting album`,
+        alt: `${album.title} ${categoryLabel.toLowerCase()} album`,
       }))
     : [{ src: category.hero, alt: category.heroAlt || `${category.title} by Prasad Weerasinghe` }]
 
@@ -91,7 +92,7 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
           <h1>{category.title}</h1>
           <p className="category-hero__intro">{category.intro}</p>
           <button className="category-hero__button" type="button" onClick={scrollToGallery}>
-            {hasAlbums ? 'Explore painting albums' : `View ${category.title.toLowerCase()}`} <span aria-hidden="true">↓</span>
+            {hasAlbums ? `Explore ${categoryLabel.toLowerCase()} albums` : `View ${category.title.toLowerCase()}`} <span aria-hidden="true">↓</span>
           </button>
         </div>
         {heroImages.length > 1 && (
@@ -112,13 +113,13 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
 
       <section className={`category-gallery${hasAlbums ? ' category-gallery--albums' : ''}${isSwitching ? ' category-gallery--switching' : ''}`} id="category-gallery" aria-labelledby="category-gallery-title" aria-busy={isSwitching}>
         {hasAlbums && !activeAlbum ? (
-          <div className="painting-library__view painting-library__view--overview" key="painting-album-overview">
+          <div className="painting-library__view painting-library__view--overview" key={`${categoryKey}-album-overview`}>
             <header className="category-gallery__heading">
               <div>
-                <p className="eyebrow">Painting archive</p>
+                <p className="eyebrow">{categoryLabel} archive</p>
                 <h2 id="category-gallery-title">Browse by <em>theme.</em></h2>
               </div>
-              <p>Five themed albums bring related works together, followed by an archive for exhibitions, installations and other images. Open any album to explore its full-screen collection.</p>
+              <p>Five themed albums bring related works together, followed by an archive for works and images outside those themes. Open any album to explore its full-screen collection.</p>
             </header>
 
             <div className="painting-albums">
@@ -133,11 +134,10 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
                 >
                   <span className="painting-album-card__image">
                     <img src={album.works[0].image} alt={`${album.title} album cover: ${album.works[0].alt}`} loading="lazy" />
-                    <span>{String(index + 1).padStart(2, '0')}</span>
                   </span>
                   <span className="painting-album-card__copy">
                     <span>
-                      <span className="painting-album-card__type">{album.slug === 'independent-works' ? 'Open archive' : 'Curated theme'}</span>
+                      <span className="painting-album-card__type">{album.title === 'Other Images' ? 'Open archive' : 'Curated theme'}</span>
                       <strong>{album.title}</strong>
                       <small>{album.description}</small>
                     </span>
@@ -153,10 +153,10 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
               <div>
                 {activeAlbum && (
                   <button className="painting-album__back" type="button" onClick={() => changeAlbum(null)}>
-                    <span aria-hidden="true">←</span> All painting albums
+                    <span aria-hidden="true">←</span> All {categoryLabel.toLowerCase()} albums
                   </button>
                 )}
-                <p className="eyebrow">{activeAlbum ? 'Painting album' : 'Selected archive'}</p>
+                <p className="eyebrow">{activeAlbum ? `${categoryLabel} album` : 'Selected archive'}</p>
                 <h2 id="category-gallery-title">
                   {activeAlbum ? activeAlbum.title : <>Works in <em>{category.title.toLowerCase()}.</em></>}
                 </h2>

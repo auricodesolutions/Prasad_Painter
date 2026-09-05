@@ -47,7 +47,11 @@ export default function Preloader() {
 
       <div className="preloader__identity">
         <p className="preloader__edition">Entering the studio</p>
-        <div className="preloader__logo">
+        <div className="preloader__name" aria-label="Prasad Weerasinghe">
+          <span>Prasad</span>
+          <strong>Weerasinghe</strong>
+        </div>
+        <div className="preloader__logo" aria-hidden="true">
           <img src="/assets/prasad-signature-transparent.png" alt="Prasad Weerasinghe" />
         </div>
         <div className="preloader__disciplines" aria-hidden="true">

@@ -2,12 +2,10 @@ import { useEffect, useState } from 'react'
 import './Hero.css'
 
 const heroImages = [
-  { src: '/assets/prasad-research-practice.png', alt: 'Prasad Weerasinghe standing in his studio surrounded by artworks' },
-  { src: '/assets/img%20(55).jpeg', alt: 'Prasad Weerasinghe standing in his studio surrounded by artworks' },
-  { src: '/assets/img%20(27).jpeg', alt: 'Prasad Weerasinghe standing in his studio surrounded by artworks' },
-  { src: '/assets/img%20(5).jpeg', alt: 'A monochrome architectural drawing with intricate symbolic forms' },
-
-
+  { src: '/assets/prasad-research-practice.png', alt: 'Prasad Weerasinghe painting an ornamental artwork in his studio', label: 'Inside the studio', position: '58% 48%' },
+  { src: '/assets/img%20(55).jpeg', alt: 'Reclining composite figure surrounded by botanical and patterned forms', label: 'Composite forms', position: 'center 48%' },
+  { src: '/assets/img%20(27).jpeg', alt: 'Two symbolic figures surrounded by mythic and organic forms', label: 'Myth & memory', position: 'center 46%' },
+  { src: '/assets/exhibition-view-banner.png', alt: 'A gallery wall presenting selected works by Prasad Weerasinghe', label: 'Exhibition view', position: 'center' },
 ]
 
 export default function Hero({ onNavigate }) {
@@ -30,14 +28,17 @@ export default function Hero({ onNavigate }) {
             src={image.src}
             alt={activeImage === index ? image.alt : ''}
             aria-hidden={activeImage !== index}
+            style={{ '--hero-image-position': image.position }}
             key={image.src}
           />
         ))}
+        <span className={`hero__canvas-sweep hero__canvas-sweep--${activeImage % 2 === 0 ? 'forward' : 'reverse'}`} aria-hidden="true" key={`sweep-${activeImage}`} />
       </div>
       <div className="hero__overlay" aria-hidden="true" />
 
       <div className="hero__content">
         <div className="hero__copy">
+          <p className="hero__eyebrow reveal"><span /> Contemporary artist · Sri Lanka</p>
           <h1 className="reveal reveal--delay">
             <span>Art begins with</span>
             <em>looking deeper.</em>
@@ -47,7 +48,7 @@ export default function Hero({ onNavigate }) {
           </p>
           <div className="hero__actions reveal reveal--delay-2">
             <a
-              className="hero__secondary"
+              className="hero__primary"
               href="/#collection"
               onClick={(event) => {
                 if (!onNavigate) return
@@ -55,7 +56,7 @@ export default function Hero({ onNavigate }) {
                 onNavigate('home', 'collection')
               }}
             >
-              <span>Explore the collection</span>
+              <span>Explore the collection</span><i aria-hidden="true">↘</i>
             </a>
             <a
               className="hero__secondary"
@@ -84,6 +85,10 @@ export default function Hero({ onNavigate }) {
               key={image.src}
             ><span /></button>
           ))}
+        </div>
+        <div className="hero__slide-meta" aria-live="polite">
+          <span>{heroImages[activeImage].label}</span>
+          <b>{String(activeImage + 1).padStart(2, '0')} / {String(heroImages.length).padStart(2, '0')}</b>
         </div>
       </div>
     </section>

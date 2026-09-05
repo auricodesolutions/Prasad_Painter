@@ -147,19 +147,81 @@ export const categoryPages = {
     eyebrow: 'Line, study & notation',
     intro: 'Drawings reveal the architecture behind the paintings—close observations developed through line, repetition and symbolic form.',
     hero: image(61),
-    works: [
-      { image: image(39), title: 'Organic Structure', medium: 'Graphite and ink' },
-      { image: image(40), title: 'Contained Forms', medium: 'Pen on paper' },
-      { image: image(41), title: 'The Observer', medium: 'Graphite study' },
-      { image: image(60), title: 'Seat of Memory', medium: 'Pen and ink' },
-      { image: image(63), title: 'Textured Torso', medium: 'Graphite and ink' },
-      { image: image(64), title: 'Symmetry Study', medium: 'Pen on paper' },
-      { image: image(64), title: 'Symmetry Study', medium: 'Pen on paper' },
-      { image: image(40), title: 'Contained Forms', medium: 'Pen on paper' },
-      { image: image(63), title: 'Textured Torso', medium: 'Graphite and ink' },
-
-
-
+    heroAlt: 'Detailed black and white organic drawing composed from repeated lines and symbolic forms',
+    albums: [
+      {
+        slug: 'figurative-studies',
+        title: 'Figurative Studies',
+        description: 'Studies of posture, anatomy and identity developed through intricate marks and transformed human forms.',
+        works: [
+          paintingWork(41, 'The Observer', 'Graphite study'),
+          paintingAsset('paintings1.jpg', 'Composite Figure 4', 'Pen on board', 'Standing composite female figure surrounded by radiating repeated marks'),
+          paintingAsset('paintings4.jpg', 'Composite Figure 5', 'Pen on board', 'Human torso constructed from hundreds of tightly repeated ink marks'),
+          paintingAsset('paintings5.jpg', 'Composite Figure 7', 'Pen on board', 'Group of standing human figures with transformed botanical and animal heads'),
+          paintingAsset('paintings9.jpg', 'Composite Figure 15', 'Pen on board', 'Standing figure transformed by flowing ribbon forms and circular patterned lines'),
+        ],
+      },
+      {
+        slug: 'organic-line-nature',
+        title: 'Organic Line & Nature',
+        description: 'Botanical rhythms, animal forms and flowing structures grow through layered fields of line.',
+        works: [
+          paintingWork(39, 'Organic Structure', 'Graphite and ink'),
+          paintingWork(61, 'Living Lines', 'Pen and ink'),
+          paintingWork(35, 'Botanical Memory', 'Ink and pigment'),
+          paintingWork(53, 'Growing Silence', 'Ink and acrylic'),
+          paintingWork(21, 'Reclining Organic Form', 'Ink and pigment on paper'),
+        ],
+      },
+      {
+        slug: 'symbol-myth-ritual',
+        title: 'Symbol, Myth & Ritual',
+        description: 'Archetypal figures and ceremonial signs turn drawing into a language of myth, memory and belief.',
+        works: [
+          paintingWork(64, 'Symmetry Study', 'Pen on paper'),
+          paintingAsset('paintings8.jpg', 'Composite Figure 23', 'Ink on paper', 'Dense composite drawing of figures, plants and patterned organic forms'),
+          paintingWork(9, 'Ancestral Form', 'Ink and pigment'),
+          paintingWork(28, 'Ceremonial Figure', 'Ink and mixed media'),
+          paintingWork(34, 'Architecture of Memory', 'Ink on paper'),
+        ],
+      },
+      {
+        slug: 'objects-memory',
+        title: 'Objects & Memory',
+        description: 'Chairs, vessels and familiar objects become quiet carriers of presence, absence and remembered experience.',
+        works: [
+          paintingWork(60, 'Seat of Memory', 'Pen and ink'),
+          paintingWork(40, 'Contained Forms', 'Pen on paper'),
+          paintingWork(13, 'Geometric Vessel', 'Ink and pigment'),
+          paintingWork(14, 'Figure with Patterned Field', 'Ink and mixed media'),
+          paintingWork(12, 'Small Narrative Study', 'Ink and pigment'),
+        ],
+      },
+      {
+        slug: 'pattern-surface-geometry',
+        title: 'Pattern, Surface & Geometry',
+        description: 'Repetition, texture and measured structures build contemplative surfaces from disciplined mark-making.',
+        works: [
+          paintingWork(63, 'Textured Torso', 'Graphite and ink'),
+          paintingWork(42, 'Ornamental Current', 'Ink and pigment'),
+          paintingWork(7, 'Spiral Field', 'Pen and mixed media'),
+          paintingWork(15, 'Circular Study', 'Ink and pigment'),
+          paintingWork(24, 'Patterned Growth', 'Ink and acrylic'),
+        ],
+      },
+      {
+        slug: 'other-drawing-images',
+        title: 'Other Images',
+        description: 'Framed works, gallery views, documentation and drawing-related images that sit outside the five themes.',
+        works: [
+          paintingWork(33, 'Framed Figure Study', 'Gallery documentation'),
+          paintingWork(18, 'Framed Drawing', 'Artwork documentation'),
+          paintingWork(25, 'Work in Context', 'Installation view'),
+          paintingWork(30, 'Drawings in Dialogue', 'Exhibition view'),
+          paintingWork(31, 'Public Viewing', 'Gallery documentation'),
+          paintingWork(22, 'Drawing Feature', 'Digital documentation'),
+        ],
+      },
     ],
   },
   commercial: {
