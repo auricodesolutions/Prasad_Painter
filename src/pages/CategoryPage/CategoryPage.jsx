@@ -14,12 +14,11 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
   const category = categoryPages[categoryKey] || categoryPages.paintings
   const hasAlbums = Array.isArray(category.albums)
   const categoryLabel = category.title.replace(/s$/, '')
-  const heroImages = hasAlbums
-    ? category.albums.slice(0, 5).map((album) => ({
-        src: album.works[0].image,
-        alt: `${album.title} ${categoryLabel.toLowerCase()} album`,
-      }))
-    : [{ src: category.hero, alt: category.heroAlt || `${category.title} by Prasad Weerasinghe` }]
+  const currentWorks = activeAlbum?.works || category.works || []
+  const isEmptyCollection = currentWorks.length === 0
+  const heroImages = category.hero
+    ? [{ src: category.hero, alt: category.heroAlt || `${category.title} by Prasad Weerasinghe` }]
+    : []
 
   useEffect(() => {
     window.clearTimeout(switchTimer.current)
@@ -70,6 +69,7 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
     <main className={`category-page category-page--${categoryKey}`}>
       <section className="category-hero">
         <div className="category-hero__media">
+          {heroImages.length === 0 && <div className="category-hero__placeholder" aria-hidden="true"><span>Collection in preparation</span></div>}
           {heroImages.map((heroImage, index) => (
             <div
               className={`category-hero__slide${activeHero === index ? ' is-active' : ''}`}
@@ -119,32 +119,40 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
                 <p className="eyebrow">{categoryLabel} archive</p>
                 <h2 id="category-gallery-title">Browse by <em>theme.</em></h2>
               </div>
-              <p>Five themed albums bring related works together, followed by an archive for works and images outside those themes. Open any album to explore its full-screen collection.</p>
+              <p>Available albums can be opened now. Collections awaiting approved artwork from the artist are clearly marked as in preparation.</p>
             </header>
 
             <div className="painting-albums">
-              {category.albums.map((album, index) => (
+              {category.albums.map((album, index) => {
+                const isEmpty = album.works.length === 0
+                return (
                 <button
-                  className="painting-album-card"
+                  className={`painting-album-card${isEmpty ? ' is-empty' : ''}`}
                   type="button"
-                  onClick={() => changeAlbum(album)}
+                  onClick={() => { if (!isEmpty) changeAlbum(album) }}
                   style={{ '--category-index': index }}
                   key={album.slug}
-                  aria-label={`Open ${album.title} album, ${album.works.length} works`}
+                  aria-label={isEmpty ? `${album.title} album, collection in preparation` : `Open ${album.title} album, ${album.works.length} works`}
+                  disabled={isEmpty}
                 >
                   <span className="painting-album-card__image">
-                    <img src={album.works[0].image} alt={`${album.title} album cover: ${album.works[0].alt}`} loading="lazy" />
+                    {isEmpty ? (
+                      <span className="painting-album-card__placeholder" aria-hidden="true"><i>PW</i><small>Collection in preparation</small></span>
+                    ) : (
+                      <img src={album.works[0].image} alt={`${album.title} album cover: ${album.works[0].alt}`} loading="lazy" />
+                    )}
                   </span>
                   <span className="painting-album-card__copy">
                     <span>
-                      <span className="painting-album-card__type">{album.title === 'Other Images' ? 'Open archive' : 'Curated theme'}</span>
+                      <span className="painting-album-card__type">{isEmpty ? 'Awaiting artwork' : album.title === 'Other Images' ? 'Open archive' : 'Curated theme'}</span>
                       <strong>{album.title}</strong>
                       <small>{album.description}</small>
                     </span>
-                    <span className="painting-album-card__action">{album.works.length} works <b aria-hidden="true">↗</b></span>
+                    <span className="painting-album-card__action">{isEmpty ? 'Coming soon' : `${album.works.length} works`} {!isEmpty && <b aria-hidden="true">↗</b>}</span>
                   </span>
                 </button>
-              ))}
+                )
+              })}
             </div>
           </div>
         ) : (
@@ -161,11 +169,18 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
                   {activeAlbum ? activeAlbum.title : <>Works in <em>{category.title.toLowerCase()}.</em></>}
                 </h2>
               </div>
-              <p>{activeAlbum ? activeAlbum.description : 'Select any image to enter a closer full-screen view.'}</p>
+              <p>{activeAlbum ? activeAlbum.description : isEmptyCollection ? 'Approved artwork and documentation will be added after they are supplied by the artist.' : 'Select any image to enter a closer full-screen view.'}</p>
             </header>
 
-            <div className="category-gallery__grid">
-              {(activeAlbum?.works || category.works || []).map((work, index) => (
+            {isEmptyCollection ? (
+              <div className="category-gallery__empty" role="status">
+                <span aria-hidden="true">PW</span>
+                <p>Collection in preparation</p>
+                <small>Owner-approved images will appear here soon.</small>
+              </div>
+            ) : (
+              <div className="category-gallery__grid">
+              {currentWorks.map((work, index) => (
                 <button
                   className="category-work"
                   type="button"
@@ -178,7 +193,8 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
                   <span className="category-work__meta"><strong>{work.title}</strong><small>{work.medium}</small></span>
                 </button>
               ))}
-            </div>
+              </div>
+            )}
           </div>
         )}
       </section>
