@@ -194,3 +194,10 @@
   .painting-album-card__image img,
   .painting-album-card__image::before { transition: none; }
 }
+
+/* Preserve the clarity and colour of the high-resolution Drive artwork. */
+.category-page--paintings .category-hero__slide.is-active .category-hero__slice { filter: none; }
+.category-page--paintings .category-hero__slide-image { object-position: center 50%; }
+@media (max-width: 680px) {
+  .category-page--paintings .category-hero__slide-image { object-position: 62% center; }
+}

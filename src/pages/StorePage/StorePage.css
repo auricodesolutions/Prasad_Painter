@@ -34,7 +34,7 @@
 
 .store-catalogue__results { min-width: 0; }
 .store-catalogue__grid { display: grid; gap: clamp(2rem, 3vw, 4rem) clamp(1rem, 2vw, 2rem); grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.store-artwork { animation: storeCardIn .75s calc(var(--store-index) * 55ms) var(--ease) both; min-width: 0; }
+.store-artwork { animation: storeCardIn .75s calc(min(var(--store-index), 5) * 55ms) var(--ease) both; min-width: 0; }
 .store-artwork > button { background: #eceae5; border: 0; box-shadow: 0 1px 0 rgba(31,31,31,.12); cursor: pointer; display: block; height: clamp(390px, 31vw, 570px); overflow: hidden; padding: 0; position: relative; transition: box-shadow .55s ease, transform .65s var(--ease); width: 100%; }
 .store-artwork__status { backdrop-filter: blur(10px); border: 1px solid rgba(31,31,31,.16); border-radius: 99px; font-size: .48rem; left: .85rem; letter-spacing: .11em; padding: .55rem .7rem; position: absolute; text-transform: uppercase; top: .85rem; z-index: 5; }
 .store-artwork__status--available { background: rgba(247,243,236,.92); color: var(--ink); }
@@ -102,3 +102,12 @@
 @media (prefers-reduced-motion: reduce) {
   .store-artwork, .store-page__hero-image, .store-page__hero-title h1, .store-page__hero-title h1 span, .store-page__hero-title .eyebrow, .store-page__hero-copy { animation: none; }
 }
+
+/* The catalogue must remain visible regardless of its total height. */
+html.section-motion-ready .store-catalogue.section-motion { opacity: 1; filter: none; transform: none; }
+.store-artwork__status--archive { background: rgba(247,243,236,.92); color: var(--ink); }
+
+/* Room presentation for the online store, matching the studio preview. */
+.store-artwork > button { aspect-ratio: 4 / 5; height: auto; }
+.store-artwork__image { background: #171613; border: 0; box-shadow: 0 16px 28px rgba(33,30,25,.22), inset 0 0 0 2px rgba(255,255,255,.14); padding: clamp(.4rem, .65vw, .7rem); }
+.store-artwork__image img { filter: none; }

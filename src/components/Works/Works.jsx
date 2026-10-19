@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import { artworks } from '../../data/artworks'
 import './Works.css'
 
-export default function Works() {
+export default function Works({ onNavigate }) {
   const [selected, setSelected] = useState(null)
   const sliderRef = useRef(null)
   const isPaused = useRef(false)
@@ -115,7 +115,7 @@ export default function Works() {
             className="work-card"
             key={`${loop}-${work.id}`}
             data-loop={loop}
-            onClick={() => setSelected(work)}
+            onClick={() => { if (onNavigate && work.slug) onNavigate(`store-item:${work.slug}`); else setSelected(work) }}
             data-reveal
             style={{ transitionDelay: `${(index % artworks.length) * 70}ms` }}
             tabIndex={loop ? -1 : 0}

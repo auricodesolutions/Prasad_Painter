@@ -106,3 +106,29 @@
 @media (hover: none) {
   .artwork-detail__expand { opacity: 1; transform: none; }
 }
+
+/* Spacious artwork and warm information panel, following the gallery reference. */
+.artwork-detail__product { gap: 0; grid-template-columns: minmax(0, 1.6fr) minmax(340px, 1fr); max-width: none; padding: 0; }
+.artwork-detail__gallery { background: #fff; display: flex; flex-direction: column-reverse; gap: 0; padding: 2rem 0; }
+.artwork-detail__stage-wrap { padding: 0 clamp(54px, 7.7vw, 125px); }
+.artwork-detail__stage { height: min(65vw, 900px); min-height: 560px; }
+.artwork-detail__stage--artwork { padding: 0; }
+.artwork-detail__arrow { height: clamp(44px, 4.8vw, 78px); width: clamp(44px, 4.8vw, 78px); }
+.artwork-detail__arrow--previous { left: 1rem; }
+.artwork-detail__arrow--next { right: 1rem; }
+.artwork-detail__thumbnails { grid-template-columns: repeat(3, minmax(0, 105px)); justify-content: center; padding: 1.5rem 1rem 0; }
+.artwork-detail__view-status { bottom: .5rem; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.artwork-detail__information { padding: clamp(2rem, 4.8vw, 5rem); position: static; background: var(--paper); }
+.artwork-detail__information h1 { font-size: clamp(3rem, 5.5vw, 6rem); line-height: 1; }
+.artwork-detail__information dl > div { grid-template-columns: minmax(105px, .55fr) 1fr; padding: 1.2rem 0; }
+.artwork-detail__information dd { font-size: 1.05rem; }
+.artwork-detail__description { font-size: 1.2rem; line-height: 1.8; }
+@media (max-width: 1000px) {
+  .artwork-detail__product { grid-template-columns: 1fr; }
+  .artwork-detail__information { max-width: none; }
+}
+@media (max-width: 680px) {
+  .artwork-detail__stage { height: 115vw; min-height: 320px; }
+  .artwork-detail__stage-wrap { padding: 0 54px; }
+  .artwork-detail__information { padding: 2rem 1.25rem; }
+}

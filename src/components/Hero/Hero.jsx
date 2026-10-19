@@ -3,8 +3,8 @@ import './Hero.css'
 
 const heroImages = [
   { src: '/assets/prasad-research-practice.png', alt: 'Prasad Weerasinghe painting an ornamental artwork in his studio', label: 'Inside the studio', position: '58% 48%' },
-  { src: '/assets/img%20(55).jpeg', alt: 'Reclining composite figure surrounded by botanical and patterned forms', label: 'Composite forms', position: 'center 48%' },
-  { src: '/assets/img%20(27).jpeg', alt: 'Two symbolic figures surrounded by mythic and organic forms', label: 'Myth & memory', position: 'center 46%' },
+  { src: '/assets/hero-crimson-landscape.svg', alt: 'Crimson Landscape, a richly patterned composition on a deep red ground by Prasad Weerasinghe', label: 'Crimson Landscape', position: 'center 48%', mobilePosition: '62% center' },
+  { src: '/assets/hero-night-on-water.svg', alt: 'Night on the Water, a reclining figure among luminous blue botanical forms by Prasad Weerasinghe', label: 'Night on the Water', position: 'center 50%', mobilePosition: '60% center' },
   { src: '/assets/exhibition-view-banner.png', alt: 'A gallery wall presenting selected works by Prasad Weerasinghe', label: 'Exhibition view', position: 'center' },
 ]
 
@@ -28,7 +28,7 @@ export default function Hero({ onNavigate }) {
             src={image.src}
             alt={activeImage === index ? image.alt : ''}
             aria-hidden={activeImage !== index}
-            style={{ '--hero-image-position': image.position }}
+            style={{ '--hero-image-position': image.position, '--hero-mobile-position': image.mobilePosition || image.position }}
             key={image.src}
           />
         ))}

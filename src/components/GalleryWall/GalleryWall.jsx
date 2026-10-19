@@ -41,7 +41,7 @@ export default function OnlineStore({ onNavigate }) {
           <article className={`store-card ${work.status === 'sold' ? 'is-sold' : ''}`} data-reveal key={work.slug}>
             <button className="store-card__wall" type="button" aria-label={`View details for ${work.title}`} onClick={() => openArtwork(work.slug)}>
               <span className={`store-card__status store-card__status--${work.status}`}>
-                {work.status === 'sold' ? 'Sold out' : 'Available'}
+                {work.status === 'sold' ? 'Sold out' : work.status === 'archive' ? 'Artist archive' : 'Available'}
               </span>
               <span className="store-card__frame">
                 <img src={work.image} alt={work.alt || work.title} loading="lazy" />

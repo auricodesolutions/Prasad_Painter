@@ -1,3 +1,5 @@
+import { driveArtworks } from './driveArtworks.js'
+
 const image = (number) => `/assets/img%20(${number}).jpeg`
 const setDesignImage = (number, extension = 'jpeg') => `/assets/SD${number}.${extension}`
 const paintingWork = (number, title, medium = 'Mixed media on paper') => ({
@@ -14,6 +16,7 @@ const paintingAsset = (filename, title, medium, alt) => ({
 })
 
 export const storeArtworks = [
+  { slug: 'saffron-of-scare-folding', image: '/assets/drive-artworks/MRL09075-artwork.svg', title: 'Saffron of scare folding', category: 'Paintings', medium: 'Oil on canvas', size: '92cm x 121cm', format: 'Portrait', year: '2026', price: 'LKR 240,000', status: 'available', alt: 'Architectural oil painting in saffron, terracotta and gold against a dark background', description: 'An architectural composition of layered towers, patterned surfaces and sweeping forms in saffron and warm earth colours.' },
   { slug: 'architecture-of-memory', image: image(63), title: 'Architecture of Memory', category: 'Drawings', medium: 'Ink and mixed media', size: 'Original studio work', format: 'Portrait', year: 'Archive work', status: 'sold', alt: 'Architectural symbolic painting in brown, black and white', description: 'Architectural fragments, patterned surfaces and symbolic forms are assembled as a record of place, memory and change.' },
   { slug: 'the-blue-witness', image: image(47), title: 'The Blue Witness', category: 'Paintings', medium: 'Acrylic and mixed media', size: 'Original studio work', format: 'Portrait', year: 'Contemporary work', status: 'available', alt: 'Blue figurative portrait with an elaborate floral headdress', description: 'A contemplative figure emerges through a layered vocabulary of blue pigment, botanical ornament and composite detail.' },
   { slug: 'a-body-of-symbols', image: image(37), title: 'A Body of Symbols', category: 'Paintings', medium: 'Acrylic on canvas', size: 'Original studio work', format: 'Portrait', year: 'Archive work', status: 'sold', alt: 'Symbolic figure painting with ornamental patterns and geometric forms', description: 'The human body becomes a field of signs where decorative traditions meet contemporary social experience.' },
@@ -31,8 +34,8 @@ export const categoryPages = {
     title: 'Paintings',
     eyebrow: 'Research-led painting',
     intro: 'Layered figures, ornament and memory are assembled into a contemporary visual language grounded in Sri Lankan traditions.',
-    hero: image(42),
-    heroAlt: 'Detailed ornamental painting with layered figurative and botanical forms',
+    hero: '/assets/hero-blue-currents.svg',
+    heroAlt: 'Blue Currents, a bright blue painting with layered organic patterns and symbolic forms by Prasad Weerasinghe',
     albums: [
             {
         slug: 'line-surface-geometry',
@@ -64,7 +67,7 @@ export const categoryPages = {
         slug: 'composite-figures',
         title: 'Composite Figures',
         description: 'The body becomes an archive of memory, identity and transformation through layered human forms.',
-        works: [],
+        works: [storeArtworks[0]],
       },
 
       {
@@ -144,44 +147,17 @@ export const categoryPages = {
           paintingWork(12, 'Small Narrative Study', 'Ink and pigment'),
         ],
       },
-      {
-        slug: 'pattern-surface-geometry',
-        title: 'Pattern, Surface & Geometry',
-        description: 'Repetition, texture and measured structures build contemplative surfaces from disciplined mark-making.',
-        works: [
-          paintingWork(63, 'Textured Torso', 'Graphite and ink'),
-          paintingWork(42, 'Ornamental Current', 'Ink and pigment'),
-          paintingWork(7, 'Spiral Field', 'Pen and mixed media'),
-          paintingWork(15, 'Circular Study', 'Ink and pigment'),
-          paintingWork(24, 'Patterned Growth', 'Ink and acrylic'),
-        ],
-      },
-      {
-        slug: 'other-drawing-images',
-        title: 'Other Images',
-        description: 'Framed works, gallery views, documentation and drawing-related images that sit outside the five themes.',
-        works: [
-          paintingWork(33, 'Framed Figure Study', 'Gallery documentation'),
-          paintingWork(18, 'Framed Drawing', 'Artwork documentation'),
-          paintingWork(25, 'Work in Context', 'Installation view'),
-          paintingWork(30, 'Drawings in Dialogue', 'Exhibition view'),
-          paintingWork(31, 'Public Viewing', 'Gallery documentation'),
-          paintingWork(22, 'Drawing Feature', 'Digital documentation'),
-        ],
-      },
     ],
   },
   commercial: {
     title: 'Commercial',
     eyebrow: 'Creative collaboration',
     intro: 'Commissioned concepts translate the artist’s visual language into exhibitions, installations, editorial projects and public-facing environments.',
-    hero: image(8),
-    works: [
-      { image: image(18), title: 'Digital Exhibition Feature', medium: 'Editorial presentation' },
-      { image: image(25), title: 'Gallery Presentation', medium: 'Exhibition installation' },
-      { image: image(26), title: 'Artwork in Context', medium: 'Interior art placement' },
-      { image: image(36), title: 'Publication Feature', medium: 'Editorial design' },
-    ],
+    hero: '/assets/hero-crimson-landscape.svg',
+    heroAlt: 'Crimson Landscape, a richly patterned artwork by Prasad Weerasinghe',
+    works: driveArtworks.filter((work) => [
+      'MRL09202', 'MRL09215', 'MRL09210', 'MRL09157', 'MRL09186', 'MRL09173',
+    ].includes(work.reference)),
   },
   sculptures: {
     title: 'Sculptures',
@@ -191,6 +167,73 @@ export const categoryPages = {
     works: [],
   },
 }
+
+// Redistribute the pattern studies across the four drawing themes.
+const drawingAlbums = categoryPages.drawings.albums
+const drawingAlbum = (slug) => drawingAlbums.find((album) => album.slug === slug)
+drawingAlbum('figurative-studies').works.push(paintingWork(63, 'Textured Torso', 'Graphite and ink'))
+drawingAlbum('organic-line-nature').works.push(
+  paintingWork(42, 'Ornamental Current', 'Ink and pigment'),
+  paintingWork(7, 'Spiral Field', 'Pen and mixed media'),
+  paintingWork(24, 'Patterned Growth', 'Ink and acrylic'),
+)
+drawingAlbum('objects-memory').works.push(paintingWork(15, 'Circular Study', 'Ink and pigment'))
+
+// Exclude the seven images removed from the drawing collection.
+const removedDrawingImages = new Set([9, 28, 34, 63, 42, 7, 24].map(image))
+for (const album of drawingAlbums) {
+  album.works = album.works.filter((work) => !removedDrawingImages.has(work.image))
+}
+
+categoryPages.paintings.albums.unshift({
+  slug: 'studio-collection',
+  title: 'Studio Collection',
+  description: 'Explore the artist\'s latest collection of artwork photographs from the studio.',
+  works: driveArtworks.filter((work) => work.reference !== 'MRL09092'),
+})
+
+const paintingAlbumReferences = {
+  'myth-ritual-memory': ['MRL09075', 'MRL09029', 'MRL09192', 'MRL09198'],
+  'botanical-organic-forms': ['MRL09039', 'MRL09024', 'MRL09195', 'MRL09176'],
+  'independent-works': ['MRL09154', 'MRL09167', 'MRL09206', 'MRL09219'],
+}
+for (const album of categoryPages.paintings.albums) {
+  const references = paintingAlbumReferences[album.slug]
+  if (references) album.works = references.map((reference) => driveArtworks.find((work) => work.reference === reference)).filter(Boolean)
+}
+categoryPages.paintings.albums.find((album) => album.slug === 'independent-works').description =
+  'Individual paintings exploring portraiture, colour and imagined worlds beyond the themed albums.'
+// Use the clear Drive photograph for Saffron and keep at most twelve works per album.
+for (const category of Object.values(categoryPages)) {
+  for (const album of category.albums || []) {
+    const seen = new Set()
+    album.works = album.works.map((work) => work.reference === 'MRL09075' ? storeArtworks[0] : work)
+      .filter((work) => {
+        if (seen.has(work.image)) return false
+        seen.add(work.image)
+        return true
+      }).slice(0, 12)
+  }
+}
+storeArtworks.splice(1, 0, ...driveArtworks.filter((work) => work.reference !== 'MRL09075'))
+
+// Share gallery works with the detail-page catalogue without duplicating images.
+for (const category of Object.values(categoryPages)) {
+  for (const work of [...(category.works || []), ...(category.albums || []).flatMap((album) => album.works)]) {
+    const existing = storeArtworks.find((item) => item.image === work.image)
+    if (existing) { work.slug = existing.slug; continue }
+    work.slug = work.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    const baseSlug = work.slug
+    let suffix = 2
+    while (storeArtworks.some((item) => item.slug === work.slug)) work.slug = `${baseSlug}-${suffix++}`
+    storeArtworks.push({ ...work, category: category.title, size: 'Original studio work', format: 'Original artwork', year: 'Artist archive', status: 'archive', description: work.alt || work.title })
+  }
+}
+
+// Keep archive detail links while presenting only unique paintings in the store.
+export const detailArtworks = [...storeArtworks]
+const saffron = storeArtworks.find((work) => work.slug === 'saffron-of-scare-folding')
+storeArtworks.splice(0, storeArtworks.length, saffron, ...driveArtworks.filter((work) => work.reference !== 'MRL09075'))
 
 export const practicePages = {
   'set-design': {

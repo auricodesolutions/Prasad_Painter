@@ -24,7 +24,7 @@
 }
 
 .hero__image:nth-child(even) { clip-path: polygon(88% 0, 100% 0, 100% 100%, 100% 100%); transform: scale(1.13) translateX(-2.5%) rotate(-.2deg); }
-.hero__image.is-active { clip-path: polygon(0 0, 112% 0, 100% 100%, -12% 100%); filter: brightness(.96) saturate(.88) blur(0); opacity: 1; transform: scale(1.025) translateX(0) rotate(0); z-index: 1; }
+.hero__image.is-active { clip-path: polygon(0 0, 112% 0, 100% 100%, -12% 100%); filter: brightness(1) saturate(1) blur(0); opacity: 1; transform: scale(1.025) translateX(0) rotate(0); z-index: 1; }
 .hero__image:nth-child(even).is-active { clip-path: polygon(-12% 0, 100% 0, 112% 100%, 0 100%); }
 
 .hero__canvas-sweep { animation: heroCanvasSweepForward 1.55s var(--ease) both; background: linear-gradient(90deg, transparent, rgba(231,204,173,.42), rgba(255,255,255,.16), transparent); filter: blur(8px); height: 145%; left: -28%; mix-blend-mode: screen; pointer-events: none; position: absolute; top: -22%; transform: skewX(-12deg); width: 22%; z-index: 2; }
@@ -183,7 +183,7 @@
 
 @media (max-width: 760px) {
   .hero { min-height: 100svh; padding: 7rem 1.25rem 7rem; }
-  .hero__image { object-position: var(--hero-image-position, 62% center); }
+  .hero__image { object-position: var(--hero-mobile-position, 62% center); }
   .hero__overlay {
     background:
       linear-gradient(180deg, rgba(10,10,9,.2) 0%, rgba(10,10,9,.06) 32%, rgba(10,10,9,.78) 65%, rgba(10,10,9,.95) 100%),

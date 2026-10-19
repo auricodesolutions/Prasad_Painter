@@ -3,8 +3,8 @@ import { storeArtworks } from '../../data/portfolioContent'
 import './StorePage.css'
 
 const categories = ['All', 'Paintings', 'Drawings', 'Commercial']
-const mediumGroups = ['Acrylic', 'Ink', 'Mixed media']
-const availabilityOptions = ['All', 'Available', 'Sold']
+const mediumGroups = ['Oil', 'Acrylic', 'Ink', 'Mixed media']
+const availabilityOptions = ['All', 'Available', 'Sold', 'Archive']
 
 export default function StorePage({ onNavigate }) {
   const [category, setCategory] = useState('All')
@@ -50,10 +50,11 @@ export default function StorePage({ onNavigate }) {
         <img className="store-page__hero-image" src="/assets/exhibition-view-banner.png" alt="" aria-hidden="true" />
         <span className="store-page__hero-shade" aria-hidden="true" />
         <div className="store-page__hero-title"><h1><span>Store</span></h1></div>
+        <div className="store-page__hero-copy"><strong>Original artworks</strong><a href="#store-artworks">Browse artworks <span aria-hidden="true">↓</span></a></div>
         
       </section>
 
-      <section className="store-catalogue" aria-labelledby="store-catalogue-title">
+      <section className="store-catalogue" id="store-artworks" aria-labelledby="store-catalogue-title">
         <header className="store-catalogue__toolbar" data-reveal>
           <div>
             <p className="eyebrow" id="store-catalogue-title">Studio collection</p>
@@ -122,7 +123,7 @@ export default function StorePage({ onNavigate }) {
                   <article className={`store-artwork ${work.status === 'sold' ? 'is-sold' : ''}`} style={{ '--store-index': index }} key={work.slug}>
                     <button type="button" onClick={() => openArtwork(work.slug)} aria-label={`View details for ${work.title}`}>
                       <span className={`store-artwork__status store-artwork__status--${work.status}`}>
-                        {work.status === 'sold' ? 'Sold out' : 'Available'}
+                        {work.status === 'sold' ? 'Sold out' : work.status === 'archive' ? 'Artist archive' : 'Available'}
                       </span>
                       <span className="store-artwork__image">
                         <img src={work.image} alt={work.alt || work.title} loading="lazy" />

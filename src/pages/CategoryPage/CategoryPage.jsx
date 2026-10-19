@@ -169,7 +169,7 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
                   {activeAlbum ? activeAlbum.title : <>Works in <em>{category.title.toLowerCase()}.</em></>}
                 </h2>
               </div>
-              <p>{activeAlbum ? activeAlbum.description : isEmptyCollection ? 'Approved artwork and documentation will be added after they are supplied by the artist.' : 'Select any image to enter a closer full-screen view.'}</p>
+              <p>{activeAlbum ? activeAlbum.description : isEmptyCollection ? 'Approved artwork and documentation will be added after they are supplied by the artist.' : 'Select a work to discover its details and presentation views.'}</p>
             </header>
 
             {isEmptyCollection ? (
@@ -184,7 +184,7 @@ export default function CategoryPage({ categoryKey, onNavigate }) {
                 <button
                   className="category-work"
                   type="button"
-                  onClick={() => setSelected(work)}
+                  onClick={() => { if (onNavigate && work.slug) onNavigate(`store-item:${work.slug}`); else setSelected(work) }}
                   style={{ '--category-index': index }}
                   data-reveal={hasAlbums ? undefined : ''}
                   key={`${work.title}-${index}`}

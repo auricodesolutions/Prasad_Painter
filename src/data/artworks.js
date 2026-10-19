@@ -1,4 +1,6 @@
-export const artworks = [
+import { driveArtworks } from './driveArtworks.js'
+
+export const archiveArtworks = [
   {
     id: 1,
     title: 'The Celestial Messenger',
@@ -40,3 +42,11 @@ export const artworks = [
     position: 'center',
   },
 ]
+
+// Alternate palettes so the homepage selection shows the range of the collection.
+const selectedReferences = ['MRL09083', 'MRL09206', 'MRL09165', 'MRL09024', 'MRL09198']
+export const artworks = selectedReferences.map((reference, index) => ({
+  ...driveArtworks.find((work) => work.reference === reference),
+  id: index + 1,
+  position: 'center',
+}))

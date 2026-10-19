@@ -177,7 +177,7 @@ export default function App() {
         entry.target.classList.add('is-section-visible')
         sectionObserver.unobserve(entry.target)
       })
-    }, { threshold: 0.045, rootMargin: '0px 0px -7% 0px' })
+    }, { threshold: 0, rootMargin: '0px 0px -7% 0px' })
 
     document.documentElement.classList.add('section-motion-ready')
     elements.forEach((element) => observer.observe(element))
@@ -210,7 +210,7 @@ export default function App() {
           page === 'set-design' || page === 'art-direction' ? <PracticePage practiceKey={page} onNavigate={navigate} /> : (
           <main>
             <Hero onNavigate={navigate} />
-            <Works />
+            <Works onNavigate={navigate} />
             <FeaturedCategories onNavigate={navigate} />
             <OnlineStore onNavigate={navigate} />
             <ExhibitionPoster onNavigate={navigate} />

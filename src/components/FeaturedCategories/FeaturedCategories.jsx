@@ -4,8 +4,8 @@ const categories = [
   {
     slug: 'paintings',
     title: 'Paintings',
-    image: '/assets/img%20(42).jpeg',
-    alt: 'Colourful figurative painting by Prasad Weerasinghe',
+    image: '/assets/drive-artworks/MRL09192-artwork.svg',
+    alt: 'Nocturnal Bloom, an ornamental painting in gold and blue against a dark background by Prasad Weerasinghe',
     description: 'Research-led paintings where symbolic figures, ornament and memory meet.',
   },
   {

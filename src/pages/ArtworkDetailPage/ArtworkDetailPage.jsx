@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import ArtworkViewer from '../../components/ArtworkViewer/ArtworkViewer'
-import { storeArtworks } from '../../data/portfolioContent'
+import { storeArtworks, detailArtworks } from '../../data/portfolioContent'
 import './ArtworkDetailPage.css'
 
 const viewOptions = [
@@ -10,8 +10,9 @@ const viewOptions = [
 ]
 
 export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
-  const artwork = storeArtworks.find((item) => item.slug === artworkSlug) || storeArtworks[0]
+  const artwork = detailArtworks.find((item) => item.slug === artworkSlug) || storeArtworks[0]
   const isSold = artwork.status === 'sold'
+  const isArchive = artwork.status === 'archive'
   const whatsappUrl = `https://wa.me/94714562736?text=${encodeURIComponent(
     isSold
       ? `Hello Prasad, I would like to ask about a similar work to “${artwork.title}”.`
@@ -118,23 +119,26 @@ export default function ArtworkDetailPage({ artworkSlug, onNavigate }) {
 
         <aside className="artwork-detail__information">
           <p className={`eyebrow artwork-detail__availability ${isSold ? 'is-sold' : ''}`}>
-            {isSold ? 'Sold out' : 'Original work · Available'}
+            {isSold ? 'Sold out' : isArchive ? 'Artist archive' : 'Original work · Available'}
           </p>
           <h1 id="artwork-title">{artwork.title}</h1>
 
           <dl>
             <div><dt>Category</dt><dd>{artwork.category}</dd></div>
             <div><dt>Medium</dt><dd>{artwork.medium}</dd></div>
-            <div><dt>Presentation</dt><dd>{artwork.size}</dd></div>
+            <div><dt>{artwork.price ? 'Dimensions' : 'Presentation'}</dt><dd>{artwork.size}</dd></div>
             <div><dt>Format</dt><dd>{artwork.format}</dd></div>
-            <div><dt>Collection</dt><dd>{artwork.year}</dd></div>
+            <div><dt>{artwork.price ? 'Year' : 'Collection'}</dt><dd>{artwork.year}</dd></div>
+            {artwork.price && <div><dt>Price</dt><dd>{artwork.price}</dd></div>}
           </dl>
 
-          <p className="artwork-detail__description">{artwork.description}</p>
+          <p className="artwork-detail__description">
+            {artwork.title}, {artwork.medium}
+          </p>
 
           <div className="artwork-detail__actions">
             <a href={whatsappUrl} target="_blank" rel="noreferrer">
-              {isSold ? 'Request a similar work' : 'Ask for price'} <span>↗</span>
+              {isSold ? 'Request a similar work' : artwork.price ? 'Enquire about this painting' : 'Ask for details'} <span>↗</span>
             </a>
             <p>{isSold
               ? 'This original has been placed in a private collection. Contact the studio about related available works or a new commission.'

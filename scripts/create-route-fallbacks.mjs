@@ -1,6 +1,6 @@
 import { copyFile, mkdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
-import { categoryPages, storeArtworks } from '../src/data/portfolioContent.js'
+import { categoryPages, detailArtworks } from '../src/data/portfolioContent.js'
 
 const distDirectory = fileURLToPath(new URL('../dist/', import.meta.url))
 const sourceIndex = fileURLToPath(new URL('../dist/index.html', import.meta.url))
@@ -12,7 +12,7 @@ const routes = new Set([
   'set-design',
   'art-direction',
   ...Object.keys(categoryPages).map((category) => `category/${category}`),
-  ...storeArtworks.map((artwork) => `store/${artwork.slug}`),
+  ...detailArtworks.map((artwork) => `store/${artwork.slug}`),
 ])
 
 await Promise.all(
